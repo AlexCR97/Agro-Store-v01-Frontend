@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/perfil"
+            android:icon="@drawable/usuario"
+            android:title="Perfil"
+            android:textSize="18sp"/>
+        <item
+            android:id="@+id/notificaciones"
+            android:icon="@drawable/a"
+            android:title="Notificaciones"
+            android:textSize="18sp"/>
+        <item
+            android:id="@+id/miterreno"
+            android:icon="@drawable/terreno"
+            android:title="Mi terreno"
+            android:textSize="18sp"/>
+        <item
+            android:id="@+id/misproductos"
+            android:icon="@drawable/b"
+            android:title="Mis productos"
+            android:textSize="18sp"/>
+        <item
+            android:id="@+id/compras"
+            android:icon="@drawable/c"
+            android:title="Compras"
+            android:textSize="18sp"/>
+        <item
+            android:id="@+id/ventas"
+            android:icon="@drawable/d"
+            android:title="Ventas"
+            android:textSize="18sp"/>
+        <item
+            android:id="@+id/faq"
+            android:icon="@drawable/e"
+            android:title="FAQ"
+            android:textSize="18sp"/>
+        <item
+            android:id="@+id/cerrarsesion"
+            android:icon="@drawable/f"
+            android:title="Cerrar sesión"
+            android:textSize="18sp"/>
+
+        <item
+            android:id="@+id/ventana"
+            android:icon="@drawable/luna"
+            android:title=" "
+            app:actionLayout="@layout/switch_item"
+            app:showAsAction="always"></item>
+    </group>
+
+</menu>

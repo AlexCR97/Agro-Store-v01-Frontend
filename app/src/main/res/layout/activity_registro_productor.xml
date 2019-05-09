@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".actividades.RegistroProductorActivity">
+
+    <ImageView
+        android:id="@+id/imageView56"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/help_verde" />
+
+    <TextView
+        android:id="@+id/tvFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/colorVerdeFuerte"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/ibFechaNacimiento"
+        app:layout_constraintStart_toStartOf="@+id/ibFechaNacimiento"
+        app:layout_constraintTop_toBottomOf="@+id/ibFechaNacimiento" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Acepto términos y condiciones"
+        android:textColor="@color/colorGris"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton15" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="40dp"
+        android:layout_height="29dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/editText29"
+        app:layout_constraintEnd_toStartOf="@+id/editText29"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editText29"
+        app:srcCompat="@drawable/usuario" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="40dp"
+        android:layout_height="29dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/editText30"
+        app:layout_constraintEnd_toStartOf="@+id/editText29"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView18"
+        app:layout_constraintTop_toTopOf="@+id/editText30"
+        app:srcCompat="@drawable/password" />
+
+    <ImageView
+        android:id="@+id/imageView21"
+        android:layout_width="40dp"
+        android:layout_height="29dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/editText31"
+        app:layout_constraintEnd_toStartOf="@+id/editText29"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView19"
+        app:layout_constraintTop_toTopOf="@+id/editText31"
+        app:srcCompat="@drawable/password" />
+
+    <ImageView
+        android:id="@+id/imageView22"
+        android:layout_width="40dp"
+        android:layout_height="29dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/editText32"
+        app:layout_constraintEnd_toStartOf="@+id/editText29"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView21"
+        app:layout_constraintTop_toTopOf="@+id/editText32"
+        app:srcCompat="@drawable/email" />
+
+    <ImageView
+        android:id="@+id/imageView30"
+        android:layout_width="40dp"
+        android:layout_height="29dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/editText5"
+        app:layout_constraintEnd_toStartOf="@+id/editText29"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView26"
+        app:layout_constraintTop_toTopOf="@+id/editText5"
+        app:srcCompat="@drawable/email" />
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="40dp"
+        android:layout_height="29dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/editText33"
+        app:layout_constraintEnd_toStartOf="@+id/editText29"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView22"
+        app:layout_constraintTop_toTopOf="@+id/editText33"
+        app:srcCompat="@drawable/telefono" />
+
+    <ImageView
+        android:id="@+id/imageView26"
+        android:layout_width="40dp"
+        android:layout_height="29dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/editText34"
+        app:layout_constraintEnd_toStartOf="@+id/editText29"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView23"
+        app:layout_constraintTop_toTopOf="@+id/editText34"
+        app:srcCompat="@drawable/empresa" />
+
+    <EditText
+        android:id="@+id/editText29"
+        android:layout_width="288dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Nombre"
+        android:textColor="@color/colorGrisClaro"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/editText30"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editText30" />
+
+    <EditText
+        android:id="@+id/editText30"
+        android:layout_width="288dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Contraseña"
+        android:textColor="@color/colorGrisClaro"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/editText31"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editText31" />
+
+    <EditText
+        android:id="@+id/editText32"
+        android:layout_width="288dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Correo electronico"
+        android:textColor="@color/colorGrisClaro"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/editText33"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editText33" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="288dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Correo electronico de respaldo"
+        android:textColor="@color/colorGrisClaro"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editText34"
+        app:layout_constraintTop_toBottomOf="@+id/editText34" />
+
+    <EditText
+        android:id="@+id/editText33"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Núm. teléfono"
+        android:textColor="@color/colorGrisClaro"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText34"
+        android:layout_width="288dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Domicilio laboral"
+        android:textColor="@color/colorGrisClaro"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editText33"
+        app:layout_constraintTop_toBottomOf="@+id/editText33" />
+
+    <EditText
+        android:id="@+id/editText31"
+        android:layout_width="288dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Confirmar contraseña"
+        android:textColor="@color/colorGrisClaro"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/editText32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editText32" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/editText29"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icono_usuario" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cuenta productor"
+        android:textColor="@color/colorGris"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editText29"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView24"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/ibRegistrar"
+        android:layout_width="323dp"
+        android:layout_height="63dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBox2"
+        app:srcCompat="@drawable/tbn_registrar" />
+
+    <ImageButton
+        android:id="@+id/ibFechaNacimiento"
+        android:layout_width="323dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText5"
+        app:srcCompat="@drawable/fecha_nacimiento" />
+
+    <ImageButton
+        android:id="@+id/imageButton15"
+        android:layout_width="323dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ibFechaNacimiento"
+        app:layout_constraintTop_toBottomOf="@+id/tvFecha"
+        app:srcCompat="@drawable/permiso_de_exportacion" />
+</android.support.constraint.ConstraintLayout>

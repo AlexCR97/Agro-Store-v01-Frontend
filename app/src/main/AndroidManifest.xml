@@ -9,7 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".actividades.MainActivity">
+        <activity android:name=".actividades.MiTerrenoActivity"></activity>
+        <activity android:name=".actividades.ReputacionActivity" />
+        <activity android:name=".actividades.SeguridadActivity" />
+        <activity android:name=".actividades.ClaveActivity" />
+        <activity android:name=".actividades.ConfigurarCuentaActivity" />
+        <activity android:name=".actividades.MisDatosActivity" />
+        <activity android:name=".actividades.PerfilUsuarioActivity" />
+        <activity android:name=".actividades.RegistroProductorActivity" />
+        <activity android:name=".actividades.RegistroClienteActivity" />
+        <activity android:name=".actividades.RegistroActivity" />
+        <activity
+            android:name=".actividades.BarraActivity"
+            android:label="@string/title_activity_barra"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".actividades.LoginActivity" />
+        <activity android:name=".actividades.CargaActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
