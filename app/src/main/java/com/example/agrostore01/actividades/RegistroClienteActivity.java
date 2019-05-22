@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.EditText;
+
 
 import com.example.agrostore01.R;
 
@@ -17,6 +19,8 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
     ImageButton ibRegistrar,ibFecha;
     String sFecha;
     TextView tvFecha;
+
+    EditText etNombre, etContrasena, etConfirmarContrasena, etCorreoElectronico, etCorreoRespaldo, etDireccion;
     private int dia, mes, anno;
 
     @Override
@@ -31,6 +35,54 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
 
         ibFecha.setOnClickListener((View.OnClickListener) this);
         ibRegistrar.setOnClickListener((View.OnClickListener) this);
+
+        etNombre = (EditText) findViewById(R.id.etNombre);
+        etContrasena = (EditText) findViewById(R.id.etContra);
+        etConfirmarContrasena = (EditText) findViewById(R.id.etConfirmarContra);
+        etCorreoElectronico = (EditText) findViewById(R.id.etCorreoElec);
+        etCorreoRespaldo = (EditText) findViewById(R.id.etCorreoRespaldo);
+
+
+    }
+
+    public ImageButton getIbRegistrar() {
+        return ibRegistrar;
+    }
+
+    public ImageButton getIbFecha() {
+        return ibFecha;
+    }
+
+    public String getsFecha() {
+        return sFecha;
+    }
+
+    public TextView getTvFecha() {
+        return tvFecha;
+    }
+
+    public EditText getEtNombre() {
+        return etNombre;
+    }
+
+    public EditText getEtContrasena() {
+        return etContrasena;
+    }
+
+    public EditText getEtConfirmarContrasena() {
+        return etConfirmarContrasena;
+    }
+
+    public EditText getEtCorreoElectronico() {
+        return etCorreoElectronico;
+    }
+
+    public EditText getEtCorreoRespaldo() {
+        return etCorreoRespaldo;
+    }
+
+    public EditText getEtDireccion() {
+        return etDireccion;
     }
 
     @Override
@@ -56,5 +108,7 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
             Intent intent= new Intent(RegistroClienteActivity.this,BarraActivity.class);
             startActivity(intent);
         }
+
+
     }
 }

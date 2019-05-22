@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".actividades.MisDatosActivity">
 
+    <ImageButton
+        android:id="@+id/ibGuardar"
+        android:layout_width="305dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView47"
+        app:srcCompat="@drawable/guardar" />
+
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
@@ -51,9 +63,9 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.062"
+        app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView32" />
 
     <TextView
         android:id="@+id/textView5"
@@ -110,7 +122,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mis datos"
+        android:text="Actualizar"
         android:textColor="@android:color/background_light"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView12"
@@ -198,76 +210,64 @@
         app:layout_constraintVertical_bias="0.49"
         app:srcCompat="@drawable/help_blanco" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvNombre"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Nombre"
-        android:textSize="18sp"
+        android:hint="Nombre"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvUsuario"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Usuario"
-        android:textSize="18sp"
+        android:hint="Usuario"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="E-mail"
-        android:textSize="18sp"
+        android:hint="E-mail"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvTelefono"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Teléfono"
-        android:textSize="18sp"
+        android:hint="Teléfono"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-    <TextView
+    <EditText
         android:id="@+id/tvDireccion"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Dirección"
-        android:textSize="18sp"
+        android:hint="Dirección"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-    <ImageButton
-        android:id="@+id/ibActualizar"
-        android:layout_width="305dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="5dp"
-        android:background="@android:color/transparent"
-        android:scaleType="centerInside"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView47"
-        app:srcCompat="@drawable/actualizar" />
 
 </android.support.constraint.ConstraintLayout>

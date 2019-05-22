@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".actividades.MiTerrenoActivity"></activity>
+        <activity android:name=".adaptadores.TerrenoAdapter"></activity>
+        <activity android:name=".actividades.AgregarTerrenoActivity" />
+        <activity android:name=".actividades.ActualizarMisDatosActivity" />
+        <activity android:name=".actividades.MiTerrenoActivity" />
         <activity android:name=".actividades.ReputacionActivity" />
         <activity android:name=".actividades.SeguridadActivity" />
         <activity android:name=".actividades.ClaveActivity" />

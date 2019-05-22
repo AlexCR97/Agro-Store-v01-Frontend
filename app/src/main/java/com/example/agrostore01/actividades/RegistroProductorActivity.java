@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.EditText;
+
 
 import java.util.Calendar;
 import com.example.agrostore01.R;
@@ -18,6 +20,7 @@ public class RegistroProductorActivity extends AppCompatActivity implements View
     String sFecha;
     TextView tvFecha;
     private int dia, mes, anno;
+    EditText etNombre,etContrasena, etConfirmarContra, etCorreoElectr, etNumTel, etDomicilioLab, etCorreoRespa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +32,61 @@ public class RegistroProductorActivity extends AppCompatActivity implements View
 
         tvFecha=(TextView)findViewById(R.id.tvFecha);
 
+        etNombre=(EditText) findViewById(R.id.etNombre);
+        etContrasena=(EditText)findViewById(R.id.etContrasena);
+        etConfirmarContra=(EditText)findViewById(R.id.etConfirmarContra);
+        etCorreoElectr=(EditText)findViewById(R.id.etCorreoElectronico);
+        etNumTel=(EditText)findViewById(R.id.etTelefono);
+        etDomicilioLab=(EditText)findViewById(R.id.etDireccionLab);
+        etCorreoRespa=(EditText)findViewById(R.id.etCorreoRespaldo);
 
         ibFecha.setOnClickListener((View.OnClickListener) this);
         ibRegistrar.setOnClickListener((View.OnClickListener) this);
+    }
+
+
+    public ImageButton getIbRegistrar() {
+        return ibRegistrar;
+    }
+
+    public ImageButton getIbFecha() {
+        return ibFecha;
+    }
+
+    public String getsFecha() {
+        return sFecha;
+    }
+
+    public TextView getTvFecha() {
+        return tvFecha;
+    }
+
+    public EditText getEtNombre() {
+        return etNombre;
+    }
+
+    public EditText getEtContrasena() {
+        return etContrasena;
+    }
+
+    public EditText getEtConfirmarContra() {
+        return etConfirmarContra;
+    }
+
+    public EditText getEtCorreoElectr() {
+        return etCorreoElectr;
+    }
+
+    public EditText getEtNumTel() {
+        return etNumTel;
+    }
+
+    public EditText getEtDomicilioLab() {
+        return etDomicilioLab;
+    }
+
+    public EditText getEtCorreoRespa() {
+        return etCorreoRespa;
     }
 
     @Override
@@ -57,5 +112,7 @@ public class RegistroProductorActivity extends AppCompatActivity implements View
             Intent intent = new Intent(RegistroProductorActivity.this, BarraActivity.class);
             startActivity(intent);
         }
+
+
     }
 }

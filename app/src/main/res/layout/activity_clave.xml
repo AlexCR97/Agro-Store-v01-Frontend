@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6"
+        app:layout_constraintTop_toBottomOf="@+id/etClave"
         app:srcCompat="?attr/colorControlHighlight" />
 
     <ImageView
@@ -65,7 +65,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView34" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/etClave"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

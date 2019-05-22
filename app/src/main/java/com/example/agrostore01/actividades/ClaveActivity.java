@@ -5,11 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.EditText;
+
 
 import com.example.agrostore01.R;
 
 public class ClaveActivity extends AppCompatActivity {
     ImageButton ibSeguridad;
+    EditText etClave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,5 +28,16 @@ public class ClaveActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        etClave=(EditText) findViewById(R.id.etClave);
+
+    }
+
+    public ImageButton getIbSeguridad() {
+        return ibSeguridad;
+    }
+
+    public EditText getEtClave() {
+        return etClave;
     }
 }
