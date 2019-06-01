@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imageViewItemTerreno"
+        android:layout_width="139dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/terreno" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutItemTerreno"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewItemNombreTerreno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Nombre terreno"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textViewItemTamano"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Tamano"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewItemMedidas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medidas"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewItemTipoTerreno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="Tipo terreno"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+</LinearLayout>

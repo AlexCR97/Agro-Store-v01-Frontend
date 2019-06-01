@@ -7,7 +7,7 @@
     tools:context=".actividades.ConfigurarCuentaActivity">
 
     <ImageButton
-        android:id="@+id/ibDarALta"
+        android:id="@+id/ibDarAlta"
         android:layout_width="305dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -15,12 +15,12 @@
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/ibDarALta2"
-        app:layout_constraintTop_toBottomOf="@+id/editText17"
+        app:layout_constraintStart_toStartOf="@+id/ibRecuperarCuenta"
+        app:layout_constraintTop_toBottomOf="@+id/etRFC"
         app:srcCompat="@drawable/dar_de_alta" />
 
     <ImageButton
-        android:id="@+id/ibDarALta2"
+        android:id="@+id/ibRecuperarCuenta"
         android:layout_width="305dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -28,18 +28,18 @@
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText14"
+        app:layout_constraintTop_toBottomOf="@+id/etCuentaBan"
         app:srcCompat="@drawable/recuperacion_cuenta" />
 
     <EditText
-        android:id="@+id/editText8"
+        android:id="@+id/etSAT"
         android:layout_width="288dp"
         android:layout_height="45dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="60dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Código del SAT"
+        android:hint="Código del SAT"
         android:textColor="@color/colorGrisClaro"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,34 +48,34 @@
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
     <EditText
-        android:id="@+id/editText16"
+        android:id="@+id/etDireccionFis"
         android:layout_width="288dp"
         android:layout_height="45dp"
         android:layout_marginTop="5dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Dirección fiscal"
+        android:hint="Dirección fiscal"
         android:textColor="@color/colorGrisClaro"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText8"
-        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+        app:layout_constraintStart_toStartOf="@+id/etSAT"
+        app:layout_constraintTop_toBottomOf="@+id/etSAT" />
 
     <EditText
-        android:id="@+id/editText17"
+        android:id="@+id/etRFC"
         android:layout_width="288dp"
         android:layout_height="45dp"
         android:layout_marginTop="5dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="RFC de la empresa"
+        android:hint="RFC de la empresa"
         android:textColor="@color/colorGrisClaro"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText16"
-        app:layout_constraintTop_toBottomOf="@+id/editText16" />
+        app:layout_constraintStart_toStartOf="@+id/etDireccionFis"
+        app:layout_constraintTop_toBottomOf="@+id/etDireccionFis" />
 
     <TextView
         android:id="@+id/textView24"
@@ -124,7 +124,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ibDarALta2"
+        app:layout_constraintTop_toBottomOf="@+id/ibRecuperarCuenta"
         app:srcCompat="?attr/colorControlHighlight" />
 
     <TextView
@@ -153,10 +153,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView19"
-        app:layout_constraintTop_toBottomOf="@+id/editText10" />
+        app:layout_constraintTop_toBottomOf="@+id/etVerificarEji" />
 
     <EditText
-        android:id="@+id/editText10"
+        android:id="@+id/etVerificarEji"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -169,7 +169,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
     <EditText
-        android:id="@+id/editText14"
+        android:id="@+id/etCuentaBan"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -177,7 +177,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText10"
+        app:layout_constraintStart_toStartOf="@+id/etVerificarEji"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
     <ImageView

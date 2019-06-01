@@ -9,8 +9,6 @@ import com.example.agrostore01.R;
 
 public class CargaActivity extends AppCompatActivity {
 
-    // ahista
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,5 +21,4 @@ public class CargaActivity extends AppCompatActivity {
             }
         },1000);
     }
-
 }

@@ -8,7 +8,8 @@ import android.widget.ImageButton;
 
 import com.example.agrostore01.R;
 public class PerfilUsuarioActivity extends AppCompatActivity {
-    ImageButton ibMisDatos, ibClave, ibReputacion, ibConfiguracionCuenta;
+
+    private ImageButton ibMisDatos, ibClave, ibReputacion, ibConfiguracionCuenta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,36 +21,73 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         ibReputacion=(ImageButton)findViewById(R.id.ibReputacion);
         ibClave=(ImageButton)findViewById(R.id.ibClave);
 
-        ibMisDatos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(PerfilUsuarioActivity.this,MisDatosActivity.class);
-                startActivity(intent);
-            }
-        });
+        ibMisDatos.setOnClickListener(ibMisDatosListener);
+        ibConfiguracionCuenta.setOnClickListener(ibConfiguracionCuentaListener);
+        ibClave.setOnClickListener(ibClaveListener);
+        ibReputacion.setOnClickListener(ibReputacionListener);
+    }
 
-        ibConfiguracionCuenta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(PerfilUsuarioActivity.this,ConfigurarCuentaActivity.class);
-                startActivity(intent);
-            }
-        });
+    private final View.OnClickListener ibMisDatosListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent= new Intent(PerfilUsuarioActivity.this,MisDatosActivity.class);
+            startActivity(intent);
+        }
+    };
 
-        ibClave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(PerfilUsuarioActivity.this,ClaveActivity.class);
-                startActivity(intent);
-            }
-        });
+    private final View.OnClickListener ibConfiguracionCuentaListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent= new Intent(PerfilUsuarioActivity.this,ConfigurarCuentaActivity.class);
+            startActivity(intent);
+        }
+    };
 
-        ibReputacion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(PerfilUsuarioActivity.this,ReputacionActivity.class);
-                startActivity(intent);
-            }
-        });
+    private final View.OnClickListener ibClaveListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent= new Intent(PerfilUsuarioActivity.this,ClaveActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    private final View.OnClickListener ibReputacionListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent= new Intent(PerfilUsuarioActivity.this,ReputacionActivity.class);
+            startActivity(intent);
+        }
+    };
+
+    public ImageButton getIbMisDatos() {
+        return ibMisDatos;
+    }
+
+    public ImageButton getIbClave() {
+        return ibClave;
+    }
+
+    public ImageButton getIbReputacion() {
+        return ibReputacion;
+    }
+
+    public ImageButton getIbConfiguracionCuenta() {
+        return ibConfiguracionCuenta;
+    }
+
+    public View.OnClickListener getIbMisDatosListener() {
+        return ibMisDatosListener;
+    }
+
+    public View.OnClickListener getIbConfiguracionCuentaListener() {
+        return ibConfiguracionCuentaListener;
+    }
+
+    public View.OnClickListener getIbClaveListener() {
+        return ibClaveListener;
+    }
+
+    public View.OnClickListener getIbReputacionListener() {
+        return ibReputacionListener;
     }
 }

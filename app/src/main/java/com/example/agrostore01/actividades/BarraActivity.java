@@ -20,8 +20,8 @@ import android.widget.TextView;
 import com.example.agrostore01.R;
 
 
-public class BarraActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class BarraActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     private TextView mTextMessage;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

@@ -6,4 +6,9 @@
         android:orderInCategory="100"
         android:title="Ajustes"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/Ayuda"
+        android:orderInCategory="100"
+        android:title="Ayuda"
+        app:showAsAction="never" />
 </menu>

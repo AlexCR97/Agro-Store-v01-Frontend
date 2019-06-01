@@ -22,9 +22,9 @@
         android:layout_width="40dp"
         android:layout_height="29dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/editText3"
+        app:layout_constraintBottom_toBottomOf="@+id/etContra"
         app:layout_constraintStart_toStartOf="@+id/imageView27"
-        app:layout_constraintTop_toTopOf="@+id/editText3"
+        app:layout_constraintTop_toTopOf="@+id/etContra"
         app:srcCompat="@drawable/password" />
 
     <ImageView
@@ -32,11 +32,11 @@
         android:layout_width="40dp"
         android:layout_height="29dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/editText2"
-        app:layout_constraintEnd_toStartOf="@+id/editText2"
+        app:layout_constraintBottom_toBottomOf="@+id/etCorreoElec"
+        app:layout_constraintEnd_toStartOf="@+id/etCorreoElec"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText2"
+        app:layout_constraintTop_toTopOf="@+id/etCorreoElec"
         app:srcCompat="@drawable/usuario" />
 
     <ImageView
@@ -56,7 +56,7 @@
         android:id="@+id/imageView2"
         android:layout_width="113dp"
         android:layout_height="147dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        app:layout_constraintBottom_toTopOf="@+id/etCorreoElec"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"
@@ -71,7 +71,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/etContra"
         app:srcCompat="@drawable/btn_iniciarsesion" />
 
     <ImageButton
@@ -88,27 +88,27 @@
         app:srcCompat="@drawable/registrar" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/etCorreoElec"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Correo electrónico"
+        android:hint="Correo electrónico"
         android:textColor="@color/colorGrisClaro"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/editText3"
+        app:layout_constraintBottom_toTopOf="@+id/etContra"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText3" />
+        app:layout_constraintStart_toStartOf="@+id/etContra" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/etContra"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Contraseña"
+        android:hint="Contraseña"
         android:textColor="@color/colorGrisClaro"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -118,7 +118,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton5"
+        android:id="@+id/ibRecuperarCuenta"
         android:layout_width="305dp"
         android:layout_height="35dp"
         android:layout_marginTop="10dp"

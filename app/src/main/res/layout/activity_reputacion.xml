@@ -54,7 +54,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/pbReputacion"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="0dp"
         android:layout_height="32dp"
@@ -92,7 +92,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView27"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/pbReputacion" />
 
     <TextView
         android:id="@+id/textView36"
@@ -193,29 +193,29 @@
         app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
     <TextView
-        android:id="@+id/textView37"
+        android:id="@+id/tvCanceladas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0%"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView39"
+        app:layout_constraintStart_toStartOf="@+id/tvConcretadas"
         app:layout_constraintTop_toTopOf="@+id/textView32" />
 
     <TextView
-        android:id="@+id/textView39"
+        android:id="@+id/tvConcretadas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0%"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView40"
+        app:layout_constraintStart_toStartOf="@+id/tvTotalOperaciones"
         app:layout_constraintTop_toTopOf="@+id/textView31" />
 
     <TextView
-        android:id="@+id/textView40"
+        android:id="@+id/tvTotalOperaciones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
@@ -226,36 +226,36 @@
         app:layout_constraintTop_toTopOf="@+id/textView30" />
 
     <TextView
-        android:id="@+id/textView41"
+        android:id="@+id/tvNeutrales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0%"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView38"
+        app:layout_constraintStart_toStartOf="@+id/tvPositivas"
         app:layout_constraintTop_toTopOf="@+id/textView34" />
 
     <TextView
-        android:id="@+id/textView42"
+        android:id="@+id/tvNegativas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0%"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView41"
+        app:layout_constraintStart_toStartOf="@+id/tvNeutrales"
         app:layout_constraintTop_toTopOf="@+id/textView35" />
 
     <TextView
-        android:id="@+id/textView38"
+        android:id="@+id/tvPositivas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0%"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView37"
+        app:layout_constraintStart_toStartOf="@+id/tvCanceladas"
         app:layout_constraintTop_toTopOf="@+id/textView33" />
 
 </android.support.constraint.ConstraintLayout>
