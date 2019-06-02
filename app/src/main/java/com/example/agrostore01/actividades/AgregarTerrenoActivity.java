@@ -18,9 +18,6 @@ public class AgregarTerrenoActivity extends AppCompatActivity {
     private Spinner sTipoTerreno;
     private EditText etNombre, etTamano, etMedidasAncho, etMedidasAlto;
 
-    String[] datos = new String[] {"Suelo arenoso", "Suelo calizo", "Suelo limoso", "Suelo humífero", "Suelo arcilloso", "Suelo pedregoso", "Suelo de turba", "Suelo salino"};
-    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datos);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +30,11 @@ public class AgregarTerrenoActivity extends AppCompatActivity {
         etMedidasAncho=(EditText)findViewById(R.id.etMedidasAn);
         etMedidasAlto=(EditText)findViewById(R.id.etMedidasAl);
 
+        String[] datos = new String[] {"Suelo arenoso", "Suelo calizo", "Suelo limoso", "Suelo humífero", "Suelo arcilloso", "Suelo pedregoso", "Suelo de turba", "Suelo salino"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, datos);
         sTipoTerreno.setAdapter(adapter);
 
         ibAceptar.setOnClickListener(ibAceptarListener);
-
     }
 
     private final View.OnClickListener ibAceptarListener = new View.OnClickListener() {
