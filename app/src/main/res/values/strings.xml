@@ -6,49 +6,49 @@
     <string name="title_carrito">Carrito</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="title_activity_detalles_productos">Detalles del Producto</string>
+    <string name="title_activity_estado_venta">Map</string>
 
+    <string-array name="clasificacion_productos_lacteos">
+        <item>Queso</item>
+        <item>Leche</item>
+        <item>Yogurt</item>
+        <item>Otro...</item>
+    </string-array>
 
+    <string-array name="clasificacion_productos_carnes">
+        <item>Pescado</item>
+        <item>Res</item>
+        <item>Puerco</item>
+        <item>Otros...</item>
+    </string-array>
 
+    <string-array name="clasificacion_productos_hortalizas">
+        <item>Fruta</item>
+        <item>Verdura</item>
+        <item>Otros...</item>
+    </string-array>
 
+    <string-array name="clasificacion_productos_semillas">
+        <item>Frijolitos</item>
+        <item>Arrozito</item>
+        <item>Pistashitos</item>
+        <item>Hermitanias</item>
+        <item>Otro...</item>
+    </string-array>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <string-array name="unidades">
+        <item>Gramos</item>
+        <item>Kilogramos</item>
+        <item>Toneladas</item>
+        <item>Piezas</item>
+        <item>Miligramos</item>
+        <item>Litros</item>
+        <item>Cajas</item>
+        <item>Lotes</item>
+        <item>Costales</item>
+        <item>Otro…</item>
+    </string-array>
 
     <string name="title_dashboard">Dashboard</string>
     <string name="title_activity_barra">BarraActivity</string>
