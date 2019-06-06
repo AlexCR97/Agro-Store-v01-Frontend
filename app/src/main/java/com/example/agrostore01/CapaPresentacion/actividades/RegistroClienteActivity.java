@@ -16,11 +16,10 @@ import com.example.agrostore01.R;
 import java.util.Calendar;
 
 public class RegistroClienteActivity extends AppCompatActivity implements View.OnClickListener{
-
     private ImageButton ibRegistrar,ibFecha;
     private String sFecha;
     private TextView tvFecha;
-    private EditText etNombre, etContrasena, etConfirmarContrasena, etCorreoElectronico, etCorreoRespaldo, etDireccion;
+    private EditText etNombre, etContrasena, etConfirmarContrasena, etCorreoElectronico, etCorreoRespaldo, etCalle, etColonia , etCiudad, etCodigoPostal, etEstado, etPais;
     private int dia, mes, anno;
 
     @Override
@@ -30,17 +29,22 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
 
         ibRegistrar = (ImageButton) findViewById(R.id.ibRegistrar);
         ibFecha = (ImageButton) findViewById(R.id.ibFecha);
-
         tvFecha = (TextView) findViewById(R.id.tvFecha);
-
-        ibFecha.setOnClickListener((View.OnClickListener) this);
-        ibRegistrar.setOnClickListener(ibRegistrarListener);
-
         etNombre = (EditText) findViewById(R.id.etNombre);
         etContrasena = (EditText) findViewById(R.id.etContra);
         etConfirmarContrasena = (EditText) findViewById(R.id.etConfirmarContra);
         etCorreoElectronico = (EditText) findViewById(R.id.etCorreoElec);
         etCorreoRespaldo = (EditText) findViewById(R.id.etCorreoRespaldo);
+
+        etCalle = (EditText) findViewById(R.id.etCalle);
+        etColonia = (EditText) findViewById(R.id.etColonia);
+        etCiudad = (EditText) findViewById(R.id.etCiudad);
+        etCodigoPostal = (EditText) findViewById(R.id.etCodigoPostal);
+        etEstado = (EditText) findViewById(R.id.etEstado);
+        etPais = (EditText) findViewById(R.id.etPais);
+
+        ibRegistrar.setOnClickListener((View.OnClickListener) this);
+        ibFecha.setOnClickListener((View.OnClickListener) this);
     }
 
     @Override
@@ -62,15 +66,11 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
                     , dia, mes, anno);
             datePickerDialog.show();
         }
-    }
-
-    private final View.OnClickListener ibRegistrarListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+        if (v == ibRegistrar) {
             Intent intent= new Intent(RegistroClienteActivity.this,BarraActivity.class);
             startActivity(intent);
         }
-    };
+    }
 
     public ImageButton getIbRegistrar() {
         return ibRegistrar;
@@ -108,7 +108,27 @@ public class RegistroClienteActivity extends AppCompatActivity implements View.O
         return etCorreoRespaldo;
     }
 
-    public EditText getEtDireccion() {
-        return etDireccion;
+    public EditText getEtCalle() {
+        return etCalle;
+    }
+
+    public EditText getEtColonia() {
+        return etColonia;
+    }
+
+    public EditText getEtCiudad() {
+        return etCiudad;
+    }
+
+    public EditText getEtCodigoPostal() {
+        return etCodigoPostal;
+    }
+
+    public EditText getEtEstado() {
+        return etEstado;
+    }
+
+    public EditText getEtPais() {
+        return etPais;
     }
 }

@@ -21,7 +21,7 @@ public class RegistroProductorActivity extends AppCompatActivity implements View
     private String sFecha;
     private TextView tvFecha;
     private int dia, mes, anno;
-    private EditText etNombre,etContrasena, etConfirmarContra, etCorreoElectr, etNumTel, etDomicilioLab, etCorreoRespa;
+    private EditText etNombre,etContrasena, etConfirmarContra, etCorreoElectr, etNumTel, etCorreoRespa, etCalle, etColonia , etCiudad, etCodigoPostal, etEstado, etPais;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +36,17 @@ public class RegistroProductorActivity extends AppCompatActivity implements View
         etConfirmarContra=(EditText)findViewById(R.id.etConfirmarContra);
         etCorreoElectr=(EditText)findViewById(R.id.etCorreoElectronico);
         etNumTel=(EditText)findViewById(R.id.etTelefono);
-        etDomicilioLab=(EditText)findViewById(R.id.etCalle);
         etCorreoRespa=(EditText)findViewById(R.id.etCorreoRespaldo);
 
+        etCalle = (EditText) findViewById(R.id.etCalle);
+        etColonia = (EditText) findViewById(R.id.etColonia);
+        etCiudad = (EditText) findViewById(R.id.etCiudad);
+        etCodigoPostal = (EditText) findViewById(R.id.etCodigoPostal);
+        etEstado = (EditText) findViewById(R.id.etEstado);
+        etPais = (EditText) findViewById(R.id.etPais);
+
+        ibRegistrar.setOnClickListener((View.OnClickListener) this);
         ibFecha.setOnClickListener((View.OnClickListener) this);
-        ibRegistrar.setOnClickListener(ibRegistrarListener);
     }
 
     @Override
@@ -62,15 +68,12 @@ public class RegistroProductorActivity extends AppCompatActivity implements View
                     , dia, mes, anno);
             datePickerDialog.show();
         }
-    }
-
-    private final View.OnClickListener ibRegistrarListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+        if (v == ibRegistrar) {
             Intent intent = new Intent(RegistroProductorActivity.this, BarraActivity.class);
             startActivity(intent);
         }
-    };
+    }
+
 
     public ImageButton getIbRegistrar() {
         return ibRegistrar;
@@ -108,11 +111,32 @@ public class RegistroProductorActivity extends AppCompatActivity implements View
         return etNumTel;
     }
 
-    public EditText getEtDomicilioLab() {
-        return etDomicilioLab;
-    }
-
     public EditText getEtCorreoRespa() {
         return etCorreoRespa;
     }
+
+    public EditText getEtCalle() {
+        return etCalle;
+    }
+
+    public EditText getEtColonia() {
+        return etColonia;
+    }
+
+    public EditText getEtCiudad() {
+        return etCiudad;
+    }
+
+    public EditText getEtCodigoPostal() {
+        return etCodigoPostal;
+    }
+
+    public EditText getEtEstado() {
+        return etEstado;
+    }
+
+    public EditText getEtPais() {
+        return etPais;
+    }
+
 }
