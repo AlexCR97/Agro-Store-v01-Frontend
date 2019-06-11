@@ -1,12 +1,18 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
 import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
+import com.example.agrostore01.CapaDatos.contratos.IContratoVentasUsuario;
 import com.example.agrostore01.CapaEntidades.Venta;
+import com.example.agrostore01.CapaEntidades.vistas.VistaMisCompras;
+import com.example.agrostore01.CapaEntidades.vistas.VistaVentasUsuario;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
-public class RepositorioVenta extends Repositorio implements IContratoRelacion<Venta> {
+public class RepositorioVenta extends Repositorio implements IContratoVentasUsuario {
 
+    private String sqlProcSeleccionarMisVentas;
     public RepositorioVenta(){
         this.sqlAlta = "insert into Venta values (?, ?, ?)";
         this.sqlBaja = "delete from Venta where IDVenta = ?";
@@ -18,7 +24,7 @@ public class RepositorioVenta extends Repositorio implements IContratoRelacion<V
                 "where IDVenta = ?";
         this.sqlSeleccionarId = "select * from Venta where IDVenta = ?";
         this.sqlSeleccionarTodo = "select * from Venta";
-
+        this.sqlProcSeleccionarMisVentas = "{ call PROC_ESP_MISVENTAS (?)}";
     }
     @Override
     public boolean alta(Venta e) {
@@ -136,4 +142,32 @@ public class RepositorioVenta extends Repositorio implements IContratoRelacion<V
         }
         return ventas;
     }
+
+    @Override
+    public List<VistaVentasUsuario> seleccionarMisVentas(String idUsuario) {
+        parametros = new ArrayList<>();
+        parametros.add(idUsuario);
+
+        List<VistaVentasUsuario> ventas = new ArrayList<>();
+        resultado = ejecutarProcedimientoConSalida(sqlProcSeleccionarMisVentas);
+
+        try {
+            while(resultado.next()){
+                int numeroDeVenta= resultado.getInt("[Numero de Venta]");
+                BigDecimal precio = resultado.getBigDecimal("Precio");
+                String producto  = resultado.getString("Producto");
+                String fecha = resultado.getString("Fecha");
+                ventas.add(new VistaVentasUsuario(numeroDeVenta,precio,producto,fecha));
+            }
+
+            return ventas;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+
 }

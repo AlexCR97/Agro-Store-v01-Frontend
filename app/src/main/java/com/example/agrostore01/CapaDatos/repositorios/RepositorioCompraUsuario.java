@@ -1,14 +1,16 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
 
-import com.example.agrostore01.CapaDatos.contratos.IContrato;
-import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
+import com.example.agrostore01.CapaDatos.contratos.IContratoComprasUsuario;
 import com.example.agrostore01.CapaEntidades.CompraUsuario;
+import com.example.agrostore01.CapaEntidades.vistas.VistaMisCompras;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class RepositorioCompraUsuario extends Repositorio implements IContratoRelacion<CompraUsuario> {
+public class RepositorioCompraUsuario extends Repositorio implements IContratoComprasUsuario {
+
+    private String sqlProcSeleccionarMiscompras;
     public RepositorioCompraUsuario() {
         this.sqlAlta = "insert into CompraUsuario values (?,?)";
         this.sqlBaja = "delete from CompraUSuario where IDUsuario = ?";
@@ -18,6 +20,8 @@ public class RepositorioCompraUsuario extends Repositorio implements IContratoRe
                 "where IDUsuario = ?";
         this.sqlSeleccionarId = "select * from CompraUSuario where IDUsuario = ?";
         this.sqlSeleccionarTodo = "select * from CompraUSuario";
+        this.sqlProcSeleccionarMiscompras= " { call PROC_ESP_MISCOMPRAS (?)}";
+
 
     }
     @Override
@@ -127,5 +131,29 @@ public class RepositorioCompraUsuario extends Repositorio implements IContratoRe
         return compraUsuarios;
     }
 
+
+    @Override
+    public List<VistaMisCompras> selecccionarMisCompras(String idUsuario) {
+        parametros = new ArrayList<>();
+        parametros.add(idUsuario);
+
+        List<VistaMisCompras> compras = new ArrayList<>();
+        resultado = ejecutarProcedimientoConSalida(sqlProcSeleccionarMiscompras);
+
+        try {
+            while(resultado.next()){
+                 int numeroDeCompra = resultado.getInt("[Numero de Compra]");
+                 int numeroDeLote = resultado.getInt(" [Numero de lote]");
+                 boolean estado = resultado.getBoolean("Estado");
+                 String tiempo = resultado.getString("Localizacion");
+                 compras.add(new VistaMisCompras(numeroDeCompra,numeroDeLote,estado,tiempo));
+            }
+            return compras;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
 

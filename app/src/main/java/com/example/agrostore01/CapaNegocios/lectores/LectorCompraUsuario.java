@@ -2,8 +2,10 @@ package com.example.agrostore01.CapaNegocios.lectores;
 
 import com.example.agrostore01.CapaDatos.repositorios.RepositorioCompraUsuario;
 import com.example.agrostore01.CapaEntidades.CompraUsuario;
+import com.example.agrostore01.CapaEntidades.vistas.VistaMisCompras;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LectorCompraUsuario extends LectorRelacion<CompraUsuario> {
     private RepositorioCompraUsuario repositorio = new RepositorioCompraUsuario();
@@ -21,5 +23,8 @@ public class LectorCompraUsuario extends LectorRelacion<CompraUsuario> {
     public ArrayList<CompraUsuario> getEntidades() {
         return repositorio.seleccionarTodo();
 
+    }
+    public List<VistaMisCompras> getMisCompras(String idUsuario) {
+        return repositorio.selecccionarMisCompras(idUsuario);
     }
 }

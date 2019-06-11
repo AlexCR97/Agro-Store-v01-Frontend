@@ -8,5 +8,6 @@ public interface IContratoProducto extends IContrato<Producto> {
 
     List<Integer> seleccionarIdProductosConCategoria(String categoria);
     List<Integer> seleccionarIdProductosConNombre(String nombre);
+    List<Integer> detallesDeLosProductos(String IDProductoTerreno);
 
 }
