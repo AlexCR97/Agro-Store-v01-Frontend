@@ -9,11 +9,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+
+import com.example.agrostore01.CapaEntidades.vistas.VistaCarrito;
 import com.example.agrostore01.R;
 
 import java.util.List;
 
-public class CarritoAdapter extends ArrayAdapter<String> {
+public class CarritoAdapter extends ArrayAdapter<VistaCarrito> {
 
     static class Datos {
         ImageView ivCarrito;
@@ -25,9 +27,9 @@ public class CarritoAdapter extends ArrayAdapter<String> {
 
     private Context context;
     private int layoutResourceId;
-    private List<String> items;
+    private List<VistaCarrito> items;
 
-    public CarritoAdapter(Context context, int resource, List<String> items) {
+    public CarritoAdapter(Context context, int resource, List<VistaCarrito> items) {
         super(context, resource, items);
 
         this.context = context;
@@ -55,9 +57,15 @@ public class CarritoAdapter extends ArrayAdapter<String> {
             data = (Datos) convertView.getTag();
         }
 
-        String item = items.get(position);
+        VistaCarrito productoCarrito = items.get(position);
 
-        data.tvProducto.setText(item);
+        String producto = productoCarrito.getProducto();
+        String cantidad = String.valueOf(productoCarrito.getCantidad());
+        String precio = "$" + productoCarrito.getPrecio();
+
+        data.tvProducto.setText(producto);
+        data.etCantidad.setText(cantidad);
+        data.tvPrecio.setText(precio);
 
         return convertView;
     }

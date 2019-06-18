@@ -1,6 +1,7 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
 import com.example.agrostore01.CapaDatos.contratos.IContrato;
+import com.example.agrostore01.CapaDatos.contratos.IContratoCarrito;
 import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
 import com.example.agrostore01.CapaEntidades.Carrito;
 
@@ -8,9 +9,11 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class RepositorioCarrito extends Repositorio implements IContratoRelacion<Carrito> {
+public class RepositorioCarrito extends Repositorio implements IContratoCarrito {
 
-    public RepositorioCarrito(){
+    private String sqlProcAgregarProducto;
+
+    public RepositorioCarrito() {
         this.sqlAlta="insert into Carrito values (?)";
         this.sqlBaja="delete from Carrito where IDCarrito = ?";
         this.sqlCambio="update Carrito set "+
@@ -18,6 +21,8 @@ public class RepositorioCarrito extends Repositorio implements IContratoRelacion
                 "where IDCarrito = ?";
         this.sqlSeleccionarId="select * from Carrito where IDCarrito = ?";
         this.sqlSeleccionarTodo="select * from Carrito";
+
+        this.sqlProcAgregarProducto = "{ call PROC_ESP_REALIZARCOMPRA(?, ?, ?) }";
     }
 
     @Override
@@ -128,4 +133,19 @@ public class RepositorioCarrito extends Repositorio implements IContratoRelacion
         return carrito;
     }
 
+    @Override
+    public boolean agregarProductoACarrito(int idNumProducto, String idUsuario, int cantidad) {
+        parametros = new ArrayList<>();
+        parametros.add(idNumProducto);
+        parametros.add(idUsuario);
+        parametros.add(cantidad);
+
+        try {
+            return ejecutarProcedimiento(sqlProcAgregarProducto);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

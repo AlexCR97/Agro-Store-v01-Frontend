@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,12 +21,18 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.agrostore01.AgroMensajes;
+import com.example.agrostore01.CapaEntidades.Carrito;
 import com.example.agrostore01.CapaEntidades.Usuario;
+import com.example.agrostore01.CapaEntidades.vistas.VistaCarrito;
+import com.example.agrostore01.CapaEntidades.vistas.VistaCompra;
+import com.example.agrostore01.CapaNegocios.lectores.vistas.LectorVistaCarrito;
 import com.example.agrostore01.CapaPresentacion.actividades.RecieveBundlesFragment;
 import com.example.agrostore01.R;
 import com.example.agrostore01.CapaPresentacion.actividades.CompraActivity;
 import com.example.agrostore01.CapaPresentacion.adaptadores.CarritoAdapter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,9 +42,7 @@ public class CarritoFragment extends RecieveBundlesFragment {
     private Button buttonComprarCarrito;
 
     private Usuario usuario = new Usuario();
-
-    private CarritoAdapter adapter;
-    private List<String> carrito = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9");
+    private List<VistaCarrito> carrito;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,11 +53,10 @@ public class CarritoFragment extends RecieveBundlesFragment {
         listViewCarrito = vista.findViewById(R.id.listViewCarrito);
         buttonComprarCarrito = vista.findViewById(R.id.buttonCarritoComprar);
 
-        adapter = new CarritoAdapter(vista.getContext(), R.layout.list_item_carrito, carrito);
-        listViewCarrito.setAdapter(adapter);
-
         listViewCarrito.setOnItemLongClickListener(listViewCarritoListener);
         buttonComprarCarrito.setOnClickListener(buttonComprarCarritoListener);
+
+        new ObtenerMisProductosEnCarrito().execute();
 
         return vista;
     }
@@ -63,46 +67,48 @@ public class CarritoFragment extends RecieveBundlesFragment {
         Toast.makeText(context, usuario.toString(), Toast.LENGTH_LONG).show();
     }
 
-    private void addTitleRow(Context context, TableLayout table, String title) {
+    private class ObtenerMisProductosEnCarrito extends AsyncTask<Void, Void, Void> {
 
-    }
+        private boolean exito;
+        private String mensaje;
 
-    private void addSeparatorRow(Context context, TableLayout table) {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
 
-    }
+            System.out.println("\n\n\n\nJust initiated async task " + this.getClass().getSimpleName() + "\n\n\n\n");
+        }
 
-    private void addPriceRow(Context context, TableLayout table, String title, String price) {
-        System.out.println("Total childs of table before add is " + table.getChildCount());
-        table.removeAllViews();
+        @Override
+        protected Void doInBackground(Void... voids) {
 
-        TableRow row = new TableRow(context);
-        row.setLayoutParams(new TableLayout.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT,
-                TableRow.LayoutParams.WRAP_CONTENT
-        ));
+            LectorVistaCarrito lectorVistaCarrito = new LectorVistaCarrito();
+            carrito = lectorVistaCarrito.getMisProductosEnCarrito(usuario.getIdUsuario());
 
-        TextView tvTitle = new TextView(context);
-        tvTitle.setLayoutParams(new TableLayout.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT,
-                TableRow.LayoutParams.WRAP_CONTENT
-        ));
-        tvTitle.setText(title);
+            if (carrito == null) {
+                mensaje = AgroMensajes.ERROR_INTERNET;
+                exito = false;
+            }
 
-        Space space = new Space(context);
+            exito = true;
 
-        TextView tvPrice = new TextView(context);
-        tvPrice.setLayoutParams(new TableLayout.LayoutParams(
-                TableRow.LayoutParams.WRAP_CONTENT,
-                TableRow.LayoutParams.WRAP_CONTENT
-        ));
-        tvPrice.setText(price);
+            return null;
+        }
 
-        row.addView(tvTitle, 0);
-        row.addView(space, 1);
-        row.addView(tvPrice, 2);
-        table.addView(row);
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
 
-        System.out.println("Total childs of table before add is " + table.getChildCount());
+            if (!exito) {
+                Toast.makeText(CarritoFragment.this.getContext(), mensaje, Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            CarritoAdapter adapter = new CarritoAdapter(CarritoFragment.this.getContext(), R.layout.list_item_carrito, carrito);
+            listViewCarrito.setAdapter(adapter);
+
+            System.out.println("\n\n\n\nJust ended async task " + this.getClass().getSimpleName() + "\n\n\n\n");
+        }
     }
 
     private final AdapterView.OnItemLongClickListener listViewCarritoListener = new AdapterView.OnItemLongClickListener() {
@@ -110,15 +116,11 @@ public class CarritoFragment extends RecieveBundlesFragment {
         @Override
         public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-            Toast.makeText(view.getContext(), "Clicked item " + carrito.get(position), Toast.LENGTH_SHORT).show();
-
             DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which) {
                         case DialogInterface.BUTTON_POSITIVE: {
-                            carrito.remove(position);
-                            adapter.notifyDataSetChanged();
                             break;
                         }
 
@@ -142,7 +144,30 @@ public class CarritoFragment extends RecieveBundlesFragment {
     private final View.OnClickListener buttonComprarCarritoListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            if (carrito == null) {
+                Toast.makeText(CarritoFragment.this.getContext(), AgroMensajes.ERROR_CARRITO_VACIO, Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            if (carrito.isEmpty()) {
+                Toast.makeText(CarritoFragment.this.getContext(), AgroMensajes.ERROR_CARRITO_VACIO, Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            ArrayList<VistaCompra> compras = new ArrayList<>();
+
+            for (VistaCarrito vistaCarrito : carrito) {
+                compras.add(new VistaCompra(
+                        vistaCarrito.getIdNumProducto(),
+                        usuario.getIdUsuario(),
+                        vistaCarrito.getCantidad()
+                ));
+            }
+
             Intent intent = new Intent(v.getContext(), CompraActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+            intent.putParcelableArrayListExtra(compras.getClass().getSimpleName(), compras);
+
             startActivity(intent);
         }
     };
