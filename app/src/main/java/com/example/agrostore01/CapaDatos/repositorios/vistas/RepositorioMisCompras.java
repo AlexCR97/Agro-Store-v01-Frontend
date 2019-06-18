@@ -1,14 +1,13 @@
 package com.example.agrostore01.CapaDatos.repositorios.vistas;
 
-import com.example.agrostore01.CapaDatos.contratos.vistas.IContratoMisCompras;
+import com.example.agrostore01.CapaDatos.contratos.vistas.IContratoVistaMisCompras;
 import com.example.agrostore01.CapaDatos.repositorios.Repositorio;
 import com.example.agrostore01.CapaEntidades.vistas.VistaMisCompras;
-import com.example.agrostore01.CapaEntidades.vistas.VistaTerreno;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RepositorioMisCompras extends Repositorio implements IContratoMisCompras {
+public class RepositorioMisCompras extends Repositorio implements IContratoVistaMisCompras {
 
     private String sqlProcMisCompras;
 

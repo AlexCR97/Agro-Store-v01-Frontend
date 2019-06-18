@@ -2,11 +2,12 @@ package com.example.agrostore01.CapaDatos.contratos.vistas;
 
 import com.example.agrostore01.CapaDatos.contratos.IContrato;
 import com.example.agrostore01.CapaEntidades.vistas.VistaMisCompras;
+import com.example.agrostore01.CapaEntidades.vistas.VistaMisVentas;
 
 import java.util.List;
 
-public interface IContratoMisCompras extends IContrato<VistaMisCompras> {
+public interface IContratoVistaMisVentas extends IContrato<VistaMisVentas> {
 
-    List<VistaMisCompras> seleccionarMisCompras(String idUsuario);
+    List<VistaMisVentas> seleccionarMisVentas(String idUsuario);
 
 }

@@ -1,13 +1,17 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
-import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
+import com.example.agrostore01.CapaDatos.contratos.IContratoCompraUsuario;
 import com.example.agrostore01.CapaEntidades.CompraUsuario;
+import com.example.agrostore01.CapaEntidades.vistas.VistaCompra;
 
 import java.util.ArrayList;
 
-public class RepositorioCompraUsuario extends Repositorio implements IContratoRelacion<CompraUsuario> {
+public class RepositorioCompraUsuario extends Repositorio implements IContratoCompraUsuario {
+
+    private String sqlProcRealizarCompra;
+
     public RepositorioCompraUsuario() {
-        this.sqlAlta = "insert into CompraUsuario values (?,?)";
+        this.sqlAlta = "insert into CompraUsuario values (?, ?)";
         this.sqlBaja = "delete from CompraUSuario where IDUsuario = ?";
         this.sqlCambio = "update CompraUSuario set" +
                 "IDUsuario  = ?," +
@@ -15,6 +19,8 @@ public class RepositorioCompraUsuario extends Repositorio implements IContratoRe
                 "where IDUsuario = ?";
         this.sqlSeleccionarId = "select * from CompraUSuario where IDUsuario = ?";
         this.sqlSeleccionarTodo = "select * from CompraUSuario";
+
+        this.sqlProcRealizarCompra = "{ call PROC_ESP_COMPRA(?, ?, ?) }";
     }
 
     @Override
@@ -124,5 +130,20 @@ public class RepositorioCompraUsuario extends Repositorio implements IContratoRe
         return compraUsuarios;
     }
 
+    @Override
+    public boolean realizarCompra(VistaCompra compra) {
+        parametros = new ArrayList<>();
+        parametros.add(compra.getIdNumProducto());
+        parametros.add(compra.getIdUsuario());
+        parametros.add(compra.getCantidad());
+
+        try {
+            return ejecutarProcedimiento(sqlProcRealizarCompra);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
 

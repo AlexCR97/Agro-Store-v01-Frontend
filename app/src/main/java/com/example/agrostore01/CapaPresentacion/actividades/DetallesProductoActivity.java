@@ -1,9 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,12 +19,15 @@ import com.example.agrostore01.AgroUtils;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.CapaEntidades.vistas.VistaBusquedaProducto;
 import com.example.agrostore01.CapaEntidades.vistas.VistaComentarios;
+import com.example.agrostore01.CapaEntidades.vistas.VistaCompra;
+import com.example.agrostore01.CapaNegocios.escritores.EscritorCarrito;
 import com.example.agrostore01.CapaNegocios.lectores.vistas.LectorVistaBusquedaProducto;
 import com.example.agrostore01.CapaNegocios.lectores.vistas.LectorVistaComentario;
 import com.example.agrostore01.CapaPresentacion.adaptadores.ComentariosAdapter;
 import com.example.agrostore01.R;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DetallesProductoActivity extends RecieveBundlesActivity {
@@ -32,6 +35,7 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
     private ImageView ivImagenProducto;
     private TextView tvTitulo, tvPrecio, tvLocalidad;
     private RatingBar rbEstrellas;
+    private EditText etCantidad;
     private ImageView ivAgregarProducto, ivQuitarProducto;
     private Button bComprar;
     private TextView tvVendedor, tvProducto, tvDescripcion;
@@ -55,6 +59,7 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
         tvPrecio = findViewById(R.id.textViewItemDetallesPrecio);
         tvLocalidad = findViewById(R.id.textViewItemDetallesLocalidad);
         rbEstrellas = findViewById(R.id.rbItemDetallesEstrellas);
+        etCantidad = findViewById(R.id.etDetalleProductoCantidad);
         ivAgregarProducto = findViewById(R.id.ivDetalleProductoAgregar);
         ivQuitarProducto = findViewById(R.id.ivDetalleProductoQuitar);
         bComprar = findViewById(R.id.bDetalleProductoComprar);
@@ -65,10 +70,13 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
         ibComentar = findViewById(R.id.ibComentar);
         lvComentarios = findViewById(R.id.lvComentarios);
 
+        ivAgregarProducto.setOnClickListener(ivAgregarProductoOnClick);
+        ivQuitarProducto.setOnClickListener(ivQuitarProductoOnClick);
+        bComprar.setOnClickListener(bComprarOnClick);
+
         // Arreglar listview dentro de scrollview
-        //AgroUtils.setListViewScrollInsideScrollView(lvComentarios);
-        //AgroUtils.setListViewHeightBasedOnChildren(lvComentarios);
-        //AgroUtils.setListViewShowableAmountOfItems(lvComentarios, 4);
+        AgroUtils.setListViewScrollInsideScrollView(lvComentarios);
+        AgroUtils.setListViewShowableAmountOfItems(lvComentarios, 4);
 
         new LlenarCampos().execute();
         new ObtenerComentarios().execute();
@@ -105,7 +113,8 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
             super.onPostExecute(aVoid);
 
             String titulo = vistaProducto.getProducto();
-            String precio = "$" + vistaProducto.getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP) + ", " + vistaProducto.getHectareas() + " hectareas";
+            String precio = "$" + vistaProducto.getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP) +
+                    ", " + vistaProducto.getHectareas() + " hectareas";
             String localidad = vistaProducto.getCiudad() + ", " + vistaProducto.getEstado();
             String vendedor = vistaProducto.getNombreUsuario() + " " + vistaProducto.getApellidosUsuario();
             String descripcion = vistaProducto.getDescripcion();
@@ -162,9 +171,69 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
     private final View.OnClickListener ivAgregarProductoOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            new AgregarProducto().execute();
         }
     };
+
+    private class AgregarProducto extends AsyncTask<Void, Void, Void> {
+
+        private boolean exito;
+        private String mensajeError;
+
+        private int idNumProducto;
+        private String idUsuario;
+        private int cantidad;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            idNumProducto = idProducto;
+            idUsuario = usuario.getIdUsuario();
+            String cantidadTemp = etCantidad.getText().toString();
+            cantidad = cantidadTemp.isEmpty() ? -1 : Integer.parseInt(cantidadTemp);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            if (cantidad <= -1) {
+                mensajeError = AgroMensajes.ERROR_CANTIDAD_INVALIDA;
+                exito = false;
+                return null;
+            }
+
+            EscritorCarrito escritorCarrito = new EscritorCarrito(
+                    EscritorCarrito.OPERACION_AGREGAR_PRODUCTO,
+                    null,
+                    idNumProducto,
+                    idUsuario,
+                    cantidad
+            );
+
+            exito = escritorCarrito.ejecutarCambios();
+
+            if (!exito) {
+                mensajeError = AgroMensajes.ERROR_INTERNET;
+                exito = false;
+                return null;
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            if (!exito) {
+                Toast.makeText(DetallesProductoActivity.this, mensajeError, Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            Toast.makeText(DetallesProductoActivity.this, "Se ha anadido este producto a tu carrito", Toast.LENGTH_LONG).show();
+        }
+    }
 
     private final View.OnClickListener ivQuitarProductoOnClick = new View.OnClickListener() {
         @Override
@@ -177,6 +246,27 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
         @Override
         public void onClick(View v) {
 
+            String cantidadTemp = etCantidad.getText().toString();
+
+            VistaCompra vistaCompra = new VistaCompra(
+                    idProducto,
+                    usuario.getIdUsuario(),
+                    cantidadTemp.isEmpty() ? -1 : Integer.parseInt(cantidadTemp)
+            );
+
+            if (vistaCompra.getCantidad() <= -1) {
+                Toast.makeText(DetallesProductoActivity.this, AgroMensajes.ERROR_CANTIDAD_INVALIDA, Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            ArrayList<VistaCompra> compras = new ArrayList<>();
+            compras.add(vistaCompra);
+
+            Intent intent = new Intent(DetallesProductoActivity.this, CompraActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+            intent.putParcelableArrayListExtra(compras.getClass().getSimpleName(), compras);
+
+            startActivity(intent);
         }
     };
 
