@@ -34,9 +34,10 @@
             android:id="@+id/buttonFiltrar"
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:text="Filtrar"
             android:layout_gravity="center"
             android:background="#E7F0D2"
+            android:fontFamily="@font/hind_guntur_light"
+            android:text="Filtrar"
             android:textAllCaps="false" />
 
         <Space
@@ -46,10 +47,11 @@
         <Button
             android:layout_width="100dp"
             android:layout_height="40dp"
-            android:background="#E7F0D2"
-            android:text="Ordenar"
             android:layout_gravity="center"
-            android:textAllCaps="false"/>
+            android:background="#E7F0D2"
+            android:fontFamily="@font/hind_guntur_light"
+            android:text="Ordenar"
+            android:textAllCaps="false" />
 
     </LinearLayout>
 

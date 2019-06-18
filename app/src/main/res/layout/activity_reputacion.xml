@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="16dp"
-            android:text='Reputación de "Usuario"'
+            android:text='Mi Reputación'
 
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
