@@ -26,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Precio"
+                android:fontFamily="@font/comfortaa_light"
                 android:textAlignment="center"
                 android:textColor="#006064"
                 android:textSize="22sp" />
@@ -86,6 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Categoria"
+                android:fontFamily="@font/comfortaa_light"
                 android:textAlignment="center"
                 android:textColor="#006064"
                 android:textSize="22sp" />
@@ -146,6 +148,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Temporada"
+                android:fontFamily="@font/comfortaa_light"
                 android:textAlignment="center"
                 android:textColor="#006064"
                 android:textSize="22sp" />
@@ -201,6 +204,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Locacion"
+                android:fontFamily="@font/comfortaa_light"
                 android:textAlignment="center"
                 android:textColor="#006064"
                 android:textSize="22sp" />
@@ -253,6 +257,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Certificaciones"
+                android:fontFamily="@font/comfortaa_light"
                 android:textAlignment="center"
                 android:textColor="#006064"
                 android:textSize="22sp" />
@@ -315,6 +320,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tiempo de Cosecha"
+                android:fontFamily="@font/comfortaa_light"
                 android:textAlignment="center"
                 android:textColor="#006064"
                 android:textSize="22sp" />
@@ -362,7 +368,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Reputacion del agricultor"
+                android:text="Reputación del agricultor"
+                android:fontFamily="@font/comfortaa_light"
                 android:textAlignment="center"
                 android:textColor="#006064"
                 android:textSize="22sp" />

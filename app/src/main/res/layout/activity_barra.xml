@@ -23,6 +23,7 @@
         app:headerLayout="@layout/nav_header_barra"
         app:itemBackground="@color/colorVerdeFuerte"
         app:itemIconTint="@color/colorGris"
+        android:fontFamily="@font/comfortaa_light"
         app:itemTextColor="@color/colorGris"
         app:menu="@menu/activity_barra_drawer" />
 
