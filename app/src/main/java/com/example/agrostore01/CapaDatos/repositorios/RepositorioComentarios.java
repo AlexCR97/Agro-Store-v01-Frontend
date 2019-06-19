@@ -1,10 +1,15 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
+import com.example.agrostore01.CapaDatos.contratos.IContratoComentario;
 import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
+import com.example.agrostore01.CapaEntidades.Comentarios;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
-public class RepositorioComentarios extends Repositorio implements IContratoRelacion {
+public class RepositorioComentarios extends Repositorio implements IContratoComentario {
+
+    private String sqlProcComentarPublicacion;
 
     public RepositorioComentarios() {
         this.sqlAlta="inser into Comentarios values (?, ?, ?, ?, ?)";
@@ -18,10 +23,12 @@ public class RepositorioComentarios extends Repositorio implements IContratoRela
                 "where IDComentarios= ?";
         this.sqlSeleccionarId="select * from Comentarios where IDComentarios = ?";
         this.sqlSeleccionarTodo="select * from Comentarios";
+
+        this.sqlProcComentarPublicacion = "{ call PROC_ALTA_Comentarios(?, ?, ?, ?, ?) }";
     }
 
     @Override
-    public boolean alta(Object e) {
+    public boolean alta(Comentarios e) {
         return false;
     }
 
@@ -31,27 +38,35 @@ public class RepositorioComentarios extends Repositorio implements IContratoRela
     }
 
     @Override
-    public boolean cambio(Object id, Object e) {
+    public boolean cambio(Object id, Comentarios e) {
         return false;
     }
 
     @Override
-    public Object seleccionarId(Object id) {
+    public Comentarios seleccionarId(Object id) {
         return null;
     }
 
     @Override
-    public ArrayList seleccionarTodo() {
+    public ArrayList<Comentarios> seleccionarTodo() {
         return null;
     }
 
     @Override
-    public boolean bajaEspecifica(Object e) {
-        return false;
-    }
+    public boolean comentarPublicacion(String idUsuario, String comentario, Date fecha, String respuesta, int idNumProducto) {
+        parametros = new ArrayList<>();
+        parametros.add(idUsuario);
+        parametros.add(comentario);
+        parametros.add(fecha);
+        parametros.add(respuesta);
+        parametros.add(idNumProducto);
 
-    @Override
-    public ArrayList seleccionarTodosId(Object id) {
-        return null;
+        try {
+            return ejecutarProcedimiento(sqlProcComentarPublicacion);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

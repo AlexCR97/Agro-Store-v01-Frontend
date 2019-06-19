@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
 
+import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
 
@@ -66,6 +67,7 @@ public class FiltrosActivity extends RecieveBundlesActivity {
     private Button bAplicarFiltros;
 
     private Usuario usuario = new Usuario();
+    private DetallesUsuario detallesUsuario = new DetallesUsuario();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +123,7 @@ public class FiltrosActivity extends RecieveBundlesActivity {
     @Override
     public void recieveBundles(Context context) {
         usuario = getIntent().getParcelableExtra(usuario.getClassName());
+        detallesUsuario = getIntent().getParcelableExtra(detallesUsuario.getClassName());
     }
 
     private final View.OnClickListener ivCategoriaListener = new View.OnClickListener() {
@@ -315,6 +318,7 @@ public class FiltrosActivity extends RecieveBundlesActivity {
             Intent intent = new Intent(FiltrosActivity.this, BuscarActivity.class);
 
             intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
             intent.putExtra(TIPO_BUSQUEDA, BUSQUEDA_FILTRO);
             intent.putExtra(FILTRO_PRECIO_MIN, precioMin);
             intent.putExtra(FILTRO_PRECIO_MAX, precioMax);

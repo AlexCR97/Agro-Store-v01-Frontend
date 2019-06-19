@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="Direccion de envio"
@@ -51,7 +51,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="Nombre de quien recibe"
@@ -71,7 +71,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="Numero de compra"
@@ -91,7 +91,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="Numero de cliente"
@@ -111,7 +111,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="Numero de rastreo"
@@ -137,69 +137,6 @@
                 android:padding="15dp"
                 android:text="¿Desea enviarlo a otra direccion?"
                 android:textColor="#FFFFFF"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ECEFF1"
-                android:padding="10dp"
-                android:text="METODO DE PAGO"
-                android:textAlignment="center"
-                android:textColor="#558B2F"
-                android:textSize="22sp" />
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-                    <RadioButton
-                        android:layout_margin="@dimen/activity_horizontal_margin"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd = "@drawable/visa"/>
-                    <RadioButton
-                        android:layout_margin="@dimen/activity_horizontal_margin"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd = "@drawable/mastercard"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-                    <RadioButton
-                        android:layout_margin="@dimen/activity_horizontal_margin"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd = "@drawable/paypal"/>
-
-                    <RadioButton
-                        android:layout_margin="@dimen/activity_horizontal_margin"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd = "@drawable/bitcoin"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-                    <RadioButton
-                        android:layout_margin="@dimen/activity_horizontal_margin"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:drawableEnd = "@drawable/efectivo"/>
-                </LinearLayout>
-            </RadioGroup>
 
             <TextView
                 android:layout_width="match_parent"

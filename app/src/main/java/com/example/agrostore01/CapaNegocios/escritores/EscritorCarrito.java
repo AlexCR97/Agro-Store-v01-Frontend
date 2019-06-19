@@ -6,6 +6,7 @@ import com.example.agrostore01.CapaEntidades.Carrito;
 public class EscritorCarrito extends Escritor<Carrito> {
 
     public static final int OPERACION_AGREGAR_PRODUCTO = 4;
+    public static final int OPERACION_QUITAR_PRODUCTO = 5;
 
     private RepositorioCarrito repositorio = new RepositorioCarrito();
     private int idNumProducto;
@@ -27,6 +28,12 @@ public class EscritorCarrito extends Escritor<Carrito> {
         this.cantidad = cantidad;
     }
 
+    public EscritorCarrito(int operacion, Carrito carrito, int idNumProducto, String idUsuario) {
+        super(operacion, carrito);
+        this.idNumProducto = idNumProducto;
+        this.idUsuario = idUsuario;
+    }
+
     @Override
     public boolean ejecutarCambios() {
         if (operacion == OPERACION_ALTA)
@@ -40,6 +47,9 @@ public class EscritorCarrito extends Escritor<Carrito> {
 
         if (operacion == OPERACION_AGREGAR_PRODUCTO)
             return repositorio.agregarProductoACarrito(idNumProducto, idUsuario, cantidad);
+
+        if (operacion == OPERACION_QUITAR_PRODUCTO)
+            return repositorio.quitarProductoDeCarrito(idNumProducto, idUsuario);
 
         return false;
     }

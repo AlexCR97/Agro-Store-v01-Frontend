@@ -18,8 +18,6 @@ public class ComentariosAdapter extends ArrayAdapter<VistaComentarios> {
         TextView tvNombreApellido;
         TextView tvFecha;
         TextView tvComentario;
-        TextView tvResponder;
-        TextView tvRespuesta;
     }
 
     private Context context;
@@ -45,14 +43,22 @@ public class ComentariosAdapter extends ArrayAdapter<VistaComentarios> {
             data.tvComentario = convertView.findViewById(R.id.tvComentarioComentario);
             data.tvFecha = convertView.findViewById(R.id.tvComentarioFecha);
             data.tvNombreApellido = convertView.findViewById(R.id.tvComentarioNombreApellido);
-            data.tvResponder = convertView.findViewById(R.id.tvComentarioResponder);
-            data.tvRespuesta = convertView.findViewById(R.id.tvComentarioRespuesta);
 
             convertView.setTag(data);
 
         } else {
             data = (Datos) convertView.getTag();
         }
+
+        VistaComentarios vistaComentario = comentarios.get(position);
+
+        String nombreApellido = vistaComentario.getNombreUsuario() + " " + vistaComentario.getApellidoUsuario();
+        String comentario = vistaComentario.getComentario();
+        String fecha = vistaComentario.getFecha().toString();
+
+        data.tvNombreApellido.setText(nombreApellido);
+        data.tvComentario.setText(comentario);
+        data.tvFecha.setText(fecha);
 
         return convertView;
     }
