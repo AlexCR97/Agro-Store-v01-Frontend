@@ -1,5 +1,6 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -39,6 +40,7 @@ public class BuscarActivity extends RecieveBundlesActivity {
     private String filtroPais;
     private String filtroEstado;
     private float filtroEstrellas;
+    private ProgressDialog dialog;
 
     // Productos buscados
     private List<Integer> idProductos;
@@ -60,17 +62,22 @@ public class BuscarActivity extends RecieveBundlesActivity {
         listViewBuscar = findViewById(R.id.listViewBuscar);
         listViewBuscar.setOnItemClickListener(listViewBuscarListener);
 
-        new RealizarBusqueda().execute();
     }
 
     private final SearchView.OnQueryTextListener buscadorListener = new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String query) {
+            dialog = new ProgressDialog(BuscarActivity.this);
+
+            dialog.setTitle("Buscando producto");
+            dialog.setMessage("Espere un momento");
+            dialog.show();
+
             tipoBusqueda = FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO;
             filtroProducto = query;
 
-            new RealizarBusqueda().execute();
 
+            new RealizarBusqueda().execute();
             return false;
         }
 
@@ -173,8 +180,8 @@ public class BuscarActivity extends RecieveBundlesActivity {
             }
 
             exito = vistasProductos != null;
-
             return null;
+
         }
 
         @Override
@@ -196,6 +203,7 @@ public class BuscarActivity extends RecieveBundlesActivity {
             }
 
             System.out.println("Terminado el hilo de tipoBusqueda");
+            dialog.cancel();
         }
     }
 

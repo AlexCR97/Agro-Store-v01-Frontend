@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,6 +25,7 @@ public class MiTerrenoActivity extends RecieveBundlesActivity {
 
     private ImageButton ibAgregarTerreno;
     private ListView listViewTerrenos;
+    private ProgressDialog dialog;
 
     private Usuario usuario = new Usuario();
 
@@ -36,6 +40,12 @@ public class MiTerrenoActivity extends RecieveBundlesActivity {
         listViewTerrenos = findViewById(R.id.listViewTerreno);
 
         ibAgregarTerreno.setOnClickListener(ibAgregarTerrenoListener);
+
+        dialog = new ProgressDialog(MiTerrenoActivity.this);
+
+        dialog.setTitle("Cargando terrenos");
+        dialog.setMessage("Espere un momento");
+        dialog.show();
 
         new ObtenerMisTerrenos().execute();
     }
@@ -68,18 +78,27 @@ public class MiTerrenoActivity extends RecieveBundlesActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MiTerrenoActivity.this);
+
 
             if (!exito) {
-                Toast.makeText(
-                        MiTerrenoActivity.this,
-                        "Comprueba tu conexion a Internet e intentalo de nuevo",
-                        Toast.LENGTH_LONG
-                ).show();
+                dialog.cancel();
+                alertDialog.setTitle("Advertencia")
+                        .setMessage("Comprueba tu conexion a Internet e intentalo de nuevo")
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                alertDialog.show();
+
+                //Toast.makeText(MiTerrenoActivity.this,"Comprueba tu conexion a Internet e intentalo de nuevo",Toast.LENGTH_LONG).show();
                 return;
             }
 
             TerrenoAdapter adaptador = new TerrenoAdapter(MiTerrenoActivity.this, R.layout.list_item_terreno, terrenos);
             listViewTerrenos.setAdapter(adaptador);
+            dialog.cancel();
         }
     }
 

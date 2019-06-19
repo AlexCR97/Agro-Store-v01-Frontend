@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,6 +28,7 @@ public class ActualizarMisDatosActivity extends RecieveBundlesActivity {
 
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,11 @@ public class ActualizarMisDatosActivity extends RecieveBundlesActivity {
     private final View.OnClickListener ibGuardarListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            dialog = new ProgressDialog(ActualizarMisDatosActivity.this);
+
+            dialog.setTitle("Actualizando");
+            dialog.setMessage("Espere un momento");
+            dialog.show();
             new ActualizarDatos().execute();
         }
     };
@@ -157,29 +166,40 @@ public class ActualizarMisDatosActivity extends RecieveBundlesActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(ActualizarMisDatosActivity.this);
 
             if (!exito) {
-                Toast.makeText(
-                        ActualizarMisDatosActivity.this,
-                        mensajeError,
-                        Toast.LENGTH_LONG
-                ).show();
-
+                dialog.cancel();
+                alertDialog.setTitle("Advertencia")
+                        .setMessage(mensajeError)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                alertDialog.show();
+                //Toast.makeText(ActualizarMisDatosActivity.this,mensajeError, Toast.LENGTH_LONG).show();
                 return;
             }
 
-            Toast.makeText(
-                    ActualizarMisDatosActivity.this,
-                    "Tus datos han sido actualizados!",
-                    Toast.LENGTH_LONG
-            ).show();
+            //Toast.makeText(ActualizarMisDatosActivity.this,"Tus datos han sido actualizados!",Toast.LENGTH_LONG).show();
+            dialog.cancel();
+            alertDialog.setTitle("Advertencia")
+                    .setMessage("Tus datos han sido actualizados!")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(ActualizarMisDatosActivity.this, MisDatosActivity.class);
+                            intent.putExtra(usuario.getClassName(), usuario);
+                            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
 
-            Intent intent = new Intent(ActualizarMisDatosActivity.this, MisDatosActivity.class);
-            intent.putExtra(usuario.getClassName(), usuario);
-            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+            alertDialog.show();
 
-            startActivity(intent);
-            finish();
+
         }
     }
 

@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -42,7 +45,7 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
     private EditText etComentario;
     private ImageButton ibComentar;
     private ListView lvComentarios;
-
+private ProgressDialog dialog;
     private Usuario usuario = new Usuario();
     private int idProducto;
     private VistaBusquedaProducto vistaProducto;
@@ -53,6 +56,8 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
         setContentView(R.layout.activity_detalles_producto);
 
         recieveBundles(this);
+
+
 
         ivImagenProducto = findViewById(R.id.imageViewItemDetallesProducto);
         tvTitulo = findViewById(R.id.textViewItemDetallesTitulo);
@@ -73,6 +78,12 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
         ivAgregarProducto.setOnClickListener(ivAgregarProductoOnClick);
         ivQuitarProducto.setOnClickListener(ivQuitarProductoOnClick);
         bComprar.setOnClickListener(bComprarOnClick);
+
+        dialog = new ProgressDialog(DetallesProductoActivity.this);
+
+        dialog.setTitle("Cargando producto");
+        dialog.setMessage("Espere un momento");
+        dialog.show();
 
         // Arreglar listview dentro de scrollview
         AgroUtils.setListViewScrollInsideScrollView(lvComentarios);
@@ -154,9 +165,19 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(DetallesProductoActivity.this);
 
             if (!exito) {
-                Toast.makeText(DetallesProductoActivity.this, AgroMensajes.ERROR_INTERNET, Toast.LENGTH_LONG).show();
+                alertDialog.setTitle("Advertencia")
+                        .setMessage(AgroMensajes.ERROR_INTERNET)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                alertDialog.show();
+
+                //Toast.makeText(DetallesProductoActivity.this, AgroMensajes.ERROR_INTERNET, Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -165,6 +186,7 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
 
             ComentariosAdapter adapter = new ComentariosAdapter(DetallesProductoActivity.this, R.layout.list_item_comentario, comentarios);
             lvComentarios.setAdapter(adapter);
+            dialog.cancel();
         }
     }
 
@@ -225,13 +247,30 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(DetallesProductoActivity.this);
 
             if (!exito) {
-                Toast.makeText(DetallesProductoActivity.this, mensajeError, Toast.LENGTH_LONG).show();
+                alertDialog.setTitle("Advertencia")
+                        .setMessage(mensajeError)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                alertDialog.show();
+                //Toast.makeText(DetallesProductoActivity.this, mensajeError, Toast.LENGTH_LONG).show();
                 return;
             }
+            alertDialog.setTitle("Advertencia")
+                    .setMessage("Se ha anadido este producto a tu carrito")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+            alertDialog.show();
 
-            Toast.makeText(DetallesProductoActivity.this, "Se ha anadido este producto a tu carrito", Toast.LENGTH_LONG).show();
+            //Toast.makeText(DetallesProductoActivity.this, "Se ha anadido este producto a tu carrito", Toast.LENGTH_LONG).show();
         }
     }
 

@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +25,7 @@ import java.util.List;
 public class MisComprasActivity extends RecieveBundlesActivity {
 
     private ListView listViewMisCompras;
-
+private ProgressDialog dialog;
     private List<VistaMisCompras> misCompras = new ArrayList<>();
 
     private Usuario usuario = new Usuario();
@@ -36,6 +39,11 @@ public class MisComprasActivity extends RecieveBundlesActivity {
 
         listViewMisCompras = findViewById(R.id.listViewMisCompras);
         listViewMisCompras.setOnItemClickListener(listViewMisComprasListener);
+        dialog = new ProgressDialog(MisComprasActivity.this);
+
+        dialog.setTitle("Cargando compras");
+        dialog.setMessage("Espere un momento");
+        dialog.show();
 
         new ObtenerMisCompras().execute();
     }
@@ -66,18 +74,28 @@ public class MisComprasActivity extends RecieveBundlesActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MisComprasActivity.this);
 
             if (!exito) {
-                Toast.makeText(
-                        MisComprasActivity.this,
-                        "Hubo un error al obtener tus compras. Verifica tu conexion a Internet e intentelo de nuevo",
-                        Toast.LENGTH_LONG
-                ).show();
+                dialog.cancel();
+
+                alertDialog.setTitle("Advertencia")
+                        .setMessage("Hubo un error al obtener tus compras. Verifica tu conexion a Internet e intentelo de nuevo")
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                alertDialog.show();
+
+                //Toast.makeText(MisComprasActivity.this,"Hubo un error al obtener tus compras. Verifica tu conexion a Internet e intentelo de nuevo",Toast.LENGTH_LONG).show();
                 return;
             }
 
             MisComprasAdapter adaptador = new MisComprasAdapter(MisComprasActivity.this, R.layout.list_item_mis_compras, misCompras);
             listViewMisCompras.setAdapter(adaptador);
+            dialog.cancel();
+
         }
     }
 
