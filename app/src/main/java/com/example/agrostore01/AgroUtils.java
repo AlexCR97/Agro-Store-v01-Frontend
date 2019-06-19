@@ -14,6 +14,7 @@ import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 
 import java.io.ByteArrayOutputStream;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AgroUtils {
 
@@ -62,6 +63,35 @@ public class AgroUtils {
             return null;
 
         return BitmapFactory.decodeByteArray(image, 0, image.length);
+    }
+
+    public static int generarNumeroAleatorio(int min, int max) {
+        return ThreadLocalRandom.current().nextInt(min, max + 1);
+    }
+
+    public static String generarIdAleatorio(int tamano) {
+        char[] numeros = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        char[] letras = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',};
+        StringBuilder id = new StringBuilder();
+
+        while (tamano-- > 0) {
+            int operacion = ThreadLocalRandom.current().nextInt(0, 2);
+
+            switch (operacion) {
+                case 0: {
+                    int indice = ThreadLocalRandom.current().nextInt(0, numeros.length);
+                    char caracter = numeros[indice];
+                    id.append(caracter);
+                }
+
+                case 1: {
+                    int indice = ThreadLocalRandom.current().nextInt(0, letras.length);
+                    char caracter = letras[indice];
+                    id.append(caracter);
+                }
+            }
+        }
+        return id.toString();
     }
 
     public static void setImageViewByteArray(ImageView imageView, byte[] image) {

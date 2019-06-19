@@ -16,11 +16,13 @@ import android.widget.Toast;
 
 import com.example.agrostore01.AgroMensajes;
 import com.example.agrostore01.AgroUtils;
+import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.CapaEntidades.vistas.VistaBusquedaProducto;
 import com.example.agrostore01.CapaEntidades.vistas.VistaComentarios;
 import com.example.agrostore01.CapaEntidades.vistas.VistaCompra;
 import com.example.agrostore01.CapaNegocios.escritores.EscritorCarrito;
+import com.example.agrostore01.CapaNegocios.escritores.EscritorComentarios;
 import com.example.agrostore01.CapaNegocios.lectores.vistas.LectorVistaBusquedaProducto;
 import com.example.agrostore01.CapaNegocios.lectores.vistas.LectorVistaComentario;
 import com.example.agrostore01.CapaPresentacion.adaptadores.ComentariosAdapter;
@@ -44,6 +46,8 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
     private ListView lvComentarios;
 
     private Usuario usuario = new Usuario();
+    private DetallesUsuario detallesUsuario = new DetallesUsuario();
+
     private int idProducto;
     private VistaBusquedaProducto vistaProducto;
 
@@ -73,6 +77,7 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
         ivAgregarProducto.setOnClickListener(ivAgregarProductoOnClick);
         ivQuitarProducto.setOnClickListener(ivQuitarProductoOnClick);
         bComprar.setOnClickListener(bComprarOnClick);
+        ibComentar.setOnClickListener(ibComentarOnClick);
 
         // Arreglar listview dentro de scrollview
         AgroUtils.setListViewScrollInsideScrollView(lvComentarios);
@@ -85,6 +90,8 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
     @Override
     public void recieveBundles(Context context) {
         usuario = getIntent().getParcelableExtra(usuario.getClassName());
+        detallesUsuario = getIntent().getParcelableExtra(detallesUsuario.getClassName());
+
         idProducto = getIntent().getIntExtra("idProducto", -1);
     }
 
@@ -159,9 +166,6 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
                 Toast.makeText(DetallesProductoActivity.this, AgroMensajes.ERROR_INTERNET, Toast.LENGTH_LONG).show();
                 return;
             }
-
-            for (int i = 0; i < 10; i++)
-                comentarios.add(new VistaComentarios());
 
             ComentariosAdapter adapter = new ComentariosAdapter(DetallesProductoActivity.this, R.layout.list_item_comentario, comentarios);
             lvComentarios.setAdapter(adapter);
@@ -238,9 +242,59 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
     private final View.OnClickListener ivQuitarProductoOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            new QuitarProducto().execute();
         }
     };
+
+    private class QuitarProducto extends AsyncTask<Void, Void, Void> {
+
+        private boolean exito;
+        private String mensajeError;
+
+        private int idNumProducto;
+        private String idUsuario;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            idNumProducto = idProducto;
+            idUsuario = usuario.getIdUsuario();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            EscritorCarrito escritorCarrito = new EscritorCarrito(
+                    EscritorCarrito.OPERACION_QUITAR_PRODUCTO,
+                    null,
+                    idNumProducto,
+                    idUsuario
+            );
+
+            exito = escritorCarrito.ejecutarCambios();
+
+            if (!exito) {
+                mensajeError = AgroMensajes.ERROR_INTERNET;
+                exito = false;
+                return null;
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            if (!exito) {
+                Toast.makeText(DetallesProductoActivity.this, mensajeError, Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            Toast.makeText(DetallesProductoActivity.this, "Se ha quitado este producto de tu carrito", Toast.LENGTH_LONG).show();
+        }
+    }
 
     private final View.OnClickListener bComprarOnClick = new View.OnClickListener() {
         @Override
@@ -264,10 +318,97 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
 
             Intent intent = new Intent(DetallesProductoActivity.this, CompraActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
             intent.putParcelableArrayListExtra(compras.getClass().getSimpleName(), compras);
 
             startActivity(intent);
         }
     };
 
+    private final View.OnClickListener ibComentarOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            new ComentarPublicacion().execute();
+        }
+    };
+
+    private class ComentarPublicacion extends AsyncTask<Void, Void, Void> {
+
+        private String idUsuario;
+        private String comentario;
+        private int idNumProducto;
+
+        private boolean exito;
+        private String mensajeError;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            comentario = etComentario.getText().toString();
+            if (comentario.isEmpty()) {
+                mensajeError = AgroMensajes.ERROR_COMENTARIO_VACIO;
+                return;
+            }
+
+            idUsuario = usuario.getIdUsuario();
+            idNumProducto = idProducto;
+
+            exito = true;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            if (!exito)
+                return null;
+
+            EscritorComentarios escritorComentarios = new EscritorComentarios(
+                    EscritorComentarios.OPERACION_COMENTAR,
+                    null,
+                    idUsuario,
+                    comentario,
+                    idNumProducto
+            );
+
+            exito = escritorComentarios.ejecutarCambios();
+
+            if (!exito)
+                mensajeError = AgroMensajes.ERROR_INTERNET;
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            if (!exito) {
+                Toast.makeText(DetallesProductoActivity.this, mensajeError, Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            Toast.makeText(DetallesProductoActivity.this, AgroMensajes.COMENTARIO_PUBLICADO, Toast.LENGTH_LONG).show();
+
+            new ObtenerComentarios().execute();
+        }
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

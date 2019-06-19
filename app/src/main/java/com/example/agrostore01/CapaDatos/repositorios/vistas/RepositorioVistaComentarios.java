@@ -30,7 +30,7 @@ public class RepositorioVistaComentarios extends Repositorio implements IContrat
                 String nombreUsuario = resultado.getString("Nombre");
                 String apellidoUsuario = resultado.getString("Apellido");
                 String comentario = resultado.getString("Comentario");
-                String respuesta = resultado.getString("Respuesta");
+                String respuesta = resultado.getString("Respueta");
                 Date fecha = resultado.getDate("Fecha");
 
                 comentarios.add(new VistaComentarios(nombreUsuario, apellidoUsuario, comentario, respuesta, fecha));

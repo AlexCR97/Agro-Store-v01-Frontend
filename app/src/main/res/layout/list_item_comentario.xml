@@ -46,23 +46,4 @@
         android:textColor="@android:color/black"
         android:textSize="17sp"/>
 
-    <TextView
-        android:id="@+id/tvComentarioResponder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:text="Responder"
-        android:textSize="15sp"/>
-
-    <TextView
-        android:id="@+id/tvComentarioRespuesta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="Esta es la respuesta del comentario"
-        android:textAlignment="textEnd"
-        android:textSize="17sp"/>
-
 </LinearLayout>
