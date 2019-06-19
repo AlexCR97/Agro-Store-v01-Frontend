@@ -8,5 +8,6 @@
     <color name="colorGrisTransparente">#6F272727</color>
     <color name="colorGrisClaro">#959595</color>
     <color name="colorGrisBajo">#DCDCDC</color>
+    <color name="colorGrisOscuro">#3A3A3A</color>
 
 </resources>

@@ -39,6 +39,7 @@
                     android:ems="10"
                     android:hint="Apellido(s)"
                     android:inputType="textPersonName"
+                    android:textColor="@color/colorGrisOscuro"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="@+id/etRegistroClienteUsuario"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -119,7 +120,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/etTelefono"
                     app:layout_constraintStart_toStartOf="@+id/imageView22"
                     app:layout_constraintTop_toTopOf="@+id/etTelefono"
-                    app:layout_constraintVertical_bias="0.0"
+                    app:layout_constraintVertical_bias="0.50"
                     app:srcCompat="@drawable/telefono" />
 
                 <ImageView
@@ -182,7 +183,7 @@
                     android:ems="10"
                     android:hint="Confirmar contraseña"
                     android:inputType="textPassword"
-                    android:textColor="@color/colorGrisClaro"
+                    android:textColor="@color/colorGrisOscuro"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/etRegistroClienteContrasena"
                     app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteContrasena" />
@@ -205,7 +206,7 @@
                     android:ems="10"
                     android:hint="Núm. teléfono"
                     android:inputType="phone"
-                    android:textColor="@color/colorGrisClaro"
+                    android:textColor="@color/colorGrisOscuro"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/etCorreoElectronico"
                     app:layout_constraintTop_toBottomOf="@+id/etCorreoElectronico" />
@@ -252,8 +253,9 @@
                     android:ems="10"
                     android:hint="Calle"
                     android:inputType="textPostalAddress"
-                    android:textColor="@color/colorGrisClaro"
+                    android:textColor="@color/colorGrisOscuro"
                     android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@+id/etCorreoResp"
                     app:layout_constraintStart_toStartOf="@+id/etCorreoElectronico"
                     app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
@@ -308,7 +310,7 @@
                     android:ems="10"
                     android:hint="Correo electrónico"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/colorGrisClaro"
+                    android:textColor="@color/colorGrisOscuro"
                     android:textSize="20sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView19"
                     app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteConfirmarContrasena" />
@@ -335,7 +337,7 @@
                     android:ems="10"
                     android:hint="Correo electronico de respaldo"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/colorGrisClaro"
+                    android:textColor="@color/colorGrisOscuro"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/etTelefono"
                     app:layout_constraintTop_toBottomOf="@+id/etTelefono" />
@@ -361,7 +363,7 @@
                     android:ems="10"
                     android:hint="Contraseña"
                     android:inputType="textPassword"
-                    android:textColor="@color/colorGrisClaro"
+                    android:textColor="@color/colorGrisOscuro"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/etRegistroClienteNombres"
                     app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteApellido" />
@@ -374,7 +376,7 @@
                     android:ems="10"
                     android:hint="Nombre(s)"
                     android:inputType="textPersonName"
-                    android:textColor="@color/colorGrisClaro"
+                    android:textColor="@color/colorGrisOscuro"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/etRegistroClienteUsuario"
                     app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteUsuario" />
@@ -387,7 +389,7 @@
                     android:ems="10"
                     android:hint="Nombre de Usuario"
                     android:inputType="textPersonName"
-                    android:textColor="@color/colorGrisClaro"
+                    android:textColor="@color/colorGrisOscuro"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.552"
@@ -402,7 +404,7 @@
                     android:ems="10"
                     android:hint="Colonía"
                     android:inputType="textPersonName"
-                    android:textColor="@color/colorGrisClaro"
+                    android:textColor="@color/colorGrisOscuro"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/etRegistroClienteCalle"
                     app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteCalle" />
@@ -415,7 +417,7 @@
                     android:ems="10"
                     android:hint="Ciudad"
                     android:inputType="textPersonName"
-                    android:textColor="@color/colorGrisClaro"
+                    android:textColor="@color/colorGrisOscuro"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/etRegistroClienteColonia"
                     app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteColonia" />
@@ -428,7 +430,7 @@
                     android:ems="10"
                     android:hint="Código postal"
                     android:inputType="number"
-                    android:textColor="@color/colorGrisClaro"
+                    android:textColor="@color/colorGrisOscuro"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/etRegistroClienteCiudad"
                     app:layout_constraintTop_toBottomOf="@+id/etRegistroClienteCiudad" />

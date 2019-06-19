@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +37,8 @@ public class RegistroProductorActivity extends AppCompatActivity {
     private TextView tvFecha;
     private int dia, mes, anno;
     private Spinner sEstado, sPais;
+    private ProgressDialog dialog;
+
 
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
@@ -102,6 +107,11 @@ public class RegistroProductorActivity extends AppCompatActivity {
     private final View.OnClickListener ibRegistrarListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            dialog = new ProgressDialog(RegistroProductorActivity.this);
+
+            dialog.setTitle("Registrando");
+            dialog.setMessage("Espere un momento");
+            dialog.show();
             new VerificarRegistro().execute();
         }
     };
@@ -205,9 +215,22 @@ public class RegistroProductorActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(RegistroProductorActivity.this);
 
             if (!exito) {
-                Toast.makeText(RegistroProductorActivity.this, mensajeError, Toast.LENGTH_LONG).show();
+                dialog.cancel();
+
+                alertDialog.setTitle("Advertencia")
+                        .setMessage(mensajeError)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                alertDialog.show();
+
+                //Toast.makeText(RegistroProductorActivity.this, mensajeError, Toast.LENGTH_LONG).show();
                 return;
             }
 

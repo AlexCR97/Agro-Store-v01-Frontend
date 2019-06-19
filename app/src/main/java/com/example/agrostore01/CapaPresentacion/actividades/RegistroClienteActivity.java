@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +29,7 @@ import java.util.Calendar;
 
 public class RegistroClienteActivity extends AppCompatActivity {
 
+
     private EditText etUsuario, etNombres, etApellidos, etContrasena, etConfirmarContrasena, etCorreoElectronico, etCorreoRespaldo;
     private EditText etCalle, etColonia, etCiudad, etCodigoPostal;
     private ImageButton ibFecha, ibRegistrar;
@@ -34,13 +38,17 @@ public class RegistroClienteActivity extends AppCompatActivity {
     private TextView tvFecha;
     private int dia, mes, anno;
     private Spinner sEstado, sPais;
+    private ProgressDialog dialog;
 
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_registro_cliente);
 
         etUsuario = findViewById(R.id.etRegistroClienteUsuario);
@@ -63,6 +71,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
         tvFecha = findViewById(R.id.tvFecha);
         cbTerminos = findViewById(R.id.cbRegistroClienteTerminos);
 
+
         ibFecha.setOnClickListener(ibFechaListener);
         ibRegistrar.setOnClickListener(ibRegistrarListener);
 
@@ -77,6 +86,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
         ArrayAdapter<String> adapterEstado = new ArrayAdapter<>(this, R.layout.list_item_spinner, estados);
         sEstado.setAdapter(adapterEstado);
     }
+
 
     private final View.OnClickListener ibFechaListener = new View.OnClickListener() {
         @Override
@@ -101,6 +111,11 @@ public class RegistroClienteActivity extends AppCompatActivity {
     private final View.OnClickListener ibRegistrarListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            dialog = new ProgressDialog(RegistroClienteActivity.this);
+
+            dialog.setTitle("Registrando");
+            dialog.setMessage("Espere un momento");
+            dialog.show();
             new VerificarRegistro().execute();
         }
     };
@@ -204,9 +219,22 @@ public class RegistroClienteActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(RegistroClienteActivity.this);
 
             if (!exito) {
-                Toast.makeText(RegistroClienteActivity.this, mensajeError, Toast.LENGTH_LONG).show();
+                dialog.cancel();
+
+                alertDialog.setTitle("Advertencia")
+                        .setMessage(mensajeError)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                alertDialog.show();
+
+                //Toast.makeText(RegistroClienteActivity.this, mensajeError, Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -214,6 +242,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
             intent.putExtra(usuario.getClassName(), usuario);
             intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
             startActivity(intent);
+            dialog.cancel();
             finish();
         }
     }

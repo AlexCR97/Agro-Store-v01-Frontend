@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,7 +26,7 @@ import java.util.List;
 public class MisVentasActivity extends RecieveBundlesActivity {
 
     private ListView listViewMisVentas;
-
+private ProgressDialog dialog;
     private List<VistaMisVentas> misVentas = new ArrayList<>();
 
     private Usuario usuario = new Usuario();
@@ -37,6 +40,11 @@ public class MisVentasActivity extends RecieveBundlesActivity {
 
         listViewMisVentas = findViewById(R.id.listViewMisVentas);
         listViewMisVentas.setOnItemClickListener(listViewMisVentasListener);
+        dialog = new ProgressDialog(MisVentasActivity.this);
+
+        dialog.setTitle("Cargando ventas");
+        dialog.setMessage("Espere un momento");
+        dialog.show();
 
         new ObtenerMisVentas().execute();
     }
@@ -67,13 +75,20 @@ public class MisVentasActivity extends RecieveBundlesActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(MisVentasActivity.this);
 
             if (!exito) {
-                Toast.makeText(
-                        MisVentasActivity.this,
-                        "Hubo un error al obtener tus ventas. Verifica tu conexion a Internet e intentelo de nuevo",
-                        Toast.LENGTH_LONG
-                ).show();
+                dialog.cancel();
+                alertDialog.setTitle("Advertencia")
+                        .setMessage("Hubo un error al obtener tus ventas. Verifica tu conexion a Internet e intentelo de nuevo")
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                alertDialog.show();
+
+                //Toast.makeText(MisVentasActivity.this,"Hubo un error al obtener tus ventas. Verifica tu conexion a Internet e intentelo de nuevo",Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -95,6 +110,7 @@ public class MisVentasActivity extends RecieveBundlesActivity {
 
             MisVentasAdapter adaptador = new MisVentasAdapter(MisVentasActivity.this, R.layout.list_item_mis_ventas, misVentas);
             listViewMisVentas.setAdapter(adaptador);
+            dialog.cancel();
         }
     }
 

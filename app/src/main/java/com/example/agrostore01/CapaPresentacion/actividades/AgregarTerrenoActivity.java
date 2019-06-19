@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,6 +27,7 @@ public class AgregarTerrenoActivity extends RecieveBundlesActivity {
     private EditText etNombre, etTamanoAlto, etTamanoAncho, etMedida;
     private Spinner sTipoTerreno;
     private ImageButton ibAceptar;
+    private ProgressDialog dialog;
 
     private Usuario usuario = new Usuario();
 
@@ -48,7 +52,6 @@ public class AgregarTerrenoActivity extends RecieveBundlesActivity {
 
         ibAceptar.setOnClickListener(ibAceptarListener);
 
-        new AgregarTerreno().execute();
     }
 
     @Override
@@ -59,6 +62,13 @@ public class AgregarTerrenoActivity extends RecieveBundlesActivity {
     private final View.OnClickListener ibAceptarListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+            dialog = new ProgressDialog(AgregarTerrenoActivity.this);
+
+            dialog.setTitle("Agregando");
+            dialog.setMessage("Espere un momento");
+            dialog.show();
+
             new AgregarTerreno().execute();
         }
     };
@@ -121,13 +131,33 @@ public class AgregarTerrenoActivity extends RecieveBundlesActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(AgregarTerrenoActivity.this);
 
             if (!exito) {
-                Toast.makeText(AgregarTerrenoActivity.this, mensajeError, Toast.LENGTH_LONG).show();
+                dialog.cancel();
+                alertDialog.setTitle("Advertencia")
+                        .setMessage(mensajeError)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                alertDialog.show();
+                //Toast.makeText(AgregarTerrenoActivity.this, mensajeError, Toast.LENGTH_LONG).show();
                 return;
             }
+            dialog.cancel();
 
-            Toast.makeText(AgregarTerrenoActivity.this, "Tu terreno ha sido agregado", Toast.LENGTH_LONG).show();
+            alertDialog.setTitle("Advertencia")
+                    .setMessage("Tu terreno ha sido agregado")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+            alertDialog.show();
+
+            //Toast.makeText(AgregarTerrenoActivity.this, "Tu terreno ha sido agregado", Toast.LENGTH_LONG).show();
 
             Intent intent = new Intent(AgregarTerrenoActivity.this, MiTerrenoActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);

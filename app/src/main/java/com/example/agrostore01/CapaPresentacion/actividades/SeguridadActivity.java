@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +23,7 @@ public class SeguridadActivity extends RecieveBundlesActivity {
 
     private ImageButton ibCambiar;
     private EditText etClave, etConfirmarClave;
-
+private ProgressDialog dialog;
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
 
@@ -41,6 +44,12 @@ public class SeguridadActivity extends RecieveBundlesActivity {
     private final View.OnClickListener ibCambiarListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            dialog = new ProgressDialog(SeguridadActivity.this);
+
+            dialog.setTitle("Actualizando contraseña");
+            dialog.setMessage("Espere un momento");
+            dialog.show();
+
             new ActualizarContrasena().execute();
         }
     };
@@ -92,8 +101,19 @@ public class SeguridadActivity extends RecieveBundlesActivity {
 
             startActivity(intent);
             finish();
+            dialog.cancel();
 
-            Toast.makeText(SeguridadActivity.this, "La contrasena ha sido actualizada", Toast.LENGTH_LONG).show();
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(SeguridadActivity.this);
+            alertDialog.setTitle("Advertencia")
+                    .setMessage("La contrasena ha sido actualizada")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    });
+            alertDialog.show();
+
+            //Toast.makeText(SeguridadActivity.this, "La contrasena ha sido actualizada", Toast.LENGTH_LONG).show();
         }
     }
 

@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +23,7 @@ public class ClaveActivity extends RecieveBundlesActivity {
 
     private ImageButton ibSeguridad;
     private EditText etClave;
-
+private ProgressDialog dialog;
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
 
@@ -58,6 +61,7 @@ public class ClaveActivity extends RecieveBundlesActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(ClaveActivity.this);
 
             if (exito) {
                 Intent intent = new Intent(ClaveActivity.this, SeguridadActivity.class);
@@ -66,7 +70,17 @@ public class ClaveActivity extends RecieveBundlesActivity {
 
                 startActivity(intent);
             } else {
-                Toast.makeText(ClaveActivity.this, "La contrasena es incorrecta", Toast.LENGTH_LONG).show();
+                dialog.cancel();
+                alertDialog.setTitle("Advertencia")
+                        .setMessage("La contrasena es incorrecta")
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                alertDialog.show();
+                //Toast.makeText(ClaveActivity.this, "La contrasena es incorrecta", Toast.LENGTH_LONG).show();
             }
         }
 
@@ -75,6 +89,12 @@ public class ClaveActivity extends RecieveBundlesActivity {
     private final View.OnClickListener ibSeguridadListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            dialog = new ProgressDialog(ClaveActivity.this);
+
+            dialog.setTitle("Cargando");
+            dialog.setMessage("Espere un momento");
+            dialog.show();
+
             new VerificarContrasena().execute();
         }
     };
