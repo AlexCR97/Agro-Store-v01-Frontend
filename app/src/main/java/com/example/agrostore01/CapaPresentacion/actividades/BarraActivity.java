@@ -14,6 +14,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
@@ -49,23 +51,27 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close
+        );
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Set header text
+        String nombreApellido = detallesUsuario.getNombres() + " " + detallesUsuario.getNombres();
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView tvHeader = headerView.findViewById(R.id.tvBarraNombreUsuario);
+        tvHeader.setText(nombreApellido);
+
         // NAVIGATION //////////////////////////////////////////////////////////////////////////////
-        //ViewPager viewPager = findViewById(R.id.ViewPagerOfertas);
-        //ImagenAdapter adapter = new ImagenAdapter(this);
-        //viewPager.setAdapter(adapter);
 
         navegador = findViewById(R.id.navigation);
         navegador.setOnNavigationItemSelectedListener(navegadorListener);
-
-        // Fragmento for defecto
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, dashboardFragment).commit();
 
         // Bundles de los fragmentos
         Bundle bundleDashboard = new Bundle();
@@ -74,15 +80,27 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
 
         Bundle bundleBuscar = new Bundle();
         bundleBuscar.putParcelable(usuario.getClassName(), usuario);
+        bundleBuscar.putParcelable(detallesUsuario.getClassName(), detallesUsuario);
         buscarFragment.setArguments(bundleBuscar);
 
         Bundle bundleCarrito = new Bundle();
         bundleCarrito.putParcelable(usuario.getClassName(), usuario);
+        bundleCarrito.putParcelable(detallesUsuario.getClassName(), detallesUsuario);
         carritoFragment.setArguments(bundleCarrito);
 
         Bundle bundleNotificaciones = new Bundle();
         bundleNotificaciones.putParcelable(usuario.getClassName(), usuario);
         notificacionesFragment.setArguments(bundleNotificaciones);
+
+        // Fragmento for defecto
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, dashboardFragment).commit();
+    }
+
+    @Override
+    public void recieveBundles(Context context) {
+        usuario = getIntent().getParcelableExtra(usuario.getClassName());
+        detallesUsuario = getIntent().getParcelableExtra(detallesUsuario.getClassName());
+        Toast.makeText(context, "¡Has iniciado sesion! :D\n\n" + usuario +"\n\n" + detallesUsuario, Toast.LENGTH_LONG).show();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navegadorListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -197,13 +215,6 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    public void recieveBundles(Context context) {
-        usuario = getIntent().getParcelableExtra(usuario.getClassName());
-        detallesUsuario = getIntent().getParcelableExtra(detallesUsuario.getClassName());
-        Toast.makeText(context, "¡Has iniciado sesion! :D\n\n" + usuario +"\n\n" + detallesUsuario, Toast.LENGTH_LONG).show();
     }
 
 }

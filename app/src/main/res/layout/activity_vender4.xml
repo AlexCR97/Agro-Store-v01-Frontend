@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
-        android:text="Titulo de la publicación"
+        android:text="Título de la publicación"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="22sp" />

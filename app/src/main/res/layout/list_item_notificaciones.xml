@@ -12,7 +12,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_margin="8dp"
-        android:src="@drawable/ermitanio" />
+        android:src="@drawable/ic_insert_photo_black_24dp"/>
 
     <Space
         android:layout_width="10dp"

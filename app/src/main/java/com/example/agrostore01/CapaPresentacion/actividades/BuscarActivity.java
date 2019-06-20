@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.CapaEntidades.vistas.VistaBusquedaProducto;
 import com.example.agrostore01.CapaNegocios.lectores.LectorProducto;
@@ -31,6 +32,7 @@ public class BuscarActivity extends RecieveBundlesActivity {
     private ListView listViewBuscar;
 
     private Usuario usuario = new Usuario();
+    private DetallesUsuario detallesUsuario = new DetallesUsuario();
 
     // Variables de busqueda
     private String tipoBusqueda;
@@ -70,6 +72,48 @@ public class BuscarActivity extends RecieveBundlesActivity {
         dialog.show();
         new RealizarBusqueda().execute();
 
+    }
+
+    @Override
+    public void recieveBundles(Context context) {
+        Intent intent = getIntent();
+
+        usuario = intent.getParcelableExtra(usuario.getClassName());
+        detallesUsuario = intent.getParcelableExtra(detallesUsuario.getClassName());
+
+        if (!intent.hasExtra(FiltrosActivity.TIPO_BUSQUEDA)) {
+            return;
+        }
+
+        tipoBusqueda = intent.getStringExtra(FiltrosActivity.TIPO_BUSQUEDA);
+
+        switch (tipoBusqueda) {
+
+            case FiltrosActivity.BUSQUEDA_CATEGORIA: {
+                filtroCategoria = intent.getStringExtra(FiltrosActivity.BUSQUEDA_CATEGORIA);
+                break;
+            }
+
+            case FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO: {
+                filtroProducto = intent.getStringExtra(FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO);
+                break;
+            }
+
+            case FiltrosActivity.BUSQUEDA_FILTRO: {
+                filtroPrecioMin = intent.getLongExtra(FiltrosActivity.FILTRO_PRECIO_MIN, -1);
+                filtroPrecioMax = intent.getLongExtra(FiltrosActivity.FILTRO_PRECIO_MAX, -1);
+                filtroCategoria = intent.getStringExtra(FiltrosActivity.FILTRO_CATEGORIA);
+                filtroTemporada = intent.getStringExtra(FiltrosActivity.FILTRO_TEMPORADA);
+                filtroPais = intent.getStringExtra(FiltrosActivity.FILTRO_PAIS);
+                filtroEstado = intent.getStringExtra(FiltrosActivity.FILTRO_ESTADO);
+                filtroEstrellas = intent.getFloatExtra(FiltrosActivity.FILTRO_ESTRELLAS, 0);
+                break;
+            }
+
+            default: {
+                break;
+            }
+        }
     }
 
     private final SearchView.OnQueryTextListener buscadorListener = new SearchView.OnQueryTextListener() {
@@ -226,6 +270,7 @@ public class BuscarActivity extends RecieveBundlesActivity {
         public void onClick(View v) {
             Intent intent = new Intent(v.getContext(), FiltrosActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
             startActivity(intent);
         }
     };
@@ -239,6 +284,7 @@ public class BuscarActivity extends RecieveBundlesActivity {
 
             Intent intent = new Intent(view.getContext(), DetallesProductoActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
             intent.putExtra("idProducto", idProductos.get(position));
             intent.putExtra("vistaProducto", vistasProductos.get(position));
 
@@ -246,44 +292,4 @@ public class BuscarActivity extends RecieveBundlesActivity {
         }
     };
 
-    @Override
-    public void recieveBundles(Context context) {
-        Intent intent = getIntent();
-
-        usuario = intent.getParcelableExtra(usuario.getClassName());
-
-        if (!intent.hasExtra(FiltrosActivity.TIPO_BUSQUEDA)) {
-            return;
-        }
-
-        tipoBusqueda = intent.getStringExtra(FiltrosActivity.TIPO_BUSQUEDA);
-
-        switch (tipoBusqueda) {
-
-            case FiltrosActivity.BUSQUEDA_CATEGORIA: {
-                filtroCategoria = intent.getStringExtra(FiltrosActivity.BUSQUEDA_CATEGORIA);
-                break;
-            }
-
-            case FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO: {
-                filtroProducto = intent.getStringExtra(FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO);
-                break;
-            }
-
-            case FiltrosActivity.BUSQUEDA_FILTRO: {
-                filtroPrecioMin = intent.getLongExtra(FiltrosActivity.FILTRO_PRECIO_MIN, -1);
-                filtroPrecioMax = intent.getLongExtra(FiltrosActivity.FILTRO_PRECIO_MAX, -1);
-                filtroCategoria = intent.getStringExtra(FiltrosActivity.FILTRO_CATEGORIA);
-                filtroTemporada = intent.getStringExtra(FiltrosActivity.FILTRO_TEMPORADA);
-                filtroPais = intent.getStringExtra(FiltrosActivity.FILTRO_PAIS);
-                filtroEstado = intent.getStringExtra(FiltrosActivity.FILTRO_ESTADO);
-                filtroEstrellas = intent.getFloatExtra(FiltrosActivity.FILTRO_ESTRELLAS, 0);
-                break;
-            }
-
-            default: {
-                break;
-            }
-        }
-    }
 }
