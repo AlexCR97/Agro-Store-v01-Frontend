@@ -29,14 +29,15 @@
           android:layout_marginStart="20dp"
           android:layout_weight="0.50"
           android:text="Total:"
-          android:textColor="@android:color/black"
-          android:textSize="25sp"/>
+          android:textColor="@color/colorGrisOscuro"
+          android:textSize="25sp" />
 
       <TextView
           android:id="@+id/tvCarritoTotal"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginEnd="20dp"
+          android:textColor="@color/colorGrisOscuro"
           android:text="$0"
           android:textSize="25sp"/>
 
@@ -50,6 +51,7 @@
        android:background="@color/colorVerdeFuerte"
        android:text="Comprar"
        android:textAllCaps="false"
+       android:textColor="@android:color/background_light"
        android:textSize="20sp" />
 
 </LinearLayout>
