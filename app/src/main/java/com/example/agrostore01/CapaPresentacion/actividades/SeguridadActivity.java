@@ -125,10 +125,7 @@ public class SeguridadActivity extends RecieveBundlesActivity {
                         }
                     });
             alertDialog.show();
-            //Toast.makeText(SeguridadActivity.this, "La contrasena ha sido actualizada", Toast.LENGTH_LONG).show();
-
         }
-
     }
 
     public ImageButton getIbCambiar() {

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,7 +19,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.agrostore01.AgroCodigos;
+import com.example.agrostore01.AgroUtils;
+import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
+import com.example.agrostore01.CapaEntidades.vistas.VistaPublicacion;
 import com.example.agrostore01.R;
 
 public class Vender3Activity extends RecieveBundlesActivity {
@@ -30,6 +34,8 @@ public class Vender3Activity extends RecieveBundlesActivity {
     private Button buttonSiguiente;
 
     private Usuario usuario = new Usuario();
+    private DetallesUsuario detallesUsuario = new DetallesUsuario();
+    private VistaPublicacion vistaPublicacion = new VistaPublicacion();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,8 @@ public class Vender3Activity extends RecieveBundlesActivity {
     @Override
     public void recieveBundles(Context context) {
         usuario = getIntent().getParcelableExtra(usuario.getClassName());
+        detallesUsuario = getIntent().getParcelableExtra(detallesUsuario.getClassName());
+        vistaPublicacion = getIntent().getParcelableExtra(vistaPublicacion.getClassName());
     }
 
     @Override
@@ -147,8 +155,15 @@ public class Vender3Activity extends RecieveBundlesActivity {
     private View.OnClickListener buttonSiguienteOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            Bitmap bitmap = ((BitmapDrawable) ivFoto.getDrawable()).getBitmap();
+            byte[] foto = AgroUtils.bitmapToByteArray(bitmap);
+
+            vistaPublicacion.setFoto(foto);
+
             Intent intent = new Intent(Vender3Activity.this, Vender4Activity.class);
             intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
+            intent.putExtra(vistaPublicacion.getClassName(), vistaPublicacion);
             startActivity(intent);
         }
     };

@@ -55,7 +55,7 @@ public class TerrenoAdapter extends ArrayAdapter<Terreno> {
 
         Terreno terreno = lista.get(position);
 
-        String nombreTerreno = "Terreno " + terreno.getIdTerreno();
+        String nombreTerreno = terreno.getNombre();
         String tamano = terreno.getTamaño() + " " + terreno.getMedida();
         String tipo = terreno.getTipo();
 

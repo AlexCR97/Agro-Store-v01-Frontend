@@ -27,7 +27,7 @@ public class ValidacionTerreno extends Validacion<Terreno> {
     }
     public boolean validarTamano(){
         System.out.println("Validating Terreno.Tamano " + entidad.getTamaño());
-        if (entidad.getTamaño() <= -1)
+        if (entidad.getTamaño() < 10000)
             return false;
 
         return true;

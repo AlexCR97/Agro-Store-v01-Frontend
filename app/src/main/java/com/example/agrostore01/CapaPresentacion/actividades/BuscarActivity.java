@@ -72,6 +72,9 @@ public class BuscarActivity extends RecieveBundlesActivity {
         dialog.show();
         new RealizarBusqueda().execute();
 
+        dialog = new ProgressDialog(BuscarActivity.this);
+
+        new RealizarBusqueda().execute();
     }
 
     @Override
@@ -119,14 +122,12 @@ public class BuscarActivity extends RecieveBundlesActivity {
     private final SearchView.OnQueryTextListener buscadorListener = new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String query) {
-
             dialog.setTitle("Buscando producto");
             dialog.setMessage("Espere un momento");
             dialog.show();
 
             tipoBusqueda = FiltrosActivity.BUSQUEDA_NOMBRE_PRODUCTO;
             filtroProducto = query;
-
 
             new RealizarBusqueda().execute();
             return false;
@@ -146,6 +147,9 @@ public class BuscarActivity extends RecieveBundlesActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            dialog.setTitle("Buscando producto");
+            dialog.setMessage("Espere un momento");
+            dialog.show();
         }
 
         @Override

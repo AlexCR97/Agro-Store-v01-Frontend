@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,7 +49,9 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
     private EditText etComentario;
     private ImageButton ibComentar;
     private ListView lvComentarios;
-private ProgressDialog dialog;
+
+    private ProgressDialog dialog;
+
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
 
@@ -60,8 +64,6 @@ private ProgressDialog dialog;
         setContentView(R.layout.activity_detalles_producto);
 
         recieveBundles(this);
-
-
 
         ivImagenProducto = findViewById(R.id.imageViewItemDetallesProducto);
         tvTitulo = findViewById(R.id.textViewItemDetallesTitulo);
@@ -79,12 +81,15 @@ private ProgressDialog dialog;
         ibComentar = findViewById(R.id.ibComentar);
         lvComentarios = findViewById(R.id.lvComentarios);
 
+        etCantidad.addTextChangedListener(etCantidadWatcher);
         ivAgregarProducto.setOnClickListener(ivAgregarProductoOnClick);
         ivQuitarProducto.setOnClickListener(ivQuitarProductoOnClick);
         bComprar.setOnClickListener(bComprarOnClick);
         ibComentar.setOnClickListener(ibComentarOnClick);
 
         dialog = new ProgressDialog(DetallesProductoActivity.this);
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
 
         dialog.setTitle("Cargando producto");
         dialog.setMessage("Espere un momento");
@@ -194,6 +199,28 @@ private ProgressDialog dialog;
         }
     }
 
+    private final TextWatcher etCantidadWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String cantidadString = etCantidad.getText().toString();
+            int cantidad = cantidadString.isEmpty()? 0 : Integer.valueOf(cantidadString);
+            int max = vistaProducto.getHectareas();
+
+            if (cantidad > max)
+                etCantidad.setText(String.valueOf(max));
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
     private final View.OnClickListener ivAgregarProductoOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -223,7 +250,7 @@ private ProgressDialog dialog;
         @Override
         protected Void doInBackground(Void... voids) {
 
-            if (cantidad <= -1) {
+            if (cantidad <= 0) {
                 mensajeError = AgroMensajes.ERROR_CANTIDAD_INVALIDA;
                 exito = false;
                 return null;
@@ -346,8 +373,8 @@ private ProgressDialog dialog;
                     usuario.getIdUsuario(),
                     cantidadTemp.isEmpty() ? -1 : Integer.parseInt(cantidadTemp)
             );
-
-            if (vistaCompra.getCantidad() <= -1) {
+          
+            if (vistaCompra.getCantidad() <= 0) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(DetallesProductoActivity.this);
 
                 alertDialog.setTitle("Advertencia")
@@ -358,8 +385,6 @@ private ProgressDialog dialog;
                             }
                         });
                 alertDialog.show();
-
-                //Toast.makeText(DetallesProductoActivity.this, AgroMensajes.ERROR_CANTIDAD_INVALIDA, Toast.LENGTH_LONG).show();
                 return;
             }
 

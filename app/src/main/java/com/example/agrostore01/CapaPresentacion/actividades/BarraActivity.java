@@ -62,7 +62,7 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
         navigationView.setNavigationItemSelectedListener(this);
 
         // Set header text
-        String nombreApellido = detallesUsuario.getNombres() + " " + detallesUsuario.getNombres();
+        String nombreApellido = detallesUsuario.getNombres() + " " + detallesUsuario.getApellidos();
 
         View headerView = navigationView.getHeaderView(0);
         TextView tvHeader = headerView.findViewById(R.id.tvBarraNombreUsuario);
@@ -194,8 +194,9 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
         }
 
         else if (id == R.id.vender) {
-            intent = new Intent(BarraActivity.this, Vender1Activity.class);
+            intent = new Intent(BarraActivity.this, Vender2Activity.class);
             intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
             startActivity(intent);
         }
 
