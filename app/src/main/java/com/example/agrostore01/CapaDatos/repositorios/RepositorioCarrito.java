@@ -1,17 +1,14 @@
 package com.example.agrostore01.CapaDatos.repositorios;
 
-import com.example.agrostore01.CapaDatos.contratos.IContrato;
 import com.example.agrostore01.CapaDatos.contratos.IContratoCarrito;
-import com.example.agrostore01.CapaDatos.contratos.IContratoRelacion;
 import com.example.agrostore01.CapaEntidades.Carrito;
 
-import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RepositorioCarrito extends Repositorio implements IContratoCarrito {
 
     private String sqlProcAgregarProducto;
+    private String sqlProcQuitarProducto;
 
     public RepositorioCarrito() {
         this.sqlAlta="insert into Carrito values (?)";
@@ -22,7 +19,8 @@ public class RepositorioCarrito extends Repositorio implements IContratoCarrito 
         this.sqlSeleccionarId="select * from Carrito where IDCarrito = ?";
         this.sqlSeleccionarTodo="select * from Carrito";
 
-        this.sqlProcAgregarProducto = "{ call PROC_ESP_REALIZARCOMPRA(?, ?, ?) }";
+        this.sqlProcAgregarProducto = "{ call PROC_ESP_AGREGARCARRITO(?, ?, ?) }";
+        this.sqlProcQuitarProducto = " { call PROC_ESP_QUITARPRODUCTOCARRITO(?, ?) }";
     }
 
     @Override
@@ -142,6 +140,21 @@ public class RepositorioCarrito extends Repositorio implements IContratoCarrito 
 
         try {
             return ejecutarProcedimiento(sqlProcAgregarProducto);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean quitarProductoDeCarrito(int idNumProducto, String idUsuario) {
+        parametros = new ArrayList<>();
+        parametros.add(idNumProducto);
+        parametros.add(idUsuario);
+
+        try {
+            return ejecutarProcedimiento(sqlProcQuitarProducto);
         }
         catch (Exception e) {
             e.printStackTrace();

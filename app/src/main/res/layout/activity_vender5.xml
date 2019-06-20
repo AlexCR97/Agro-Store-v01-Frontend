@@ -16,7 +16,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Metodo de pago"
+        android:text="Método de pago"
         android:fontFamily="@font/comfortaa_light"
         android:textColor="#000000"
         android:textSize="35sp"
@@ -73,7 +73,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Metodo de envio"
+        android:text="Método de envio"
         android:fontFamily="@font/comfortaa_light"
         android:textColor="#000000"
         android:textSize="35sp"

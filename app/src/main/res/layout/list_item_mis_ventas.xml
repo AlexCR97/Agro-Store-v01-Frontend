@@ -14,7 +14,7 @@
         android:layout_height="105dp"
         android:layout_gravity="center|start"
         android:layout_margin="15dp"
-        android:src="@drawable/zanahorias" />
+        android:src="@drawable/ic_insert_photo_black_24dp"/>
 
     <Space
         android:layout_width="15dp"

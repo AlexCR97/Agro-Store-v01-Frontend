@@ -37,7 +37,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginEnd="20dp"
-          android:text="$7800"
+          android:text="$0"
           android:textSize="25sp"/>
 
    </LinearLayout>

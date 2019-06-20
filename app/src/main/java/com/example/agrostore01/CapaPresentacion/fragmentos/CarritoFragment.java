@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.agrostore01.AgroMensajes;
 import com.example.agrostore01.CapaEntidades.Carrito;
+import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.CapaEntidades.vistas.VistaCarrito;
 import com.example.agrostore01.CapaEntidades.vistas.VistaCompra;
@@ -32,6 +33,7 @@ import com.example.agrostore01.R;
 import com.example.agrostore01.CapaPresentacion.actividades.CompraActivity;
 import com.example.agrostore01.CapaPresentacion.adaptadores.CarritoAdapter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,9 +41,11 @@ import java.util.List;
 public class CarritoFragment extends RecieveBundlesFragment {
 
     private ListView listViewCarrito;
+    private TextView tvPrecioTotal;
     private Button buttonComprarCarrito;
 
     private Usuario usuario = new Usuario();
+    private DetallesUsuario detallesUsuario = new DetallesUsuario();
     private List<VistaCarrito> carrito;
 
     @Override
@@ -51,6 +55,7 @@ public class CarritoFragment extends RecieveBundlesFragment {
         recieveBundles(vista.getContext());
 
         listViewCarrito = vista.findViewById(R.id.listViewCarrito);
+        tvPrecioTotal = vista.findViewById(R.id.tvCarritoTotal);
         buttonComprarCarrito = vista.findViewById(R.id.buttonCarritoComprar);
 
         listViewCarrito.setOnItemLongClickListener(listViewCarritoListener);
@@ -64,6 +69,7 @@ public class CarritoFragment extends RecieveBundlesFragment {
     @Override
     public void recieveBundles(Context context) {
         usuario = getArguments().getParcelable(usuario.getClassName());
+        detallesUsuario = getArguments().getParcelable(detallesUsuario.getClassName());
         Toast.makeText(context, usuario.toString(), Toast.LENGTH_LONG).show();
     }
 
@@ -108,7 +114,30 @@ public class CarritoFragment extends RecieveBundlesFragment {
             listViewCarrito.setAdapter(adapter);
 
             System.out.println("\n\n\n\nJust ended async task " + this.getClass().getSimpleName() + "\n\n\n\n");
+
+            setPrecioTotal();
         }
+    }
+
+    private void setPrecioTotal() {
+        if (carrito == null) {
+            tvPrecioTotal.setText("$0");
+            return;
+        }
+
+        if (carrito.isEmpty()) {
+            tvPrecioTotal.setText("$0");
+            return;
+        }
+
+        BigDecimal precioTotal = new BigDecimal(0);
+
+        for (VistaCarrito vistaCarrito : carrito)
+            precioTotal = precioTotal.add(vistaCarrito.getPrecio());
+
+        String precio = precioTotal.setScale(2, BigDecimal.ROUND_HALF_EVEN).toString();
+
+        tvPrecioTotal.setText(precio);
     }
 
     private final AdapterView.OnItemLongClickListener listViewCarritoListener = new AdapterView.OnItemLongClickListener() {
@@ -166,6 +195,7 @@ public class CarritoFragment extends RecieveBundlesFragment {
 
             Intent intent = new Intent(v.getContext(), CompraActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
             intent.putParcelableArrayListExtra(compras.getClass().getSimpleName(), compras);
 
             startActivity(intent);

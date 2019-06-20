@@ -35,7 +35,8 @@
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:background="@color/colorVerdeFuerte"
+            android:background="#E7F0D2"
+            android:fontFamily="@font/hind_guntur_light"
             android:text="Filtrar"
             android:textAllCaps="false" />
 
@@ -47,7 +48,8 @@
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:background="@color/colorVerdeFuerte"
+            android:background="#E7F0D2"
+            android:fontFamily="@font/hind_guntur_light"
             android:text="Ordenar"
             android:textAllCaps="false" />
 

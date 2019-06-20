@@ -11,7 +11,7 @@
         android:layout_width="105dp"
         android:layout_height="105dp"
         android:layout_gravity="center|start"
-        android:src="@drawable/ermitanio" />
+        android:src="@drawable/ic_insert_photo_black_24dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
