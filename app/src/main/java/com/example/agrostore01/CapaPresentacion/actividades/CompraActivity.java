@@ -41,7 +41,6 @@ public class CompraActivity extends RecieveBundlesActivity {
     private TextView tvNumeroCompra;
     private TextView tvNumeroCliente;
     private TextView tvNumeroRastreo;
-    private Button bComprar;
 
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();

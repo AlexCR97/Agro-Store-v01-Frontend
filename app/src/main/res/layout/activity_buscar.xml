@@ -10,8 +10,8 @@
     <SearchView
         android:id="@+id/searchViewBuscador"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorVerdeFuerte"
+        android:layout_height="55dp"
+        android:background="@color/colorVerdeClaro"
         android:foregroundTint="@android:color/background_light" />
 
     <LinearLayout

@@ -8,8 +8,8 @@
     <SearchView
         android:id="@+id/searchViewBuscadorFragmento"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:background="@color/colorVerdeFuerte" />
+        android:layout_height="55dp"
+        android:background="@color/colorVerdeClaro"/>
 
     <ScrollView
         android:layout_width="match_parent"
