@@ -93,7 +93,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="000"
-                    android:textAlignment="center"/>
+                    android:inputType="number"
+                    android:textAlignment="center" />
 
                 <Space
                     android:layout_width="15dp"
@@ -120,9 +121,9 @@
                     android:id="@+id/bDetalleProductoComprar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@color/colorVerdeFuerte"
                     android:padding="15dp"
-                    android:text="Comprar"
-                    android:background="#C5E1A5"/>
+                    android:text="Comprar" />
             </LinearLayout>
 
             <View
@@ -229,13 +230,14 @@
                             android:hint="Escribe un comentario"
                             android:textSize="15sp"
                             android:inputType="textMultiLine"/>
+
                         <ImageButton
                             android:id="@+id/ibComentar"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_marginEnd="10dp"
-                            android:background="@color/colorPrimary"
-                            android:src="@android:drawable/ic_menu_send"/>
+                            android:background="@color/colorVerdeFuerte"
+                            android:src="@android:drawable/ic_menu_send" />
                     </LinearLayout>
 
                 <ListView

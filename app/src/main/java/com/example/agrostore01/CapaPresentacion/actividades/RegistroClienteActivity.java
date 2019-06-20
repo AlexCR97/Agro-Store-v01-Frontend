@@ -237,13 +237,23 @@ public class RegistroClienteActivity extends AppCompatActivity {
                 //Toast.makeText(RegistroClienteActivity.this, mensajeError, Toast.LENGTH_LONG).show();
                 return;
             }
-
-            Intent intent = new Intent(RegistroClienteActivity.this, BarraActivity.class);
-            intent.putExtra(usuario.getClassName(), usuario);
-            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
-            startActivity(intent);
             dialog.cancel();
-            finish();
+            alertDialog.setTitle("")
+                    .setMessage("Cuenta creada con éxito")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(RegistroClienteActivity.this, BarraActivity.class);
+                            intent.putExtra(usuario.getClassName(), usuario);
+                            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
+
+                            startActivity(intent);
+                            finish();
+
+                        }
+                    });
+            alertDialog.show();
+
         }
     }
 

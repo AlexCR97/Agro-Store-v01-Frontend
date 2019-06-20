@@ -234,11 +234,22 @@ public class RegistroProductorActivity extends AppCompatActivity {
                 return;
             }
 
-            Intent intent = new Intent(RegistroProductorActivity.this, BarraActivity.class);
-            intent.putExtra(usuario.getClassName(), usuario);
-            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
-            startActivity(intent);
-            finish();
+            dialog.cancel();
+            alertDialog.setTitle("")
+                    .setMessage("Cuenta creada con éxito")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(RegistroProductorActivity.this, BarraActivity.class);
+                            intent.putExtra(usuario.getClassName(), usuario);
+                            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
+
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+            alertDialog.show();
+
         }
     }
 

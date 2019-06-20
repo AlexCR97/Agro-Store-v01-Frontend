@@ -129,6 +129,7 @@
                 android:textSize="18sp"/>
 
             <Button
+                android:id="@+id/bDireccionExtra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -136,7 +137,7 @@
                 android:background="#40C4FF"
                 android:padding="15dp"
                 android:text="¿Desea enviarlo a otra direccion?"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:layout_width="match_parent"

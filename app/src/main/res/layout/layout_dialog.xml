@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+    <EditText
+        android:id="@+id/etCodigoPostal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="Codigo postal"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/etCalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/etCodigoPostal"
+        android:hint="Calle" />
+
+    <EditText
+        android:id="@+id/etColonia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/etCalle"
+        android:hint="Colonia" />
+
+    <EditText
+        android:id="@+id/etCiudad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/etColonia"
+        android:hint="Ciudad" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Seleccione el país"
+        android:textSize="18sp"
+        android:layout_below="@id/etCiudad"
+        />
+
+
+    <Spinner
+        android:id="@+id/sPais"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:spinnerMode="dropdown"
+        android:layout_below="@id/textView1"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Seleccione el estado"
+        android:textSize="18sp"
+        android:layout_below="@id/sPais"
+        />
+    <Spinner
+        android:id="@+id/sEstado"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:spinnerMode="dropdown"
+        android:layout_below="@id/textView2"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/etNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/sEstado"
+        android:hint="Nombre(s)" />
+
+    <EditText
+        android:id="@+id/etApellido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/etNombre"
+        android:hint="Apellido(s)" />
+
+
+</RelativeLayout>

@@ -148,22 +148,24 @@ public class AgregarTerrenoActivity extends RecieveBundlesActivity {
             }
             dialog.cancel();
 
-            alertDialog.setTitle("Advertencia")
+            alertDialog.setTitle("")
                     .setMessage("Tu terreno ha sido agregado")
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(AgregarTerrenoActivity.this, MiTerrenoActivity.class);
+                            intent.putExtra(usuario.getClassName(), usuario);
+
+                            startActivity(intent);
+                            finish();
+
                         }
                     });
             alertDialog.show();
 
             //Toast.makeText(AgregarTerrenoActivity.this, "Tu terreno ha sido agregado", Toast.LENGTH_LONG).show();
 
-            Intent intent = new Intent(AgregarTerrenoActivity.this, MiTerrenoActivity.class);
-            intent.putExtra(usuario.getClassName(), usuario);
 
-            startActivity(intent);
-            finish();
         }
     }
 

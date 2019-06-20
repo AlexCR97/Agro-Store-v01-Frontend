@@ -42,14 +42,14 @@
 
    </LinearLayout>
 
-      <Button
-          android:id="@+id/buttonCarritoComprar"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Comprar"
-          android:textAllCaps="false"
-          android:textSize="20sp"
-          android:background="#A5D6A7"
-          android:layout_margin="20dp"/>
+   <Button
+       android:id="@+id/buttonCarritoComprar"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_margin="20dp"
+       android:background="@color/colorVerdeFuerte"
+       android:text="Comprar"
+       android:textAllCaps="false"
+       android:textSize="20sp" />
 
 </LinearLayout>
