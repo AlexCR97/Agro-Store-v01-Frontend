@@ -1,7 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -63,6 +65,12 @@ public class BuscarActivity extends RecieveBundlesActivity {
 
         listViewBuscar = findViewById(R.id.listViewBuscar);
         listViewBuscar.setOnItemClickListener(listViewBuscarListener);
+        dialog = new ProgressDialog(BuscarActivity.this);
+
+        dialog.setTitle("Buscando producto");
+        dialog.setMessage("Espere un momento");
+        dialog.show();
+        new RealizarBusqueda().execute();
 
     }
 
@@ -111,7 +119,6 @@ public class BuscarActivity extends RecieveBundlesActivity {
     private final SearchView.OnQueryTextListener buscadorListener = new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String query) {
-            dialog = new ProgressDialog(BuscarActivity.this);
 
             dialog.setTitle("Buscando producto");
             dialog.setMessage("Espere un momento");
@@ -231,13 +238,20 @@ public class BuscarActivity extends RecieveBundlesActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(BuscarActivity.this);
 
             if (!exito) {
-                Toast.makeText(
-                        BuscarActivity.this,
-                        "Hubo un error en la busqueda de los productos. Verifique su conexion a Internet e intentelo de nuevo.",
-                        Toast.LENGTH_LONG
-                ).show();
+
+                alertDialog.setTitle("Advertencia")
+                        .setMessage("Hubo un error en la busqueda de los productos. Verifique su conexion a Internet e intentelo de nuevo")
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                alertDialog.show();
+
+                //Toast.makeText(BuscarActivity.this,"Hubo un error en la busqueda de los productos. Verifique su conexion a Internet e intentelo de nuevo.",Toast.LENGTH_LONG).show();
                 return;
             }
 

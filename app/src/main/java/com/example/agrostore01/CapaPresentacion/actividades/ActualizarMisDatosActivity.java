@@ -184,7 +184,7 @@ public class ActualizarMisDatosActivity extends RecieveBundlesActivity {
 
             //Toast.makeText(ActualizarMisDatosActivity.this,"Tus datos han sido actualizados!",Toast.LENGTH_LONG).show();
             dialog.cancel();
-            alertDialog.setTitle("Advertencia")
+            alertDialog.setTitle("")
                     .setMessage("Tus datos han sido actualizados!")
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
@@ -195,6 +195,7 @@ public class ActualizarMisDatosActivity extends RecieveBundlesActivity {
 
                             startActivity(intent);
                             finish();
+
                         }
                     });
             alertDialog.show();

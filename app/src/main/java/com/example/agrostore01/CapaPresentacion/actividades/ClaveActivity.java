@@ -69,6 +69,7 @@ private ProgressDialog dialog;
                 intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
 
                 startActivity(intent);
+                finish();
             } else {
                 dialog.cancel();
                 alertDialog.setTitle("Advertencia")

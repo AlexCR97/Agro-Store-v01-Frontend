@@ -1,6 +1,10 @@
 package com.example.agrostore01.CapaPresentacion.fragmentos;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,8 +17,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.agrostore01.CapaEntidades.Notificaciones;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.CapaNegocios.lectores.LectorNotificaciones;
+import com.example.agrostore01.CapaPresentacion.actividades.BarraActivity;
+import com.example.agrostore01.CapaPresentacion.actividades.BuscarActivity;
 import com.example.agrostore01.CapaPresentacion.actividades.RecieveBundlesFragment;
 import com.example.agrostore01.R;
 import com.example.agrostore01.CapaPresentacion.actividades.CompraActivity;
@@ -25,7 +32,7 @@ import java.util.List;
 public class NotificacionesFragment extends RecieveBundlesFragment {
 
     private ListView listViewNotificaciones;
-
+private ProgressDialog dialog;
     private Usuario usuario = new Usuario();
 
     @Nullable
@@ -36,6 +43,11 @@ public class NotificacionesFragment extends RecieveBundlesFragment {
         listViewNotificaciones = vista.findViewById(R.id.listViewNotificaciones);
 
         recieveBundles(vista.getContext());
+        dialog = new ProgressDialog(getActivity());
+
+        dialog.setTitle("Cargando");
+        dialog.setMessage("Espere un momento");
+        dialog.show();
 
         new ObtenerNotificaciones().execute();
 
@@ -69,13 +81,19 @@ public class NotificacionesFragment extends RecieveBundlesFragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
 
             if (!exito) {
-                Toast.makeText(
-                        NotificacionesFragment.this.getContext(),
-                        "Hubo un error al obtener las notificaciones. Compruebe su conexion a Internet e intentelo de nuevo",
-                        Toast.LENGTH_LONG
-                ).show();
+                dialog.cancel();
+                alertDialog.setTitle("Advertencia")
+                        .setMessage("Hubo un error al obtener las notificaciones. Compruebe su conexion a Internet e intentelo de nuevo")
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                alertDialog.show();
+                //Toast.makeText(NotificacionesFragment.this.getContext(),"Hubo un error al obtener las notificaciones. Compruebe su conexion a Internet e intentelo de nuevo",Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -88,6 +106,7 @@ public class NotificacionesFragment extends RecieveBundlesFragment {
                     notificaciones
             );
             listViewNotificaciones.setAdapter(adapter);
+            dialog.cancel();
         }
 
     }
