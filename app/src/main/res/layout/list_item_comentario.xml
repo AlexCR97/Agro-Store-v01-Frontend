@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5sp"
+    android:background="@android:color/background_light"
     android:orientation="vertical">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_margin="6dp"
-        android:background="@android:color/darker_gray"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +18,8 @@
             android:layout_marginStart="10dp"
             android:layout_weight="0.75"
             android:text="Nombre Apellido"
-            android:textSize="15sp"/>
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvComentarioFecha"
@@ -31,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:text="Hace 3 horas"
-            android:textSize="15sp"/>
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -39,30 +35,40 @@
         android:id="@+id/tvComentarioComentario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
         android:text="Este es un comentario"
         android:textAlignment="textStart"
-        android:textColor="@android:color/black"
-        android:textSize="17sp"/>
+        android:textColor="@color/colorGrisOscuro"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tvComentarioResponder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:text="Responder"
-        android:textSize="15sp"/>
+        android:textSize="12sp" />
 
-    <TextView
-        android:id="@+id/tvComentarioRespuesta"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="Esta es la respuesta del comentario"
-        android:textAlignment="textEnd"
-        android:textSize="17sp"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorGrisClaro"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvComentarioRespuesta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/colorGrisClaro"
+            android:lineSpacingExtra="8sp"
+            android:text="Esta es la respuesta del comentario"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorGrisBajo"
+            android:textSize="14sp" />
+    </LinearLayout>
 
 </LinearLayout>

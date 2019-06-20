@@ -4,13 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".CapaPresentacion.actividades.DetallesProductoActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                     android:layout_width="200dp"
                     android:layout_height="200dp"
                     android:layout_margin="10dp"
-                    android:src="@drawable/ic_insert_photo_black_24dp"/>
+                    android:src="@drawable/ic_insert_photo_black_24dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -35,21 +35,25 @@
                     android:layout_marginTop="12dp"
                     android:gravity="center"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/textViewItemDetallesTitulo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Semillas del ermitaño"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp" />
+
                     <TextView
                         android:id="@+id/textViewItemDetallesPrecio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="$50"
-                        android:textSize="30sp"/>
+                        android:textSize="30sp" />
+
                     <Space
                         android:layout_width="wrap_content"
                         android:layout_height="20dp" />
+
                     <RatingBar
                         android:id="@+id/rbItemDetallesEstrellas"
                         style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
@@ -59,13 +63,14 @@
                         android:clickable="false"
                         android:isIndicator="true"
                         android:numStars="5"
-                        android:rating="3.5"/>
+                        android:rating="3.5" />
+
                     <TextView
                         android:id="@+id/textViewItemDetallesLocalidad"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="373K - Tamaulipas"
-                        android:textSize="17sp"/>
+                        android:textSize="17sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -73,20 +78,19 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_margin="10dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="@android:color/darker_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cantidad: "
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <EditText
                     android:id="@+id/etDetalleProductoCantidad"
@@ -98,14 +102,14 @@
 
                 <Space
                     android:layout_width="15dp"
-                    android:layout_height="0dp"/>
+                    android:layout_height="0dp" />
 
                 <ImageView
                     android:id="@+id/ivDetalleProductoAgregar"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/add2"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="10dp"
+                    android:src="@drawable/add2" />
 
                 <ImageView
                     android:id="@+id/ivDetalleProductoQuitar"
@@ -115,7 +119,7 @@
 
                 <Space
                     android:layout_width="15dp"
-                    android:layout_height="0dp"/>
+                    android:layout_height="0dp" />
 
                 <Button
                     android:id="@+id/bDetalleProductoComprar"
@@ -129,124 +133,141 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_margin="10dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="@android:color/darker_gray" />
 
-            <TableLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <TableRow
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="VENDEDOR"
-                        android:textColor="@android:color/black"
-                        android:textAlignment="center"
-                        android:textSize="15sp"/>
+                        android:text="Vendedor"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/colorGrisOscuro"
+                        android:textSize="15sp" />
+
                     <TextView
                         android:id="@+id/tvDetallesProductoVendedor"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="Maestro Karim"
-                        android:textSize="15sp"/>
-                </TableRow>
+                        android:textSize="15sp" />
+                </LinearLayout>
 
-                <TableRow
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="PRODUCTO"
-                        android:textColor="@android:color/black"
-                        android:textAlignment="center"
-                        android:textSize="15sp"/>
+                        android:text="Producto"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/colorGrisOscuro"
+                        android:textSize="15sp" />
+
                     <TextView
                         android:id="@+id/tvDetallesProductoNombreProducto"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="Semillas del ermitaño"
-                        android:textSize="15sp"/>
-                </TableRow>
+                        android:textSize="15sp" />
+                </LinearLayout>
 
-                <TableRow
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="DESCRIPCIÓN"
-                        android:textColor="@android:color/black"
-                        android:textAlignment="center"
-                        android:textSize="15sp"/>
+                        android:text="Descripción"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/colorGrisOscuro"
+                        android:textSize="15sp" />
+
                     <TextView
                         android:id="@+id/tvDetallesProductoDescripcion"
-                        android:layout_width="wrap_content"
+                        style="@android:style/Widget.TextView"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:text="Semillas en forma de frijoles color verde que permite recuperar la vitalidad de tu cuerpo en algun caso de accidente, siempre y cuando sean golpes fisicos. NO CURA ENFERMEDADES"
-                        android:textSize="15sp"/>
-                </TableRow>
-
-            </TableLayout>
+                        android:textAlignment="viewStart"
+                        android:textAllCaps="false"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_margin="10dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="@android:color/darker_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/colorGrisBajo"
                     android:text="Comentarios"
                     android:textAlignment="center"
-                    android:textColor="#FBC110"
-                    android:textSize="20sp"/>
+                    android:textColor="@color/colorGrisOscuro"
+                    android:textSize="20sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <EditText
-                            android:id="@+id/etComentario"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="0.75"
-                            android:layout_marginStart="10dp"
-                            android:hint="Escribe un comentario"
-                            android:textSize="15sp"
-                            android:inputType="textMultiLine"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                        <ImageButton
-                            android:id="@+id/ibComentar"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginEnd="10dp"
-                            android:background="@color/colorVerdeFuerte"
-                            android:src="@android:drawable/ic_menu_send" />
-                    </LinearLayout>
+                    <EditText
+                        android:id="@+id/etComentario"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0.75"
+                        android:hint="Escribe un comentario"
+                        android:inputType="textMultiLine"
+                        android:textColor="@color/colorGrisOscuro"
+                        android:textSize="15sp" />
+
+                    <ImageButton
+                        android:id="@+id/ibComentar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@color/colorVerdeFuerte"
+                        android:src="@android:drawable/ic_menu_send" />
+                </LinearLayout>
 
                 <ListView
                     android:id="@+id/lvComentarios"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"/>
+                    android:layout_height="600dp"
+                    android:layout_margin="1dp" />
 
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

@@ -9,10 +9,15 @@ android:layout_height="wrap_content"
 android:orientation="vertical"
 tools:context=".CapaPresentacion.actividades.EstadoVentaActivity">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/mapita"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="281dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/mapita" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,30 +37,34 @@ tools:context=".CapaPresentacion.actividades.EstadoVentaActivity">
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Sandia"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Sandía" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="50 unidades"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="num de rastreo: 8367864"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="col ladrillera, calle los ancinos #283 ote" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="num de pedido: 946736"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="vendedor: alfonso cuaron"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Nº de rastreo: 8367864" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Dirección: col ladrillera, calle los ancinos #283 ote" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Nº de pedido: 946736" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Vendedor: alfonso cuaron" />
             </LinearLayout>
 
         </LinearLayout>

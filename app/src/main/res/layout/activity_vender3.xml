@@ -20,12 +20,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:fontFamily="sans-serif"
             android:text="Agrega una foto de tu producto"
-            android:fontFamily="@font/comfortaa_light"
-            android:textSize="35sp"
             android:textAlignment="center"
-            android:textColor="#000000"
-            android:layout_margin="20dp"/>
+            android:textColor="@color/colorGrisOscuro"
+            android:textSize="30sp" />
 
 
         <ImageView
