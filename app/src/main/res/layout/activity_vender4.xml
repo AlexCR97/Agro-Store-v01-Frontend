@@ -38,6 +38,7 @@
         android:textAlignment="center"/>
 
     <EditText
+        android:id="@+id/etVenderTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -60,6 +61,7 @@
         android:textAlignment="center"/>
 
     <EditText
+        android:id="@+id/etVenderDescripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -76,21 +78,63 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
-        android:text="Clasificacion de producto"
+        android:text="Producto"
         android:textColor="#000000"
         android:textSize="22sp"
         android:textAlignment="center"/>
 
     <Spinner
-        android:id="@+id/spinnerClasificacion"
+        android:id="@+id/sVenderProductos"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:spinnerMode="dropdown"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:text="Precios sugeridos"
+        android:textColor="#000000"
+        android:textSize="19sp"
+        android:textAlignment="center"/>
+
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:popupBackground="@color/colorGrisClaro"/>
+        android:layout_margin="5dp"
+        android:stretchColumns="*">
+        <TableRow>
+            <TextView
+                android:layout_margin="10dp"
+                android:textSize="18sp"
+                android:text="Por tonelada"/>
+            <TextView
+                android:id="@+id/tvVenderPrecioTonelada"
+                android:layout_margin="10dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:text="Por tonelada"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_margin="10dp"
+                android:textSize="18sp"
+                android:text="Por kilogramo"/>
+            <TextView
+                android:id="@+id/tvVenderPrecioKilogramo"
+                android:layout_margin="10dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:text="Por kilogramo"/>
+        </TableRow>
+    </TableLayout>
 
     <Space
         android:layout_width="0dp"
-        android:layout_height="15dp" />
+        android:layout_height="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -105,43 +149,74 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/icono_money"
-            android:layout_margin="@dimen/activity_horizontal_margin"/>
+            android:src="@drawable/icono_money"/>
         <EditText
+            android:id="@+id/etVenderPrecio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:hint="Precio de tu producto"
             android:inputType="numberDecimal"/>
 
     </LinearLayout>
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
-        android:text="Unidad de venta"
+        android:text="Terreno"
         android:textColor="#000000"
         android:textSize="22sp"
         android:textAlignment="center"/>
 
     <Spinner
-        android:id="@+id/spinnerUnidad"
+        android:id="@+id/sVenderTerrenos"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:spinnerMode="dropdown"/>
+
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:popupBackground="@color/colorGrisClaro"/>
+        android:layout_margin="5dp"
+        android:stretchColumns="*">
+        <TableRow>
+            <TextView
+                android:layout_margin="10dp"
+                android:textSize="18sp"
+                android:text="Tamaño"/>
+            <TextView
+                android:id="@+id/tvVenderTamanoMedida"
+                android:layout_margin="10dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:text="Tamano"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_margin="10dp"
+                android:textSize="18sp"
+                android:text="Tipo de suelo"/>
+            <TextView
+                android:id="@+id/tvVenderTipoSuelo"
+                android:layout_margin="10dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:text="Tipo de suelo"/>
+        </TableRow>
+    </TableLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="20dp" />
 
     <Space
         android:layout_width="0dp"

@@ -59,10 +59,43 @@ public class AgroUtils {
     }
 
     public static Bitmap byteArrayToBitmap(byte[] image) {
-        if (image == null)
-            return null;
+        System.out.println("Converting byte array to bitmap");
 
-        return BitmapFactory.decodeByteArray(image, 0, image.length);
+        if (image == null) {
+            System.out.println("byte array was null. Returning null");
+            return null;
+        }
+
+        Bitmap bmp = BitmapFactory.decodeByteArray(image, 0, image.length);
+
+        if (bmp == null) {
+            System.out.println("Conversion failed. Returning null");
+            return null;
+        }
+
+        System.out.println("Conversion successful! Returning bitmap");
+
+        return bmp;
+    }
+
+    public static void setImageViewByteArray(ImageView imageView, byte[] image) {
+        System.out.println("Setting image view byte array");
+
+        if (image == null) {
+            System.out.println("byte array was null. Returning null");
+            return;
+        }
+
+        Bitmap bmp = byteArrayToBitmap(image);
+
+        if (bmp == null) {
+            System.out.println("Got a null bitmap. Returning");
+            return;
+        }
+
+        System.out.println("About to set image...");
+        imageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, imageView.getWidth(), imageView.getHeight(), false));
+        System.out.println("Just set image!");
     }
 
     public static int generarNumeroAleatorio(int min, int max) {
@@ -92,17 +125,6 @@ public class AgroUtils {
             }
         }
         return id.toString();
-    }
-
-    public static void setImageViewByteArray(ImageView imageView, byte[] image) {
-        if (image == null)
-            return;
-
-        Bitmap bmp = byteArrayToBitmap(image);
-        if (bmp == null)
-            return;
-
-        imageView.setImageBitmap(Bitmap.createScaledBitmap(bmp, imageView.getWidth(), imageView.getHeight(), false));
     }
 
     @SuppressLint("ClickableViewAccessibility")

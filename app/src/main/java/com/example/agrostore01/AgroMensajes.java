@@ -9,8 +9,10 @@ public class AgroMensajes {
     public static final String ERROR_VALIDACION_DETALLES_USUARIO = "Verifica que hayas ingresado correctamente tu domicilio";
     public static final String ERROR_CANTIDAD_INVALIDA = "Debes de ingresar una cantidad valida";
     public static final String ERROR_COMENTARIO_VACIO = "Debes agregar un comentario";
+    public static final String ERROR_PUBLICACION_INCORRECTA = "Verifica que hayas ingresado correctamente los datos de tu publicacion";
 
     public static final String COMPRA_REALIZADA = "¡Se ha realizado tu compra!";
     public static final String COMENTARIO_PUBLICADO = "¡Has comentado la publicacion!";
+    public static final String PRODUCTO_PUBLICADO = "¡Tu producto ha sido publicado!";
 
 }

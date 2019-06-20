@@ -1,6 +1,7 @@
 package com.example.agrostore01.CapaPresentacion.fragmentos;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,21 +9,16 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Space;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agrostore01.AgroMensajes;
-import com.example.agrostore01.CapaEntidades.Carrito;
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.CapaEntidades.vistas.VistaCarrito;
@@ -35,7 +31,6 @@ import com.example.agrostore01.CapaPresentacion.adaptadores.CarritoAdapter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CarritoFragment extends RecieveBundlesFragment {
@@ -47,6 +42,8 @@ public class CarritoFragment extends RecieveBundlesFragment {
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
     private List<VistaCarrito> carrito;
+
+    ProgressDialog dialog;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,6 +57,8 @@ public class CarritoFragment extends RecieveBundlesFragment {
 
         listViewCarrito.setOnItemLongClickListener(listViewCarritoListener);
         buttonComprarCarrito.setOnClickListener(buttonComprarCarritoListener);
+
+        dialog = new ProgressDialog(vista.getContext());
 
         new ObtenerMisProductosEnCarrito().execute();
 
@@ -81,6 +80,10 @@ public class CarritoFragment extends RecieveBundlesFragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            dialog.setTitle("Obteniendo tu carrito");
+            dialog.setMessage("Espere un momento");
+            dialog.show();
 
             System.out.println("\n\n\n\nJust initiated async task " + this.getClass().getSimpleName() + "\n\n\n\n");
         }
@@ -115,6 +118,7 @@ public class CarritoFragment extends RecieveBundlesFragment {
 
             System.out.println("\n\n\n\nJust ended async task " + this.getClass().getSimpleName() + "\n\n\n\n");
 
+            dialog.cancel();
             setPrecioTotal();
         }
     }

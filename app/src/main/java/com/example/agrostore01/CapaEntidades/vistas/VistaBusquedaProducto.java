@@ -3,10 +3,12 @@ package com.example.agrostore01.CapaEntidades.vistas;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.agrostore01.CapaEntidades.Entidad;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 
-public class VistaBusquedaProducto implements Parcelable {
+public class VistaBusquedaProducto extends Entidad implements Parcelable {
 
     private String producto;
     private String nombreUsuario;
@@ -17,6 +19,7 @@ public class VistaBusquedaProducto implements Parcelable {
     private String descripcion;
     private String estado;
     private String ciudad;
+    private String tituloPublicacion;
 
     public VistaBusquedaProducto() {}
 
@@ -32,6 +35,19 @@ public class VistaBusquedaProducto implements Parcelable {
         this.ciudad = ciudad;
     }
 
+    public VistaBusquedaProducto(String producto, String nombreUsuario, String apellidosUsuario, byte[] foto, BigDecimal precio, int hectareas, String descripcion, String estado, String ciudad, String tituloPublicacion) {
+        this.producto = producto;
+        this.nombreUsuario = nombreUsuario;
+        this.apellidosUsuario = apellidosUsuario;
+        this.foto = foto;
+        this.precio = precio;
+        this.hectareas = hectareas;
+        this.descripcion = descripcion;
+        this.estado = estado;
+        this.ciudad = ciudad;
+        this.tituloPublicacion = tituloPublicacion;
+    }
+
     protected VistaBusquedaProducto(Parcel in) {
         producto = in.readString();
         nombreUsuario = in.readString();
@@ -41,6 +57,7 @@ public class VistaBusquedaProducto implements Parcelable {
         descripcion = in.readString();
         estado = in.readString();
         ciudad = in.readString();
+        tituloPublicacion = in.readString();
     }
 
     public String getProducto() {
@@ -115,6 +132,14 @@ public class VistaBusquedaProducto implements Parcelable {
         this.ciudad = ciudad;
     }
 
+    public String getTituloPublicacion() {
+        return tituloPublicacion;
+    }
+
+    public void setTituloPublicacion(String tituloPublicacion) {
+        this.tituloPublicacion = tituloPublicacion;
+    }
+
     public static final Creator<VistaBusquedaProducto> CREATOR = new Creator<VistaBusquedaProducto>() {
         @Override
         public VistaBusquedaProducto createFromParcel(Parcel in) {
@@ -142,5 +167,6 @@ public class VistaBusquedaProducto implements Parcelable {
         dest.writeString(descripcion);
         dest.writeString(estado);
         dest.writeString(ciudad);
+        dest.writeString(tituloPublicacion);
     }
 }

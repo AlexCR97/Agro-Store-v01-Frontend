@@ -36,7 +36,7 @@ public class EscritorTerreno extends  Escritor<Terreno> {
             return repositorio.cambio(entidad.getIdTerreno(),entidadCambio);
 
         if (operacion == OPERACION_AGREGAR_TERRENO)
-            return repositorio.agregarNuevoTerreno(idUsuario, entidad.getTamaño(), entidad.getMedida(), entidad.getTipo());
+            return repositorio.agregarNuevoTerreno(idUsuario, entidad.getTamaño(), entidad.getMedida(), entidad.getTipo(), entidad.getNombre());
 
         return false;
 

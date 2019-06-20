@@ -62,6 +62,7 @@ public class BusquedaAdapter extends ArrayAdapter<VistaBusquedaProducto> {
         String precio = "$" + vistaBusquedaProducto.getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP) + ", " + vistaBusquedaProducto.getHectareas() + " hectareas";
         String localidad = vistaBusquedaProducto.getCiudad() + ", " + vistaBusquedaProducto.getEstado();
 
+        AgroUtils.setImageViewByteArray(datos.imageViewItemBuscar, vistaBusquedaProducto.getFoto());
         datos.textViewItemBuscarTitulo.setText(titulo);
         datos.textViewItemBuscarPrecio.setText(precio);
         datos.textViewItemBuscarLocalidad.setText(localidad);

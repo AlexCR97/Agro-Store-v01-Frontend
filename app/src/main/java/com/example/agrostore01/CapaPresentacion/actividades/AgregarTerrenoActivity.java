@@ -98,7 +98,8 @@ public class AgregarTerrenoActivity extends RecieveBundlesActivity {
                             -1 :
                             Integer.parseInt(tamanoAlto) * Integer.parseInt(tamanoAncho),
                     medida,
-                    tipoTerreno
+                    tipoTerreno,
+                    nombreTerreno
             );
         }
 
@@ -133,8 +134,9 @@ public class AgregarTerrenoActivity extends RecieveBundlesActivity {
             super.onPostExecute(aVoid);
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(AgregarTerrenoActivity.this);
 
+            dialog.cancel();
+
             if (!exito) {
-                dialog.cancel();
                 alertDialog.setTitle("Advertencia")
                         .setMessage(mensajeError)
                         .setPositiveButton("ok", new DialogInterface.OnClickListener() {
@@ -143,10 +145,8 @@ public class AgregarTerrenoActivity extends RecieveBundlesActivity {
                             }
                         });
                 alertDialog.show();
-                //Toast.makeText(AgregarTerrenoActivity.this, mensajeError, Toast.LENGTH_LONG).show();
                 return;
             }
-            dialog.cancel();
 
             alertDialog.setTitle("Advertencia")
                     .setMessage("Tu terreno ha sido agregado")
@@ -156,8 +156,6 @@ public class AgregarTerrenoActivity extends RecieveBundlesActivity {
                         }
                     });
             alertDialog.show();
-
-            //Toast.makeText(AgregarTerrenoActivity.this, "Tu terreno ha sido agregado", Toast.LENGTH_LONG).show();
 
             Intent intent = new Intent(AgregarTerrenoActivity.this, MiTerrenoActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);

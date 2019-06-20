@@ -9,21 +9,16 @@ public class Terreno extends Entidad implements Parcelable {
     private int tamaño;
     private String medida;
     private String tipo;
+    private String nombre;
 
-    public Terreno() {
-    }
+    public Terreno() {}
 
-    public Terreno(int tamaño, String medida, String tipo) {
-        this.tamaño = tamaño;
-        this.medida = medida;
-        this.tipo = tipo;
-    }
-
-    public Terreno(long idTerreno, int tamaño, String medida, String tipo) {
+    public Terreno(long idTerreno, int tamaño, String medida, String tipo, String nombre) {
         this.idTerreno = idTerreno;
         this.tamaño = tamaño;
         this.medida = medida;
         this.tipo = tipo;
+        this.nombre = nombre;
     }
 
     protected Terreno(Parcel in) {
@@ -31,6 +26,7 @@ public class Terreno extends Entidad implements Parcelable {
         tamaño = in.readInt();
         medida = in.readString();
         tipo = in.readString();
+        nombre = in.readString();
     }
 
     public static final Creator<Terreno> CREATOR = new Creator<Terreno>() {
@@ -77,6 +73,14 @@ public class Terreno extends Entidad implements Parcelable {
         this.tipo = tipo;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     @Override
     public String toString() {
         return "Terreno{" +
@@ -84,6 +88,7 @@ public class Terreno extends Entidad implements Parcelable {
                 ", tamaño=" + tamaño +
                 ", medida='" + medida + '\'' +
                 ", tipo='" + tipo + '\'' +
+                ", nombre='" + nombre + '\'' +
                 '}';
     }
 
@@ -98,5 +103,6 @@ public class Terreno extends Entidad implements Parcelable {
         dest.writeInt(tamaño);
         dest.writeString(medida);
         dest.writeString(tipo);
+        dest.writeString(nombre);
     }
 }

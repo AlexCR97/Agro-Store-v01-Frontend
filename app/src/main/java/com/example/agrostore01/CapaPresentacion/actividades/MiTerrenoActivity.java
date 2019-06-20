@@ -92,7 +92,6 @@ public class MiTerrenoActivity extends RecieveBundlesActivity {
                         });
                 alertDialog.show();
 
-                //Toast.makeText(MiTerrenoActivity.this,"Comprueba tu conexion a Internet e intentalo de nuevo",Toast.LENGTH_LONG).show();
                 return;
             }
 

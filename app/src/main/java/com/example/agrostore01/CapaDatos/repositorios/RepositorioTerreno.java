@@ -24,7 +24,7 @@ public class RepositorioTerreno extends Repositorio implements IContratoTerreno 
         this.sqlSeleccionarId = "select * from Terreno where IDTerreno = ?";
         this.sqlSeleccionarTodo = "select * from Terreno";
 
-        this.sqlProcAgregarNuevoTerreno = "{ call PROC_ALTA_Terreno(?, ?, ?, ?) }";
+        this.sqlProcAgregarNuevoTerreno = "{ call PROC_ALTA_Terreno(?, ?, ?, ?, ?) }";
         this.sqlProcSeleccionarMisTerrenos = "{ call PROC_ESP_MISTEERENOS(?) }";
     }
 
@@ -68,7 +68,8 @@ public class RepositorioTerreno extends Repositorio implements IContratoTerreno 
             int tamaño = resultado.getInt("Tamaño");
             String medida = resultado.getString("Medida");
             String tipo = resultado.getString("Tipo");
-            return new Terreno(idTerreno,tamaño,medida,tipo);
+            String nombre = resultado.getString("Nombre");
+            return new Terreno(idTerreno,tamaño,medida,tipo, nombre);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -94,7 +95,8 @@ public class RepositorioTerreno extends Repositorio implements IContratoTerreno 
                 int tamaño = resultado.getInt("Tamaño");
                 String medida = resultado.getString("Medida");
                 String tipo = resultado.getString("Tipo");
-                terrenos.add(new Terreno(idTerreno,tamaño,medida,tipo));
+                String nombre = resultado.getString("Nombre");
+                terrenos.add(new Terreno(idTerreno,tamaño,medida,tipo, nombre));
             }
         }
         catch (SQLException e) {
@@ -110,12 +112,13 @@ public class RepositorioTerreno extends Repositorio implements IContratoTerreno 
     }
 
     @Override
-    public boolean agregarNuevoTerreno(String idUsuario, int tamano, String medida, String tipo) {
+    public boolean agregarNuevoTerreno(String idUsuario, int tamano, String medida, String tipo, String nombreTerreno) {
         parametros = new ArrayList<>();
         parametros.add(idUsuario);
         parametros.add(tamano);
         parametros.add(medida);
         parametros.add(tipo);
+        parametros.add(nombreTerreno);
 
         try {
             return ejecutarProcedimiento(sqlProcAgregarNuevoTerreno);
@@ -140,8 +143,9 @@ public class RepositorioTerreno extends Repositorio implements IContratoTerreno 
                 String medida = resultado.getString("Medida");
                 int tamano = resultado.getInt("Tamaño");
                 String tipo = resultado.getString("Tipo");
+                String nombre = resultado.getString("Nombre");
 
-                terrenos.add(new Terreno(idTerreno, tamano, medida, tipo));
+                terrenos.add(new Terreno(idTerreno, tamano, medida, tipo, nombre));
             }
             return terrenos;
         }

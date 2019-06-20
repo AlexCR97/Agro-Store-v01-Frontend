@@ -23,7 +23,7 @@ public class SeguridadActivity extends RecieveBundlesActivity {
 
     private ImageButton ibCambiar;
     private EditText etClave, etConfirmarClave;
-private ProgressDialog dialog;
+    private ProgressDialog dialog;
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
 
@@ -112,8 +112,6 @@ private ProgressDialog dialog;
                         }
                     });
             alertDialog.show();
-
-            //Toast.makeText(SeguridadActivity.this, "La contrasena ha sido actualizada", Toast.LENGTH_LONG).show();
         }
     }
 
