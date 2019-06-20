@@ -25,10 +25,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorGrisBajo"
                 android:text="Precio"
                 android:fontFamily="@font/comfortaa_light"
                 android:textAlignment="center"
-                android:textColor="#006064"
+                android:textColor="@color/colorGrisOscuro"
                 android:textSize="22sp" />
 
             <LinearLayout
@@ -55,7 +56,7 @@
                         android:id="@+id/etFiltroPrecioMin"
                         android:layout_width="100dp"
                         android:layout_height="50dp"
-                        android:hint="Minimo"
+                        android:hint="Mínimo"
                         android:inputType="numberDecimal"
                         android:textAlignment="center" />
 
@@ -69,7 +70,7 @@
                         android:id="@+id/etFiltroPrecioMax"
                         android:layout_width="100dp"
                         android:layout_height="50dp"
-                        android:hint="Maximo"
+                        android:hint="Máximo"
                         android:inputType="numberDecimal"
                         android:textAlignment="center" />
 
@@ -86,10 +87,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Categoria"
+                android:background="@color/colorGrisBajo"
                 android:fontFamily="@font/comfortaa_light"
+                android:text="Categoría"
                 android:textAlignment="center"
-                android:textColor="#006064"
+                android:textColor="@color/colorGrisOscuro"
                 android:textSize="22sp" />
 
             <Space
@@ -147,10 +149,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorGrisBajo"
                 android:text="Temporada"
                 android:fontFamily="@font/comfortaa_light"
                 android:textAlignment="center"
-                android:textColor="#006064"
+                android:textColor="@color/colorGrisOscuro"
                 android:textSize="22sp" />
 
             <Space
@@ -203,10 +206,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Locacion"
+                android:background="@color/colorGrisBajo"
                 android:fontFamily="@font/comfortaa_light"
+                android:text="Locación"
                 android:textAlignment="center"
-                android:textColor="#006064"
+                android:textColor="@color/colorGrisOscuro"
                 android:textSize="22sp" />
 
             <Space
@@ -218,8 +222,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:text="Pais"
-                android:textSize="17sp"/>
+                android:text="País"
+                android:textSize="17sp" />
 
             <Spinner
                 android:id="@+id/sFiltroPais"
@@ -256,10 +260,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorGrisBajo"
                 android:text="Certificaciones"
                 android:fontFamily="@font/comfortaa_light"
                 android:textAlignment="center"
-                android:textColor="#006064"
+                android:textColor="@color/colorGrisOscuro"
                 android:textSize="22sp" />
 
             <Space
@@ -319,10 +324,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorGrisBajo"
                 android:text="Tiempo de Cosecha"
                 android:fontFamily="@font/comfortaa_light"
                 android:textAlignment="center"
-                android:textColor="#006064"
+                android:textColor="@color/colorGrisOscuro"
                 android:textSize="22sp" />
 
             <Space
@@ -368,10 +374,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Reputación del agricultor"
+                android:background="@color/colorGrisBajo"
                 android:fontFamily="@font/comfortaa_light"
+                android:text="Reputación del agricultor"
                 android:textAlignment="center"
-                android:textColor="#006064"
+                android:textColor="@color/colorGrisOscuro"
                 android:textSize="22sp" />
 
             <Space
@@ -396,10 +403,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_margin="@dimen/activity_vertical_margin"
-                android:background="@android:color/holo_green_dark"
+                android:background="@color/colorGrisOscuro"
                 android:text="Aplicar Filtros"
                 android:textAllCaps="false"
-                android:textSize="18dp" />
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
 

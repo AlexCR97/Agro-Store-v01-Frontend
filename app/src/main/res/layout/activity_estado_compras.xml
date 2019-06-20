@@ -9,9 +9,14 @@
     tools:context=".CapaPresentacion.actividades.EstadoCompraActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:src="@drawable/mapita"/>
+        android:layout_width="match_parent"
+        android:layout_height="281dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mapita" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,23 +39,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Sandia"/>
+                android:text="Sandía" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="50 unidades"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Num de rastreo: 8367864"/>
+                android:text="Nº de rastreo: 8367864" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Direccion: Col ladrillera, calle los ancinos #283 ote" />
+                android:text="Dirección: Col ladrillera, calle los ancinos #283 ote" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Num de pedido: 946736"/>
+                android:text="Nº de pedido: 946736" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

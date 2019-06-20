@@ -1,90 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp"
-    android:background="#D5F5B9"
+    android:layout_margin="5sp"
+    android:background="@android:color/background_light"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/ivMisVentas"
         android:layout_width="105dp"
         android:layout_height="105dp"
-        android:layout_margin="15dp"
         android:layout_gravity="center|start"
+        android:layout_margin="15dp"
         android:src="@drawable/ic_insert_photo_black_24dp"/>
-
-    <Space
-        android:layout_width="15dp"
-        android:layout_height="match_parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="start"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:gravity="center|start"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Venta:"
-            android:textColor="#000000"
-            android:textSize="15sp"/>
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvMisVentasNumeroVenta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="#00002323"
-            android:textColor="#454957"
-            android:textSize="15sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Venta:"
+                android:textColor="@color/colorGrisOscuro"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Producto:"
-            android:textColor="#000000"
-            android:textSize="15sp"/>
-        <TextView
-            android:id="@+id/tvMisVentasProducto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:textColor="#FF454957"
-            android:text="Plantas feas"
-            android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/tvMisVentasNumeroVenta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="#00002323"
+                android:textColor="#454957"
+                android:textSize="15sp" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Precio:"
-            android:textColor="#000000"
-            android:textSize="15sp"/>
-        <TextView
-            android:id="@+id/tvMisVentasPrecio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:textColor="#FF454957"
-            android:text="$10"
-            android:textSize="15sp"/>
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Producto:"
+                android:textColor="@color/colorGrisOscuro"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMisVentasProducto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Plantas feas"
+                android:textColor="#FF454957"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fecha:"
-            android:textColor="#000000"
-            android:textSize="15sp"/>
-        <TextView
-            android:id="@+id/tvMisVentasFecha"
-            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precio:"
+                android:textColor="@color/colorGrisOscuro"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMisVentasPrecio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="$10"
+                android:textColor="#FF454957"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:textColor="#FF454957"
-            android:text="Maestro Karim"
-            android:textSize="15sp"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha:"
+                android:textColor="@color/colorGrisOscuro"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMisVentasFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="18/04/2019"
+                android:textColor="#FF454957"
+                android:textSize="15sp" />
+        </LinearLayout>
 
     </LinearLayout>
 

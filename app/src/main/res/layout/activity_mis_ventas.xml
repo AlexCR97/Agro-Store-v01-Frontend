@@ -46,32 +46,36 @@
     </android.support.design.widget.AppBarLayout>
 
     <Space
+        android:id="@+id/space"
         android:layout_width="match_parent"
         android:layout_height="60dp" />
 
     <ListView
         android:id="@+id/listViewMisVentas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/space"
+        android:layout_marginTop="50dp"
+        app:layout_anchorGravity="bottom|center" />
 
     <android.support.design.widget.FloatingActionButton
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:backgroundTint="#9CCC65"
-        android:src="@drawable/cargar"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:clickable="true" />
+        android:backgroundTint="@color/colorVerdeFuerte"
+        android:clickable="true"
+        android:src="@drawable/cargar" />
 
     <android.support.design.widget.FloatingActionButton
         style="@style/Animation.Design.BottomSheetDialog"
-        android:backgroundTint="#9CCC65"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:src="@drawable/estados"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom|start"
         android:layout_margin="16dp"
-        android:clickable="true" />
+        android:backgroundTint="@color/colorVerdeFuerte"
+        android:clickable="true"
+        android:src="@drawable/estados" />
 
 </android.support.design.widget.CoordinatorLayout>
 

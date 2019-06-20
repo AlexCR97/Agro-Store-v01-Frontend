@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" 
-    android:layout_width="match_parent" 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5sp"
+    android:background="@android:color/background_light"
     android:orientation="horizontal">
 
     <ImageView
@@ -11,7 +12,7 @@
         android:layout_height="200dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:src="@drawable/ic_insert_photo_black_24dp"/>
+        android:src="@drawable/ic_insert_photo_black_24dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +24,8 @@
             android:id="@+id/textViewItemBuscarTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Semillas del ermitaño"
+            android:text="Titulo de la publicación"
+            android:textColor="@color/colorGrisOscuro"
             android:fontFamily="@font/comfortaa_light"
             android:textSize="25sp"/>
 
@@ -32,7 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="$50"
-            android:textSize="20sp"/>
+            android:textColor="@color/colorGrisOscuro"
+            android:textSize="20sp" />
 
         <Space
             android:layout_width="wrap_content"
@@ -47,15 +50,16 @@
             android:clickable="false"
             android:isIndicator="true"
             android:numStars="5"
-            android:rating="3.5"/>
+            android:rating="3.5" />
 
         <TextView
             android:id="@+id/textViewItemBuscarLocalidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="373K - Tamaulipas"
-            android:textSize="17sp"/>
-        
+            android:textColor="@color/colorGrisOscuro"
+            android:textSize="17sp" />
+
     </LinearLayout>
 
 </LinearLayout>

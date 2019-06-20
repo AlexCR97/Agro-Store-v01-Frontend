@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+    <EditText
+        android:id="@+id/etCodigoPostal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="Codigo postal"
+        android:inputType="number"
+        android:textColor="@color/colorGrisOscuro" />
+
+    <EditText
+        android:id="@+id/etCalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etCodigoPostal"
+        android:layout_marginTop="5dp"
+        android:hint="Calle"
+        android:textColor="@color/colorGrisOscuro" />
+
+    <EditText
+        android:id="@+id/etColonia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etCalle"
+        android:layout_marginTop="5dp"
+        android:hint="Colonia"
+        android:textColor="@color/colorGrisOscuro" />
+
+    <EditText
+        android:id="@+id/etCiudad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etColonia"
+        android:layout_marginTop="5dp"
+        android:hint="Ciudad"
+        android:textColor="@color/colorGrisOscuro" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etCiudad"
+        android:layout_marginTop="15dp"
+        android:text="Seleccione el país"
+        android:textColor="@color/colorGrisOscuro"
+        android:textSize="18sp" />
+
+
+    <Spinner
+        android:id="@+id/sPais"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:spinnerMode="dropdown"
+        android:layout_below="@id/textView1"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sPais"
+        android:layout_marginTop="15dp"
+        android:text="Seleccione el estado"
+        android:textColor="@color/colorGrisOscuro"
+        android:textSize="18sp" />
+    <Spinner
+        android:id="@+id/sEstado"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:spinnerMode="dropdown"
+        android:layout_below="@id/textView2"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/etNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sEstado"
+        android:layout_marginTop="5dp"
+        android:hint="Nombre(s)"
+        android:textColor="@color/colorGrisOscuro" />
+
+    <EditText
+        android:id="@+id/etApellido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etNombre"
+        android:layout_marginTop="5dp"
+        android:hint="Apellido(s)"
+        android:textColor="@color/colorGrisOscuro" />
+
+
+</RelativeLayout>

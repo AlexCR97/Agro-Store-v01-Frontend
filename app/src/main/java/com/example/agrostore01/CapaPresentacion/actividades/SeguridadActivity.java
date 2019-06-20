@@ -41,6 +41,12 @@ public class SeguridadActivity extends RecieveBundlesActivity {
         ibCambiar.setOnClickListener(ibCambiarListener);
     }
 
+    @Override
+    public void recieveBundles(Context context) {
+        usuario = getIntent().getParcelableExtra(usuario.getClassName());
+        detallesUsuario = getIntent().getParcelableExtra(detallesUsuario.getClassName());
+    }
+
     private final View.OnClickListener ibCambiarListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -74,7 +80,7 @@ public class SeguridadActivity extends RecieveBundlesActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             if(!contrasena1.equals(contrasena2)) {
-                mensajeError = ERROR_CONEXION_INTERNET;
+                mensajeError = ERROR_CONTRASENAS_INCORRECTAS;
                 exito = false;
                 return null;
             }
@@ -89,26 +95,33 @@ public class SeguridadActivity extends RecieveBundlesActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(SeguridadActivity.this);
 
             if (!exito) {
-                Toast.makeText(SeguridadActivity.this, mensajeError, Toast.LENGTH_LONG).show();
+                dialog.cancel();
+                alertDialog.setTitle("Advertencia")
+                        .setMessage(mensajeError)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                alertDialog.show();
+                //Toast.makeText(SeguridadActivity.this, mensajeError, Toast.LENGTH_LONG).show();
                 return;
             }
-
-            Intent intent = new Intent(SeguridadActivity.this, PerfilUsuarioActivity.class);
-            intent.putExtra(usuario.getClassName(), usuario);
-            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
-
-            startActivity(intent);
-            finish();
             dialog.cancel();
-
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(SeguridadActivity.this);
-            alertDialog.setTitle("Advertencia")
+            alertDialog.setTitle("")
                     .setMessage("La contrasena ha sido actualizada")
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(SeguridadActivity.this, PerfilUsuarioActivity.class);
+                            intent.putExtra(usuario.getClassName(), usuario);
+                            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
+                            startActivity(intent);
+                            finish();
+
                         }
                     });
             alertDialog.show();
@@ -123,10 +136,6 @@ public class SeguridadActivity extends RecieveBundlesActivity {
         return etConfirmarClave;
     }
 
-    @Override
-    public void recieveBundles(Context context) {
-        usuario = getIntent().getParcelableExtra(usuario.getClassName());
-        detallesUsuario = getIntent().getParcelableExtra(detallesUsuario.getClassName());
-    }
+
 
 }

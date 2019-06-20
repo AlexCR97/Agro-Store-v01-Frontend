@@ -8,8 +8,8 @@
     <SearchView
         android:id="@+id/searchViewBuscadorFragmento"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#B9DA93"/>
+        android:layout_height="65dp"
+        android:background="@color/colorVerdeFuerte" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,9 +24,12 @@
                 android:id="@+id/imageViewBuscarHortalizas"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:layout_marginStart="0sp"
+                android:layout_marginTop="0sp"
+                android:layout_marginEnd="0sp"
                 android:layout_marginBottom="10dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/banner_hortalizas"/>
+                android:src="@drawable/banner_hortalizas" />
 
             <ImageView
                 android:id="@+id/imageViewBuscarLacteos"

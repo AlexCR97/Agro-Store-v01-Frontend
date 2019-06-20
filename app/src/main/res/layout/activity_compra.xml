@@ -21,102 +21,102 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ECEFF1"
+                android:background="@color/colorGrisBajo"
                 android:padding="10dp"
-                android:text="DATOS DE ENVIO"
+                android:text="Datos de envío"
                 android:textAlignment="center"
-                android:textColor="#558B2F"
+                android:textColor="@color/colorGrisOscuro"
                 android:textSize="22sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="10dp"
-                android:text="Direccion de envio"
+                android:text="Dirección de envío"
                 android:textColor="@android:color/black"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvCompraDireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:text="Direccion de envio"
-                android:textSize="18sp"/>
+                android:text="Dirección de envío"
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="10dp"
-                android:text="Nombre de quien recibe"
+                android:text="Nombre de quién recibe"
                 android:textColor="@android:color/black"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvCompraNombreRecibe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:text="Nombre de quien recibe"
-                android:textSize="18sp"/>
+                android:text="Nombre de quién recibe"
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="10dp"
-                android:text="Numero de compra"
+                android:text="Número de compra"
                 android:textColor="@android:color/black"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvCompraNumeroCompra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:text="Numero de compra"
-                android:textSize="18sp"/>
+                android:text="Número de compra"
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="10dp"
-                android:text="Numero de cliente"
+                android:text="Número de cliente"
                 android:textColor="@android:color/black"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvCompraNumeroCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
-                android:text="Numero de cliente"
-                android:textSize="18sp"/>
+                android:text="Número de cliente"
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="10dp"
-                android:text="Numero de rastreo"
+                android:text="Número de rastreo"
                 android:textColor="@android:color/black"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvCompraNumeroRastreo"
@@ -129,23 +129,25 @@
                 android:textSize="18sp"/>
 
             <Button
+                android:id="@+id/bDireccionExtra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
-                android:background="#40C4FF"
+                android:background="@color/colorGris"
                 android:padding="15dp"
-                android:text="¿Desea enviarlo a otra direccion?"
-                android:textColor="#FFFFFF"/>
+                android:text="¿Desea enviarlo a otra dirección?"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#ECEFF1"
+                android:background="@color/colorGrisBajo"
                 android:padding="10dp"
+                android:text="Ticket de compra"
                 android:text="TICKET DE COMPRA"
                 android:textAlignment="center"
-                android:textColor="#558B2F"
+                android:textColor="@color/colorGrisOscuro"
                 android:textSize="22sp" />
 
             <TableLayout
@@ -160,7 +162,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="TOTAL"
                         android:textSize="18sp" />
                 </TableRow>
 
@@ -264,7 +265,7 @@
                 <TableRow
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="#E0E0E0">
+                    android:background="@color/colorGrisBajo">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -287,13 +288,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
-                android:padding="10dp"
-                android:background="#C5E1A5"
+                android:background="@color/colorVerdeFuerte"
                 android:drawableStart="@drawable/icono_money"
                 android:drawablePadding="10dp"
+                android:padding="10dp"
                 android:text="Ordenar"
-                android:textColor="#3F3D3D"
-                android:textSize="20sp"/>
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp" />
 
         </LinearLayout>
 

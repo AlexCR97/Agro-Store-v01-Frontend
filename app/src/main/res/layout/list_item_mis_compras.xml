@@ -1,86 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp"
-    android:background="#DCEDC8 "
+    android:layout_marginTop="5sp"
+    android:background="@android:color/background_light"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/ivMisCompras"
-        android:layout_width="105dp"
+        android:layout_width="106dp"
         android:layout_height="105dp"
-        android:layout_margin="15dp"
         android:layout_gravity="center|start"
         android:src="@drawable/ic_insert_photo_black_24dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
         android:gravity="start"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pedido:"
-            android:textColor="#000000"
-            android:textSize="15sp"/>
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvMisComprasNumeroPedido"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:text="#00002323"
-            android:textColor="#454957"
-            android:textSize="15sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pedido:"
+                android:textColor="@color/colorGrisOscuro"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Numero de lote:"
-            android:textColor="#000000"
-            android:textSize="15sp"/>
-        <TextView
-            android:id="@+id/tvMisComprasNumeroLote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:textColor="#FF454957"
-            android:text="#00002323"
-            android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/tvMisComprasNumeroPedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="#00002323"
+                android:textColor="#454957"
+                android:textSize="15sp" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Estado:"
-            android:textColor="#000000"
-            android:textSize="15sp"/>
-        <TextView
-            android:id="@+id/tvMisComprasEstado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:textColor="#FF454957"
-            android:text="Maestro Karim"
-            android:textSize="15sp"/>
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Numero de lote:"
+                android:textColor="@color/colorGrisOscuro"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMisComprasNumeroLote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="#00002323"
+                android:textColor="#FF454957"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fecha:"
-            android:textColor="#000000"
-            android:textSize="15sp"/>
-        <TextView
-            android:id="@+id/tvMisComprasFecha"
-            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estado:"
+                android:textColor="@color/colorGrisOscuro"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMisComprasEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Maestro Karim"
+                android:textColor="#FF454957"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:textColor="#FF454957"
-            android:text="Maestro Karim"
-            android:textSize="15sp"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha:"
+                android:textColor="@color/colorGrisOscuro"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvMisComprasFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Maestro Karim"
+                android:textColor="#FF454957"
+                android:textSize="15sp" />
+        </LinearLayout>
 
     </LinearLayout>
 

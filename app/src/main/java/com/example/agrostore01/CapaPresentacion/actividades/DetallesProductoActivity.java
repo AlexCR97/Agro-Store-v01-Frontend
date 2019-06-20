@@ -292,8 +292,8 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
                 //Toast.makeText(DetallesProductoActivity.this, mensajeError, Toast.LENGTH_LONG).show();
                 return;
             }
-            alertDialog.setTitle("Advertencia")
-                    .setMessage("Se ha anadido este producto a tu carrito")
+            alertDialog.setTitle("")
+                    .setMessage("Se ha añadido este producto a tu carrito")
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -373,9 +373,18 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
                     usuario.getIdUsuario(),
                     cantidadTemp.isEmpty() ? -1 : Integer.parseInt(cantidadTemp)
             );
-
+          
             if (vistaCompra.getCantidad() <= 0) {
-                Toast.makeText(DetallesProductoActivity.this, AgroMensajes.ERROR_CANTIDAD_INVALIDA, Toast.LENGTH_LONG).show();
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(DetallesProductoActivity.this);
+
+                alertDialog.setTitle("Advertencia")
+                        .setMessage(AgroMensajes.ERROR_CANTIDAD_INVALIDA)
+                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
+                alertDialog.show();
                 return;
             }
 
