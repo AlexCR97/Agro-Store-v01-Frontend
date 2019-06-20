@@ -145,7 +145,6 @@
                 android:background="@color/colorGrisBajo"
                 android:padding="10dp"
                 android:text="Ticket de compra"
-                android:text="TICKET DE COMPRA"
                 android:textAlignment="center"
                 android:textColor="@color/colorGrisOscuro"
                 android:textSize="22sp" />

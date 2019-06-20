@@ -463,6 +463,8 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
                 return;
             }
 
+            etComentario.setText("");
+
             Toast.makeText(DetallesProductoActivity.this, AgroMensajes.COMENTARIO_PUBLICADO, Toast.LENGTH_LONG).show();
 
             new ObtenerComentarios().execute();

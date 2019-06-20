@@ -160,7 +160,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="Maestro Karim"
+                        android:text=""
                         android:textSize="15sp" />
                 </LinearLayout>
 
@@ -183,7 +183,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="Semillas del ermitaño"
+                        android:text=""
                         android:textSize="15sp" />
                 </LinearLayout>
 
@@ -203,14 +203,11 @@
 
                     <TextView
                         android:id="@+id/tvDetallesProductoDescripcion"
-                        style="@android:style/Widget.TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:text="Semillas en forma de frijoles color verde que permite recuperar la vitalidad de tu cuerpo en algun caso de accidente, siempre y cuando sean golpes fisicos. NO CURA ENFERMEDADES"
-                        android:textAlignment="viewStart"
-                        android:textAllCaps="false"
-                        android:textSize="15sp" />
+                        android:text=""
+                        android:textSize="15sp"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -222,13 +219,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:padding="10dp"
                     android:background="@color/colorGrisBajo"
                     android:text="Comentarios"
                     android:textAlignment="center"
@@ -243,7 +242,7 @@
                     <EditText
                         android:id="@+id/etComentario"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_weight="0.75"
                         android:hint="Escribe un comentario"
@@ -257,18 +256,15 @@
                         android:layout_height="50dp"
                         android:layout_marginEnd="10dp"
                         android:background="@color/colorVerdeFuerte"
-                        android:src="@android:drawable/ic_menu_send" />
+                        android:src="@android:drawable/ic_menu_send"/>
                 </LinearLayout>
 
                 <ListView
                     android:id="@+id/lvComentarios"
                     android:layout_width="match_parent"
-                    android:layout_height="600dp"
-                    android:layout_margin="1dp" />
-
+                    android:layout_height="250dp"
+                    android:layout_margin="2dp" />
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

@@ -65,12 +65,6 @@ public class BuscarActivity extends RecieveBundlesActivity {
 
         listViewBuscar = findViewById(R.id.listViewBuscar);
         listViewBuscar.setOnItemClickListener(listViewBuscarListener);
-        dialog = new ProgressDialog(BuscarActivity.this);
-
-        dialog.setTitle("Buscando producto");
-        dialog.setMessage("Espere un momento");
-        dialog.show();
-        new RealizarBusqueda().execute();
 
         dialog = new ProgressDialog(BuscarActivity.this);
 
@@ -244,6 +238,8 @@ public class BuscarActivity extends RecieveBundlesActivity {
             super.onPostExecute(aVoid);
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(BuscarActivity.this);
 
+            dialog.cancel();
+
             if (!exito) {
 
                 alertDialog.setTitle("Advertencia")
@@ -254,8 +250,6 @@ public class BuscarActivity extends RecieveBundlesActivity {
                             }
                         });
                 alertDialog.show();
-
-                //Toast.makeText(BuscarActivity.this,"Hubo un error en la busqueda de los productos. Verifique su conexion a Internet e intentelo de nuevo.",Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -265,7 +259,6 @@ public class BuscarActivity extends RecieveBundlesActivity {
             }
 
             System.out.println("Terminado el hilo de tipoBusqueda");
-            dialog.cancel();
         }
     }
 
