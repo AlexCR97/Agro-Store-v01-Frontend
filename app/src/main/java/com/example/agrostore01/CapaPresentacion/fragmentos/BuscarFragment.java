@@ -57,8 +57,6 @@ public class BuscarFragment extends RecieveBundlesFragment {
     public void recieveBundles(Context context) {
         usuario = getArguments().getParcelable(usuario.getClassName());
         detallesUsuario = getArguments().getParcelable(detallesUsuario.getClassName());
-
-        Toast.makeText(context, usuario.toString(), Toast.LENGTH_LONG).show();
     }
 
     private final SearchView.OnQueryTextListener buscadorListener = new SearchView.OnQueryTextListener() {

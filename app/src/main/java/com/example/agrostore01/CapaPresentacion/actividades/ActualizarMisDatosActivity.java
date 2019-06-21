@@ -56,7 +56,7 @@ public class ActualizarMisDatosActivity extends RecieveBundlesActivity {
         etNombres.setText(detallesUsuario.getNombres());
         etApellidos.setText(detallesUsuario.getApellidos());
         etEmail.setText(usuario.getCorreo());
-        etTelefono.setText("831-114-6563");
+        etTelefono.setText(detallesUsuario.getTelefono());
 
         etCalle.setText(detallesUsuario.getCalle());
         etColonia.setText(detallesUsuario.getColonia());
@@ -86,13 +86,10 @@ public class ActualizarMisDatosActivity extends RecieveBundlesActivity {
 
     private class ActualizarDatos extends AsyncTask<Void, Void, Void> {
 
-        private String ERROR_DATOS_USUARIO = "Verifica que hayas ingresado correctamente tus datos de usuario";
-        private String ERROR_DATOS_DETALLES = "Verifica que hayas ingresado correctamente tu domicilio";
-        private String ERROR_INTERNET = "Verifica tu conexion a Internet e intentalo de nuevo";
-        private String mensajeError;
-
         private Usuario usuarioTemp;
         private DetallesUsuario detallesUsuarioTemp;
+
+        private String mensajeError;
         private boolean exito;
 
         @Override
@@ -102,7 +99,7 @@ public class ActualizarMisDatosActivity extends RecieveBundlesActivity {
             String nombres = etNombres.getText().toString();
             String apellidos = etApellidos.getText().toString();
             String email = etEmail.getText().toString();
-            String telefono = etTelefono.getText().toString();
+            String telefono = (etTelefono.getText().toString().isEmpty())? null : etTelefono.getText().toString();
 
             usuarioTemp = new Usuario(
                     usuario.getIdUsuario(),
@@ -130,7 +127,8 @@ public class ActualizarMisDatosActivity extends RecieveBundlesActivity {
                     detallesUsuario.getRfc(),
                     detallesUsuario.getFirmaElectronica(),
                     ciudad,
-                    detallesUsuario.getFechaNac()
+                    detallesUsuario.getFechaNac(),
+                    telefono
             );
         }
 
@@ -139,14 +137,21 @@ public class ActualizarMisDatosActivity extends RecieveBundlesActivity {
 
             ValidacionUsuario validacionUsuario = new ValidacionUsuario(usuarioTemp);
             if (!validacionUsuario.validar()) {
-                mensajeError = ERROR_DATOS_USUARIO;
+                mensajeError = AgroMensajes.ERROR_VALIDACION_USUARIO;
                 exito = false;
                 return null;
             }
 
             ValidacionDetalles validacionDetalles = new ValidacionDetalles(detallesUsuarioTemp);
+
+            if (!validacionDetalles.validarTelefono()) {
+                mensajeError = AgroMensajes.ERROR_NUMERO_TELEFONO;
+                exito = false;
+                return null;
+            }
+
             if (!validacionDetalles.validar()) {
-                mensajeError = ERROR_DATOS_DETALLES;
+                mensajeError = AgroMensajes.ERROR_VALIDACION_DETALLES_USUARIO;
                 exito = false;
                 return null;
             }
@@ -166,41 +171,40 @@ public class ActualizarMisDatosActivity extends RecieveBundlesActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(ActualizarMisDatosActivity.this);
 
+            dialog.cancel();
+
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(ActualizarMisDatosActivity.this);
             if (!exito) {
-                dialog.cancel();
                 alertDialog.setTitle("Advertencia")
                         .setMessage(mensajeError)
                         .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
                             }
                         });
                 alertDialog.show();
-                //Toast.makeText(ActualizarMisDatosActivity.this,mensajeError, Toast.LENGTH_LONG).show();
                 return;
             }
 
-            //Toast.makeText(ActualizarMisDatosActivity.this,"Tus datos han sido actualizados!",Toast.LENGTH_LONG).show();
-            dialog.cancel();
-            alertDialog.setTitle("")
-                    .setMessage("Tus datos han sido actualizados!")
-                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent = new Intent(ActualizarMisDatosActivity.this, MisDatosActivity.class);
-                            intent.putExtra(usuario.getClassName(), usuario);
-                            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
+            usuario.setCorreo(usuarioTemp.getCorreo());
+            detallesUsuario.setNombres(detallesUsuarioTemp.getNombres());
+            detallesUsuario.setApellidos(detallesUsuarioTemp.getApellidos());
+            detallesUsuario.setCalle(detallesUsuarioTemp.getCalle());
+            detallesUsuario.setColonia(detallesUsuarioTemp.getColonia());
+            detallesUsuario.setEstado(detallesUsuarioTemp.getEstado());
+            detallesUsuario.setPais(detallesUsuarioTemp.getPais());
+            detallesUsuario.setCp(detallesUsuarioTemp.getCp());
+            detallesUsuario.setCuidad(detallesUsuarioTemp.getCuidad());
+            detallesUsuario.setTelefono(detallesUsuarioTemp.getTelefono());
 
-                            startActivity(intent);
-                            finish();
+            Intent intent = new Intent(ActualizarMisDatosActivity.this, MisDatosActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
 
-                        }
-                    });
-            alertDialog.show();
-
-
+            startActivity(intent);
+            finish();
         }
     }
 

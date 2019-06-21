@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.adaptadores;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,18 +61,25 @@ public class BusquedaAdapter extends ArrayAdapter<VistaBusquedaProducto> {
         // Llenar campos del list item
         VistaBusquedaProducto vistaBusquedaProducto = lista.get(position);
 
-        String titulo = vistaBusquedaProducto.getProducto();
+        String tituloPublicacion = vistaBusquedaProducto.getTituloPublicacion();
+
+        String titulo = (tituloPublicacion == null)? vistaBusquedaProducto.getProducto() : tituloPublicacion;
         String precio = "$" + vistaBusquedaProducto.getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP) + ", " + vistaBusquedaProducto.getHectareas() + " hectareas";
         String localidad = vistaBusquedaProducto.getCiudad() + ", " + vistaBusquedaProducto.getEstado();
 
-        AgroUtils.setImageViewByteArray(datos.imageViewItemBuscar, vistaBusquedaProducto.getFoto());
         datos.textViewItemBuscarTitulo.setText(titulo);
         datos.textViewItemBuscarPrecio.setText(precio);
         datos.textViewItemBuscarLocalidad.setText(localidad);
 
-        //AgroUtils.setImageViewByteArray(datos.imageViewItemBuscar, vistaBusquedaProducto.getFoto());
+        byte[] foto = vistaBusquedaProducto.getFoto();
+        if (foto == null)
+            return convertView;
 
-        // ano-mes-dia
+        Bitmap bitmap = BitmapFactory.decodeByteArray(foto, 0, foto.length);
+        if (bitmap == null)
+            return convertView;
+
+        datos.imageViewItemBuscar.setImageBitmap(bitmap);
 
         return convertView;
     }

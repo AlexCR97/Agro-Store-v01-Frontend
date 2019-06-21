@@ -169,20 +169,6 @@
                 app:layout_constraintStart_toStartOf="@+id/imageButton"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton"
                 app:srcCompat="@drawable/registrar" />
-
-            <ImageButton
-                android:id="@+id/ibRecuperarCuenta"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/imageButton2"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton2"
-                app:srcCompat="@drawable/recuperar_contrasena" />
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

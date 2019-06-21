@@ -23,18 +23,19 @@ import com.example.agrostore01.CapaEntidades.vistas.VistaCompra;
 import com.example.agrostore01.CapaNegocios.escritores.Escritor;
 import com.example.agrostore01.CapaNegocios.escritores.EscritorCarrito;
 import com.example.agrostore01.CapaNegocios.escritores.EscritorCompraUsuario;
+import com.example.agrostore01.CapaPresentacion.hilos.HiloNotificar;
 import com.example.agrostore01.R;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CompraActivity extends RecieveBundlesActivity {
 
     private EditText etCodigoPostal,etCalle, etColonia,etCiudad,etNombre,etApellido;
     private Spinner sEstado, sPais;
     private Button bComprar,bDireccionExtra;
-    private Dialog dDireccion;
 
     private TextView tvDireccion;
     private TextView tvNombreRecibe;
@@ -58,32 +59,25 @@ public class CompraActivity extends RecieveBundlesActivity {
         tvNumeroCompra = findViewById(R.id.tvCompraNumeroCompra);
         tvNumeroCliente = findViewById(R.id.tvCompraNumeroCliente);
         tvNumeroRastreo = findViewById(R.id.tvCompraNumeroRastreo);
-        bComprar = findViewById(R.id.bComprar);
         bDireccionExtra = findViewById(R.id.bDireccionExtra);
-
-        bComprar.setOnClickListener(bComprarOnClick);
+        bComprar = findViewById(R.id.bComprar);
 
         bDireccionExtra.setOnClickListener(bDireccionExtraOnClick);
+        bComprar.setOnClickListener(bComprarOnClick);
 
         // Llenar campos
-        String direccion = String.format(
-                "%s %s Col. %s, %s, %s",
-                detallesUsuario.getCp(),
+        llenarCampos(
+                String.valueOf(detallesUsuario.getCp()),
                 detallesUsuario.getCalle(),
                 detallesUsuario.getColonia(),
                 detallesUsuario.getCuidad(),
-                detallesUsuario.getEstado()
+                detallesUsuario.getEstado(),
+                detallesUsuario.getNombres(),
+                detallesUsuario.getApellidos(),
+                String.valueOf(AgroUtils.generarNumeroAleatorio(1, 1000)),
+                String.valueOf(AgroUtils.generarNumeroAleatorio(1, 1000)),
+                AgroUtils.generarIdAleatorio(8)
         );
-        String nombreRecibe = detallesUsuario.getNombres() + " " + detallesUsuario.getApellidos();
-        String numeroCompra = "#" + AgroUtils.generarNumeroAleatorio(1, 1000);
-        String numeroCliente = "#" + AgroUtils.generarNumeroAleatorio(1, 1000);
-        String numeroRastreo = AgroUtils.generarIdAleatorio(8);
-
-        tvDireccion.setText(direccion);
-        tvNombreRecibe.setText(nombreRecibe);
-        tvNumeroCompra.setText(numeroCompra);
-        tvNumeroCliente.setText(numeroCliente);
-        tvNumeroRastreo.setText(numeroRastreo);
     }
 
     @Override
@@ -95,6 +89,25 @@ public class CompraActivity extends RecieveBundlesActivity {
         System.out.println("Recieved compras");
         for (VistaCompra compra : compras)
             System.out.println(compra);
+    }
+
+    private void llenarCampos(String cp, String calle, String colonia, String ciudad, String estado, String nombreRecibe,
+                              String apellidoRecibe, String numeroCompra, String numeroCliente, String numeroRastreo) {
+
+        String direccion = String.format(
+                "%s %s Col. %s, %s, %s",
+                cp, calle, colonia, ciudad, estado
+        );
+
+        String nombre = nombreRecibe + " " + apellidoRecibe;
+        numeroCompra = "#" + numeroCompra;
+        numeroCliente = "#" + numeroCliente;
+
+        tvDireccion.setText(direccion);
+        tvNombreRecibe.setText(nombre);
+        tvNumeroCompra.setText(numeroCompra);
+        tvNumeroCliente.setText(numeroCliente);
+        tvNumeroRastreo.setText(numeroRastreo);
     }
 
     private final View.OnClickListener bComprarOnClick = new View.OnClickListener() {
@@ -113,37 +126,43 @@ public class CompraActivity extends RecieveBundlesActivity {
 
     private final View.OnClickListener bDireccionExtraOnClick = new View.OnClickListener() {
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
 
-AlertDialog.Builder mBuilder = new AlertDialog.Builder(CompraActivity.this);
-View mView = getLayoutInflater().inflate(R.layout.layout_dialog,null);
-mBuilder.setTitle("Dirección");
-            etCodigoPostal = mView.findViewById(R.id.etCodigoPostal);
-            etCalle = mView.findViewById(R.id.etCalle);
-            etColonia = mView.findViewById(R.id.etColonia);
-            etCiudad = mView.findViewById(R.id.etCiudad);
-            sEstado = mView.findViewById(R.id.sEstado);
-            sPais = mView.findViewById(R.id.sPais);
-            etNombre = mView.findViewById(R.id.etNombre);
-            etApellido = mView.findViewById(R.id.etApellido);
+            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+            View builderView = getLayoutInflater().inflate(R.layout.layout_dialog,null);
+            builder.setTitle("Nueva dirección");
 
-            ArrayAdapter<String> adapterPais = new ArrayAdapter<String>(CompraActivity.this,
+            etCodigoPostal = builderView.findViewById(R.id.etCodigoPostal);
+            etCalle = builderView.findViewById(R.id.etCalle);
+            etColonia = builderView.findViewById(R.id.etColonia);
+            etCiudad = builderView.findViewById(R.id.etCiudad);
+            sEstado = builderView.findViewById(R.id.sEstado);
+            sPais = builderView.findViewById(R.id.sPais);
+            etNombre = builderView.findViewById(R.id.etNombre);
+            etApellido = builderView.findViewById(R.id.etApellido);
+
+            ArrayAdapter<String> adapterPais = new ArrayAdapter<>(
+                    v.getContext(),
                     android.R.layout.simple_spinner_item,
-                    getResources().getStringArray(R.array.paisList));
+                    getResources().getStringArray(R.array.paisList)
+            );
 
             adapterPais.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             sPais.setAdapter(adapterPais);
 
-            ArrayAdapter<String> adapterEstado = new ArrayAdapter<String>(CompraActivity.this,
+            ArrayAdapter<String> adapterEstado = new ArrayAdapter<>(
+                    v.getContext(),
                     android.R.layout.simple_spinner_item,
-                    getResources().getStringArray(R.array.estadoList));
+                    getResources().getStringArray(R.array.estadoList)
+            );
 
             adapterEstado.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             sEstado.setAdapter(adapterEstado);
-            mBuilder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+
+            DialogInterface.OnClickListener dialogInterface = new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    String codigopostal = etCodigoPostal.getText().toString();
+                    String cp = etCodigoPostal.getText().toString();
                     String calle = etCalle.getText().toString();
                     String colonia = etColonia.getText().toString();
                     String ciudad = etCiudad.getText().toString();
@@ -152,21 +171,27 @@ mBuilder.setTitle("Dirección");
                     String nombre = etNombre.getText().toString();
                     String apellido = etApellido.getText().toString();
 
-                }
-            }).setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
+                    if (cp.isEmpty() || calle.isEmpty() || colonia.isEmpty() || ciudad.isEmpty() || nombre.isEmpty() || apellido.isEmpty()) {
+                        return;
+                    }
 
+                    llenarCampos(
+                            cp, calle, colonia, ciudad, estado,
+                            nombre, apellido,
+                            String.valueOf(AgroUtils.generarNumeroAleatorio(1, 1000)),
+                            String.valueOf(AgroUtils.generarNumeroAleatorio(1, 1000)),
+                            AgroUtils.generarIdAleatorio(8)
+                    );
                 }
-            });
+            };
 
-            mBuilder.setView(mView);
-            AlertDialog dialog = mBuilder.create();
+            builder.setPositiveButton("Confirmar", dialogInterface);
+            builder.setView(builderView);
+
+            AlertDialog dialog = builder.create();
             dialog.show();
-
         }
     };
-
 
     private class RealizarCompra extends AsyncTask<Void, Void, Void> {
 
@@ -217,10 +242,34 @@ mBuilder.setTitle("Dirección");
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
                         }
-                    });
-            alertDialog.show();
-          
+                    })
+                    .show();
+
+            // Notificar las compras
+
+            List<Integer> idsRepetidos = new ArrayList<>();
+
+            for (VistaCompra vistaCompra : compras)
+                idsRepetidos.add(vistaCompra.getIdNumProducto());
+
+            List<Integer> idsUnicos = AgroUtils.getDifferentIds(idsRepetidos);
+
+            for (Integer idNumProducto : idsUnicos) {
+
+                String detalle = String.format(
+                        "¡El usuario \"%s %s\" ha realizado una compra! Publicacion #%s",
+                        detallesUsuario.getNombres(),
+                        detallesUsuario.getApellidos(),
+                        idNumProducto
+                );
+
+                new HiloNotificar(idNumProducto, detalle).execute();
+            }
+
+            // Quitar productos del carrito del usuario
+
             new QuitarProductos().execute();
         }
     }
@@ -258,8 +307,6 @@ mBuilder.setTitle("Dirección");
                 Toast.makeText(CompraActivity.this, AgroMensajes.ERROR_INTERNET, Toast.LENGTH_LONG).show();
                 return;
             }
-
-            Toast.makeText(CompraActivity.this, "Se han quitado los productos de tu carrito", Toast.LENGTH_LONG).show();
 
             CompraActivity.this.finish();
         }

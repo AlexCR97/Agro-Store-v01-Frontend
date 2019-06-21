@@ -9,10 +9,10 @@
 
     <ImageView
         android:id="@+id/ivMisVentas"
-        android:layout_width="105dp"
-        android:layout_height="105dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center|start"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:src="@drawable/ic_insert_photo_black_24dp"/>
 
     <LinearLayout
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="#00002323"
+                android:text="#00000000"
                 android:textColor="#454957"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Plantas feas"
+                android:text=""
                 android:textColor="#FF454957"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="$10"
+                android:text="$0"
                 android:textColor="#FF454957"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="18/04/2019"
+                android:text="01/01/2000"
                 android:textColor="#FF454957"
                 android:textSize="15sp" />
         </LinearLayout>

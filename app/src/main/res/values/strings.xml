@@ -9,8 +9,6 @@
     <string name="title_activity_detalles_productos">Detalles del Producto</string>
     <string name="title_activity_estado_venta">Map</string>
 
-
-
     <string-array name="paisList">
         <item>México</item>
     </string-array>

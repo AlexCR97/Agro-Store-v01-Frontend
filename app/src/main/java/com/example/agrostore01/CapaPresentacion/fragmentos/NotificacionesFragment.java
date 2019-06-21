@@ -57,7 +57,6 @@ private ProgressDialog dialog;
     @Override
     public void recieveBundles(Context context) {
         usuario = getArguments().getParcelable(usuario.getClassName());
-        Toast.makeText(context, usuario.toString(), Toast.LENGTH_LONG).show();
     }
 
     private class ObtenerNotificaciones extends AsyncTask<Void, Void, Void> {
@@ -96,9 +95,6 @@ private ProgressDialog dialog;
                 //Toast.makeText(NotificacionesFragment.this.getContext(),"Hubo un error al obtener las notificaciones. Compruebe su conexion a Internet e intentelo de nuevo",Toast.LENGTH_LONG).show();
                 return;
             }
-
-            for (int i = 0; i < 30; i++)
-                notificaciones.add("Notificacion " + (i + 1));
 
             NotificacionesAdapter adapter = new NotificacionesAdapter(
                     NotificacionesFragment.this.getContext(),
