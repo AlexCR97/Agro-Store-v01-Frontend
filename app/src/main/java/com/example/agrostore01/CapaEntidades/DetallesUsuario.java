@@ -19,10 +19,11 @@ public class DetallesUsuario extends Entidad implements Parcelable {
     private String firmaElectronica;
     private String cuidad;
     private String fechaNac; // anio-mes-dia
+    private String telefono;
 
     public DetallesUsuario() {}
 
-    public DetallesUsuario(String nombres, String apellidos, String calle, String colonia, String estado, String pais, int cp, String escrituraOPermiso, float estrellas, String rfc, String firmaElectronica, String cuidad, String fechaNac) {
+    public DetallesUsuario(String nombres, String apellidos, String calle, String colonia, String estado, String pais, int cp, String escrituraOPermiso, float estrellas, String rfc, String firmaElectronica, String cuidad, String fechaNac, String telefono) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.calle = calle;
@@ -36,9 +37,10 @@ public class DetallesUsuario extends Entidad implements Parcelable {
         this.firmaElectronica = firmaElectronica;
         this.cuidad = cuidad;
         this.fechaNac = fechaNac;
+        this.telefono = telefono;
     }
 
-    public DetallesUsuario(long idDetalles, String nombres, String apellidos, String calle, String colonia, String estado, String pais, int cp, String escrituraOPermiso, float estrellas, String rfc, String firmaElectronica, String cuidad, String fechaNac) {
+    public DetallesUsuario(long idDetalles, String nombres, String apellidos, String calle, String colonia, String estado, String pais, int cp, String escrituraOPermiso, float estrellas, String rfc, String firmaElectronica, String cuidad, String fechaNac, String telefono) {
         this.idDetalles = idDetalles;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -53,6 +55,7 @@ public class DetallesUsuario extends Entidad implements Parcelable {
         this.firmaElectronica = firmaElectronica;
         this.cuidad = cuidad;
         this.fechaNac = fechaNac;
+        this.telefono = telefono;
     }
 
     protected DetallesUsuario(Parcel in) {
@@ -70,6 +73,7 @@ public class DetallesUsuario extends Entidad implements Parcelable {
         firmaElectronica = in.readString();
         cuidad = in.readString();
         fechaNac = in.readString();
+        telefono = in.readString();
     }
 
     public static final Creator<DetallesUsuario> CREATOR = new Creator<DetallesUsuario>() {
@@ -196,6 +200,14 @@ public class DetallesUsuario extends Entidad implements Parcelable {
         this.fechaNac = fechaNac;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     @Override
     public String toString() {
         return "DetallesUsuario{" +
@@ -213,6 +225,7 @@ public class DetallesUsuario extends Entidad implements Parcelable {
                 ", firmaElectronica='" + firmaElectronica + '\'' +
                 ", cuidad='" + cuidad + '\'' +
                 ", fechaNac='" + fechaNac + '\'' +
+                ", telefono='" + telefono + '\'' +
                 '}';
     }
 
@@ -237,5 +250,6 @@ public class DetallesUsuario extends Entidad implements Parcelable {
         dest.writeString(firmaElectronica);
         dest.writeString(cuidad);
         dest.writeString(fechaNac);
+        dest.writeString(telefono);
     }
 }

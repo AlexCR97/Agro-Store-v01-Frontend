@@ -1,6 +1,9 @@
 package com.example.agrostore01.CapaPresentacion.adaptadores;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +69,16 @@ public class CarritoAdapter extends ArrayAdapter<VistaCarrito> {
         data.tvProducto.setText(producto);
         data.etCantidad.setText(cantidad);
         data.tvPrecio.setText(precio);
+
+        byte[] foto = productoCarrito.getFoto();
+        if (foto == null)
+            return convertView;
+
+        Bitmap bitmap = BitmapFactory.decodeByteArray(foto, 0, foto.length);
+        if (bitmap == null)
+            return convertView;
+
+        data.ivCarrito.setImageBitmap(bitmap);
 
         return convertView;
     }

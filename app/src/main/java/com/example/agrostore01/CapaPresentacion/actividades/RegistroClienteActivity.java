@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,9 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.agrostore01.AgroMensajes;
+import com.example.agrostore01.AgroTipoUsuarios;
+import com.example.agrostore01.AgroUtils;
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.CapaNegocios.escritores.EscritorUsuario;
@@ -29,8 +33,7 @@ import java.util.Calendar;
 
 public class RegistroClienteActivity extends AppCompatActivity {
 
-
-    private EditText etUsuario, etNombres, etApellidos, etContrasena, etConfirmarContrasena, etCorreoElectronico, etCorreoRespaldo;
+    private EditText etUsuario, etNombres, etApellidos, etContrasena, etConfirmarContrasena, etCorreoElectronico, etNumTel, etCorreoRespaldo;
     private EditText etCalle, etColonia, etCiudad, etCodigoPostal;
     private ImageButton ibFecha, ibRegistrar;
     private CheckBox cbTerminos;
@@ -55,6 +58,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
         etContrasena = findViewById(R.id.etRegistroClienteContrasena);
         etConfirmarContrasena = findViewById(R.id.etRegistroClienteConfirmarContrasena);
         etCorreoElectronico = findViewById(R.id.etRegistroClienteNombreUsuario);
+        etNumTel = findViewById(R.id.etTelefono2);
         etCorreoRespaldo = findViewById(R.id.etRegistroClienteCorreoRespaldo);
         sEstado = findViewById(R.id.sEstado);
         sPais = findViewById(R.id.sPais);
@@ -136,7 +140,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
             // Datos del usuario
             String idUsuario = "User" + etUsuario.getText().toString();
             byte[] foto = null;
-            int idTipo = 2;
+            int idTipo = AgroTipoUsuarios.CLIENTE;
             long idDetalles = 0;
             String nombreUsuario = etUsuario.getText().toString();
             String contrasena = etContrasena.getText().toString();
@@ -158,6 +162,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
             String firmaElectronica = "";
             String ciudad = etCiudad.getText().toString();
             String fechaNac = sFecha;
+            String telefono = (etNumTel.getText().toString().isEmpty())? null : etNumTel.getText().toString();
 
             if (!cbTerminos.isChecked()) {
                 mensajeError = ERROR_TERMINOS_Y_CONDICIONES;
@@ -172,7 +177,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
             }
 
             usuario = new Usuario(idUsuario, foto, idTipo, idDetalles, nombreUsuario, contrasena, correoElectronico);
-            detallesUsuario = new DetallesUsuario(nombres, apellidos, calle, colonia, estado, pais, cp, escrituraOPermiso, estrellas, rfc, firmaElectronica, ciudad, fechaNac);
+            detallesUsuario = new DetallesUsuario(nombres, apellidos, calle, colonia, estado, pais, cp, escrituraOPermiso, estrellas, rfc, firmaElectronica, ciudad, fechaNac, telefono);
 
             ValidacionUsuario validacionUsuario = new ValidacionUsuario(usuario);
             boolean validarUsuario = validacionUsuario.validar();
@@ -182,6 +187,12 @@ public class RegistroClienteActivity extends AppCompatActivity {
 
             if (!validarUsuario) {
                 mensajeError = ERROR_DATOS_USUARIO;
+                exito = false;
+                return;
+            }
+
+            if (!validacionDetalles.validarTelefono()) {
+                mensajeError = AgroMensajes.ERROR_NUMERO_TELEFONO;
                 exito = false;
                 return;
             }
@@ -218,40 +229,36 @@ public class RegistroClienteActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(RegistroClienteActivity.this);
+            dialog.cancel();
 
             if (!exito) {
-                dialog.cancel();
-
                 alertDialog.setTitle("Advertencia")
                         .setMessage(mensajeError)
                         .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-
+                                dialogInterface.dismiss();
                             }
                         });
                 alertDialog.show();
-
-                //Toast.makeText(RegistroClienteActivity.this, mensajeError, Toast.LENGTH_LONG).show();
                 return;
             }
-            dialog.cancel();
-            alertDialog.setTitle("")
-                    .setMessage("Cuenta creada con éxito")
-                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent = new Intent(RegistroClienteActivity.this, BarraActivity.class);
-                            intent.putExtra(usuario.getClassName(), usuario);
-                            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
 
-                            startActivity(intent);
-                            finish();
+            AgroUtils.mostrarDialogo(RegistroClienteActivity.this, "¡Bienvenido a Agro Store!", "¡Tu cuenta ha sido creada!");
 
-                        }
-                    });
-            alertDialog.show();
+            // Espera por 2 segundos
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {}
+            }, 2000);
 
+            Intent intent = new Intent(RegistroClienteActivity.this, BarraActivity.class);
+            intent.putExtra(usuario.getClassName(), usuario);
+            intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
+
+            startActivity(intent);
+            finish();
         }
     }
 

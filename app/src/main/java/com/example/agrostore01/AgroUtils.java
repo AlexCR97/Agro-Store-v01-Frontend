@@ -1,6 +1,9 @@
 package com.example.agrostore01;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.MotionEvent;
@@ -14,6 +17,10 @@ import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class AgroUtils {
@@ -45,7 +52,8 @@ public class AgroUtils {
                 null,
                 null,
                 "El Mante",
-                "97-11-13"
+                "97-11-13",
+                "8311146563"
         );
     }
 
@@ -185,6 +193,34 @@ public class AgroUtils {
         params.height = (totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1))) * showableAmountOfItems;
         listView.setLayoutParams(params);
         listView.requestLayout();
+    }
+
+    public static void mostrarDialogo(Context context, String titulo, String mensaje) {
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+
+        alertDialog.setTitle(titulo)
+                .setMessage(mensaje)
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
+    public static boolean verificarSiUsuarioEsProductor(Context context, Usuario usuario) {
+        if (usuario.getIdTipo() != AgroTipoUsuarios.PRODUCTOR) {
+            mostrarDialogo(context,"Función no disponible","Esta función solo está disponible para productores");
+            return false;
+        }
+        return true;
+    }
+
+    public static List<Integer> getDifferentIds(List<Integer> ids) {
+        Set<Integer> found = new HashSet<>(ids);
+        return new ArrayList<>(found);
     }
 
 }

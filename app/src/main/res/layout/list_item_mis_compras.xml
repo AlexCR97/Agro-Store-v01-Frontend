@@ -3,22 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5sp"
+    android:layout_margin="5sp"
     android:background="@android:color/background_light"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/ivMisCompras"
-        android:layout_width="106dp"
-        android:layout_height="105dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center|start"
+        android:layout_margin="10dp"
         android:src="@drawable/ic_insert_photo_black_24dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:gravity="start"
+        android:gravity="center|start"
         android:orientation="vertical">
 
         <LinearLayout
@@ -40,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="#00002323"
+                android:text="#00000000"
                 android:textColor="#454957"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -64,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="#00002323"
+                android:text="#00000000"
                 android:textColor="#FF454957"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -88,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Maestro Karim"
+                android:text=""
                 android:textColor="#FF454957"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -112,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Maestro Karim"
+                android:text=""
                 android:textColor="#FF454957"
                 android:textSize="15sp" />
         </LinearLayout>

@@ -31,6 +31,7 @@ import com.example.agrostore01.CapaNegocios.escritores.EscritorComentarios;
 import com.example.agrostore01.CapaNegocios.lectores.vistas.LectorVistaBusquedaProducto;
 import com.example.agrostore01.CapaNegocios.lectores.vistas.LectorVistaComentario;
 import com.example.agrostore01.CapaPresentacion.adaptadores.ComentariosAdapter;
+import com.example.agrostore01.CapaPresentacion.hilos.HiloNotificar;
 import com.example.agrostore01.R;
 
 import java.math.BigDecimal;
@@ -135,16 +136,20 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
 
-            String titulo = vistaProducto.getProducto();
+            String tituloPublicacion = vistaProducto.getTituloPublicacion();
+
+            String titulo = (tituloPublicacion == null)? vistaProducto.getProducto() : tituloPublicacion;
             String precio = "$" + vistaProducto.getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP) +
                     ", " + vistaProducto.getHectareas() + " hectareas";
             String localidad = vistaProducto.getCiudad() + ", " + vistaProducto.getEstado();
+            String producto = vistaProducto.getProducto();
             String vendedor = vistaProducto.getNombreUsuario() + " " + vistaProducto.getApellidosUsuario();
             String descripcion = vistaProducto.getDescripcion();
 
             tvTitulo.setText(titulo);
             tvPrecio.setText(precio);
             tvLocalidad.setText(localidad);
+            tvProducto.setText(producto);
             tvVendedor.setText(vendedor);
             tvDescripcion.setText(descripcion);
 
@@ -188,8 +193,6 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
                             }
                         });
                 alertDialog.show();
-
-                //Toast.makeText(DetallesProductoActivity.this, AgroMensajes.ERROR_INTERNET, Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -289,7 +292,6 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
                             }
                         });
                 alertDialog.show();
-                //Toast.makeText(DetallesProductoActivity.this, mensajeError, Toast.LENGTH_LONG).show();
                 return;
             }
             alertDialog.setTitle("")
@@ -300,8 +302,6 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
                         }
                     });
             alertDialog.show();
-
-            //Toast.makeText(DetallesProductoActivity.this, "Se ha anadido este producto a tu carrito", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -468,6 +468,19 @@ public class DetallesProductoActivity extends RecieveBundlesActivity {
             Toast.makeText(DetallesProductoActivity.this, AgroMensajes.COMENTARIO_PUBLICADO, Toast.LENGTH_LONG).show();
 
             new ObtenerComentarios().execute();
+
+            // Notificar al vendedor
+
+            int idNumProducto = idProducto;
+            String detalle = String.format(
+                    "El usuario \"%s %s\" ha comentado tu publicación \"%s\"\n\"%s\"",
+                    detallesUsuario.getNombres(),
+                    detallesUsuario.getApellidos(),
+                    vistaProducto.getTituloPublicacion(),
+                    comentario
+            );
+
+            new HiloNotificar(idNumProducto, detalle).execute();
         }
     }
 

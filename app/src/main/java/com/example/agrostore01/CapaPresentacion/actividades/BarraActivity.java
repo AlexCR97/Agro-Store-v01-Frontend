@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.agrostore01.AgroTipoUsuarios;
+import com.example.agrostore01.AgroUtils;
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
@@ -100,7 +102,6 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
     public void recieveBundles(Context context) {
         usuario = getIntent().getParcelableExtra(usuario.getClassName());
         detallesUsuario = getIntent().getParcelableExtra(detallesUsuario.getClassName());
-        Toast.makeText(context, "¡Has iniciado sesion! :D\n\n" + usuario +"\n\n" + detallesUsuario, Toast.LENGTH_LONG).show();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navegadorListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -175,7 +176,12 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
             startActivity(intent);
         }
 
-        else if (id == R.id.miterreno){
+        else if (id == R.id.miterreno) {
+
+            if (!AgroUtils.verificarSiUsuarioEsProductor(this, usuario)) {
+                return false;
+            }
+
             intent = new Intent(BarraActivity.this, MiTerrenoActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
             startActivity(intent);
@@ -188,12 +194,22 @@ public class BarraActivity extends RecieveBundlesActivity implements NavigationV
         }
 
         else if (id == R.id.ventas) {
+
+            if (!AgroUtils.verificarSiUsuarioEsProductor(this, usuario)) {
+                return false;
+            }
+
             intent = new Intent(BarraActivity.this, MisVentasActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
             startActivity(intent);
         }
 
         else if (id == R.id.vender) {
+
+            if (!AgroUtils.verificarSiUsuarioEsProductor(this, usuario)) {
+                return false;
+            }
+
             intent = new Intent(BarraActivity.this, Vender2Activity.class);
             intent.putExtra(usuario.getClassName(), usuario);
             intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);

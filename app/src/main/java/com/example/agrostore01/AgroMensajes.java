@@ -2,6 +2,7 @@ package com.example.agrostore01;
 
 public class AgroMensajes {
 
+    public static final String ERROR_NUMERO_TELEFONO = "Ingresa un numero de telefono valido";
     public static final String ERROR_CARRITO_VACIO = "Parece que no tienes ningun producto en tu carrito. Intenta agregar productos primero";
     public static final String ERROR_INTERNET = "Verifica tu conexion a Internet e intentalo de nuevo";
     public static final String ERROR_VALIDACION_TERRENO = "Verifica que hayas ingresado correctamente los datos de tu terreno";

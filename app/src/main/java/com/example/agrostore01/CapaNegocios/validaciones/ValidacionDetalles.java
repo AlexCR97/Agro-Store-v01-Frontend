@@ -13,7 +13,8 @@ public class ValidacionDetalles extends Validacion <DetallesUsuario> {
         return validarIdDetalles() && validarCalle() && validarColonia() &&
                 validarCiudad() && validarEstado() && validarPais() &&
                 validarCp() && validarEscrituraOPermiso() && validarEstrellas() &&
-                validarRfc() && validarFirmaElectronica() && validarNombres() && validarApellidos() && validarFecha();
+                validarRfc() && validarFirmaElectronica() && validarNombres() &&
+                validarApellidos() && validarFecha() && validarTelefono();
     }
 
     public boolean validarIdDetalles() {
@@ -164,6 +165,18 @@ public class ValidacionDetalles extends Validacion <DetallesUsuario> {
             ex.printStackTrace();
             return false;
         }
+    }
+
+    public boolean validarTelefono() {
+        System.out.println("Validating Detalles.Telefono: " + entidad.getTelefono());
+
+        if (entidad.getTelefono() == null)
+            return true;
+
+        if (entidad.getTelefono().isEmpty())
+            return false;
+
+        return entidad.getTelefono().length() == 10;
     }
 
 }

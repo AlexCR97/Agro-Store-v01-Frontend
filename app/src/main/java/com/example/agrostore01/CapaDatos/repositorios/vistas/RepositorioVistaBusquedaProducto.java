@@ -50,6 +50,10 @@ public class RepositorioVistaBusquedaProducto extends Repositorio implements ICo
 
             resultado.next();
 
+            /**
+             * ProductoTerreno.[Nombre Publicacion]
+             */
+
             String producto = resultado.getString("Producto");
             String nombre = resultado.getString("Nombre");
             String apellido = resultado.getString("Apellido");
@@ -59,8 +63,9 @@ public class RepositorioVistaBusquedaProducto extends Repositorio implements ICo
             String descripcion = resultado.getString("Descripcion");
             String estado = resultado.getString("Estado");
             String ciudad = resultado.getString("Ciudad");
+            String tituloPublicacion = resultado.getString("Nombre Publicacion");
 
-            return new VistaBusquedaProducto(producto, nombre, apellido, foto, precio, hectareas, descripcion, estado, ciudad);
+            return new VistaBusquedaProducto(producto, nombre, apellido, foto, precio, hectareas, descripcion, estado, ciudad, tituloPublicacion);
         }
         catch (Exception e) {
             e.printStackTrace();

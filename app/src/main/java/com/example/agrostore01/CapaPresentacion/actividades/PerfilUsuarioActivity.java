@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.agrostore01.AgroUtils;
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.R;
@@ -51,8 +52,8 @@ public class PerfilUsuarioActivity extends RecieveBundlesActivity {
 
         tvNombre.setText(nombreCompleto);
         tvDireccion.setText(direccion);
-        tvTelefono.setText("831 114 65 63");
-        ratingBarEstrellas.setRating((float) detallesUsuario.getEstrellas());
+        tvTelefono.setText(detallesUsuario.getTelefono());
+        ratingBarEstrellas.setRating(detallesUsuario.getEstrellas());
     }
 
     @Override
@@ -89,6 +90,10 @@ public class PerfilUsuarioActivity extends RecieveBundlesActivity {
     private final View.OnClickListener ibReputacionListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+            if (!AgroUtils.verificarSiUsuarioEsProductor(v.getContext(), usuario))
+                return;
+
             Intent intent = new Intent(PerfilUsuarioActivity.this, ReputacionActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
             intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
@@ -100,6 +105,10 @@ public class PerfilUsuarioActivity extends RecieveBundlesActivity {
     private final View.OnClickListener ibConfiguracionCuentaListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+
+            if (!AgroUtils.verificarSiUsuarioEsProductor(v.getContext(), usuario))
+                return;
+
             Intent intent = new Intent(PerfilUsuarioActivity.this, ConfigurarCuentaActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
             intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);

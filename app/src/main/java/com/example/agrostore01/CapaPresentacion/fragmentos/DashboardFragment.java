@@ -31,7 +31,6 @@ public class DashboardFragment extends RecieveBundlesFragment {
     @Override
     public void recieveBundles(Context context) {
         usuario = getArguments().getParcelable(usuario.getClassName());
-        Toast.makeText(context, usuario.toString(), Toast.LENGTH_LONG).show();
     }
 
 }

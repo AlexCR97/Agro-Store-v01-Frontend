@@ -24,13 +24,6 @@ public class MisComprasAdapter extends ArrayAdapter<VistaMisCompras> {
         TextView tvFecha;
     }
 
-    /**
-     *     private int numeroDeCompra;
-     *     private int numeroDeLote;
-     *     private boolean estado;
-     *     private String tiempo;
-     */
-
     private  Context context;
     private int layoutResourceId;
     private List<VistaMisCompras> items;

@@ -43,18 +43,13 @@ public class MisDatosActivity extends RecieveBundlesActivity {
         ibActualizar.setOnClickListener(ibActualizarListener);
 
         // Llenar campos
-        String nombre = detallesUsuario.getNombres() + " " + detallesUsuario.getApellidos();
-        tvNombre.setText(nombre);
-        tvUsuario.setText(usuario.getUsuario());
-        tvEmail.setText(usuario.getCorreo());
-        tvTelefono.setText("831-114-6563");
+        llenarCampos();
+    }
 
-        tvCalle.setText(detallesUsuario.getCalle());
-        tvColonia.setText(detallesUsuario.getColonia());
-        tvCiudad.setText(detallesUsuario.getCuidad());
-        tvCodigoPostal.setText(String.valueOf(detallesUsuario.getCp()));
-        tvEstado.setText(detallesUsuario.getEstado());
-        tvPais.setText(detallesUsuario.getPais());
+    @Override
+    protected void onResume() {
+        super.onResume();
+        llenarCampos();
     }
 
     @Override
@@ -76,5 +71,20 @@ public class MisDatosActivity extends RecieveBundlesActivity {
             startActivity(intent);
         }
     };
+
+    private void llenarCampos() {
+        String nombre = detallesUsuario.getNombres() + " " + detallesUsuario.getApellidos();
+        tvNombre.setText(nombre);
+        tvUsuario.setText(usuario.getUsuario());
+        tvEmail.setText(usuario.getCorreo());
+        tvTelefono.setText(detallesUsuario.getTelefono());
+
+        tvCalle.setText(detallesUsuario.getCalle());
+        tvColonia.setText(detallesUsuario.getColonia());
+        tvCiudad.setText(detallesUsuario.getCuidad());
+        tvCodigoPostal.setText(String.valueOf(detallesUsuario.getCp()));
+        tvEstado.setText(detallesUsuario.getEstado());
+        tvPais.setText(detallesUsuario.getPais());
+    }
 
 }

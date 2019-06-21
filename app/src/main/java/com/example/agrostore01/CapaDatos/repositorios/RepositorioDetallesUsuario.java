@@ -109,8 +109,9 @@ public class RepositorioDetallesUsuario extends Repositorio implements IContrato
             String FirmaElectronica = resultado.getString("FirmaElectronica");
             String Ciudad = resultado.getString("Ciudad");
             String Fecha = resultado.getString("Fecha");
+            String Telefono = resultado.getString("Telefono");
 
-            return new DetallesUsuario(IDDetalles, Nombre, Apellido, Calle, Colonia, Estado, Pais, CP, EscrituraPermiso, ESTRELLAS, RFC, FirmaElectronica, Ciudad, Fecha);
+            return new DetallesUsuario(IDDetalles, Nombre, Apellido, Calle, Colonia, Estado, Pais, CP, EscrituraPermiso, ESTRELLAS, RFC, FirmaElectronica, Ciudad, Fecha, Telefono);
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -146,8 +147,9 @@ public class RepositorioDetallesUsuario extends Repositorio implements IContrato
                 String FirmaElectronica = resultado.getString("FirmaElectronica");
                 String Ciudad = resultado.getString("Ciudad");
                 String Fecha = resultado.getString("Fecha");
+                String Telefono = resultado.getString("Telefono");
 
-                detallesUsuarios.add(new DetallesUsuario(IDDetalles, Nombre, Apellido, Calle, Colonia, Estado, Pais, CP, EscrituraPermiso, ESTRELLAS, RFC, FirmaElectronica, Ciudad, Fecha));
+                detallesUsuarios.add(new DetallesUsuario(IDDetalles, Nombre, Apellido, Calle, Colonia, Estado, Pais, CP, EscrituraPermiso, ESTRELLAS, RFC, FirmaElectronica, Ciudad, Fecha, Telefono));
             }
         }
         catch (SQLException e) {
@@ -186,8 +188,9 @@ public class RepositorioDetallesUsuario extends Repositorio implements IContrato
             String FirmaElectronica = resultado.getString("FirmaElectronica");
             String Ciudad = resultado.getString("Ciudad");
             String Fecha = resultado.getString("Fecha");
+            String Telefono = resultado.getString("Telefono");
 
-            return new DetallesUsuario(IDDetalles, Nombre, Apellido, Calle, Colonia, Estado, Pais, CP, EscrituraPermiso, ESTRELLAS, RFC, FirmaElectronica, Ciudad, Fecha);
+            return new DetallesUsuario(IDDetalles, Nombre, Apellido, Calle, Colonia, Estado, Pais, CP, EscrituraPermiso, ESTRELLAS, RFC, FirmaElectronica, Ciudad, Fecha, Telefono);
         }
         catch (Exception e) {
             e.printStackTrace();

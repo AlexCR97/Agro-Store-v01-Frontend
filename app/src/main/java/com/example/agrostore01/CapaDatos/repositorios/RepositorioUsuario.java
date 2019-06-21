@@ -34,11 +34,11 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
         this.sqlSeleccionarNombreUsuario = "select * from [Usuario] where [Usuario].Usuario = ?";
 
         this.sqlProcActualizarContrasena = "{ call PROC_ESP_NUEVA_CONTRASEÑA(?, ?) }";
-        this.sqlProcActualizarDatos = "{ call PROC_ESP_CAMBIO_USUARIO(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }";
+        this.sqlProcActualizarDatos = "{ call PROC_ESP_CAMBIO_USUARIO(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }";
         this.sqlProcConfirmarContrasena = "{ call PROC_USUARIO_CONFIRMAR_CONTRASEÑA(?, ?, ?) }";
         this.sqlProcConfirmarExistencia = "{ call PROC_USUARIO_CONFIRMAR_EXISTENCIA(?, ?, ?) }";
         this.sqlProcSeleccionarContrasena = "{ call PROC_USUARIO_RETURN_CONTRASEÑA(?, ?) }";
-        this.sqlProcRegistrarUsuario = "{ call PROC_ESP_ALTA_USER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }";
+        this.sqlProcRegistrarUsuario = "{ call PROC_ESP_ALTA_USER(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }";
     }
 
     @Override
@@ -253,6 +253,7 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
         parametros.add(detallesUsuario.getFirmaElectronica());
         parametros.add(detallesUsuario.getCuidad());
         parametros.add(detallesUsuario.getFechaNac());
+        parametros.add(detallesUsuario.getTelefono());
 
         parametros.add(usuario.getIdUsuario());
         parametros.add(usuario.getUsuario());
@@ -303,6 +304,7 @@ public class RepositorioUsuario extends Repositorio implements IContratoUsuario 
         parametros.add(detallesUsuario.getFirmaElectronica());
         parametros.add(detallesUsuario.getCuidad());
         parametros.add(detallesUsuario.getFechaNac());
+        parametros.add(detallesUsuario.getTelefono());
 
         parametros.add(usuario.getIdUsuario());
         parametros.add(usuario.getCorreo());

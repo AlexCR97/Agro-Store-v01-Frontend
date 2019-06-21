@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.agrostore01.AgroMensajes;
+import com.example.agrostore01.AgroUtils;
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
 import com.example.agrostore01.CapaEntidades.vistas.VistaCarrito;
@@ -66,10 +67,16 @@ public class CarritoFragment extends RecieveBundlesFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        new ObtenerMisProductosEnCarrito().execute();
+    }
+
+    @Override
     public void recieveBundles(Context context) {
         usuario = getArguments().getParcelable(usuario.getClassName());
         detallesUsuario = getArguments().getParcelable(detallesUsuario.getClassName());
-        Toast.makeText(context, usuario.toString(), Toast.LENGTH_LONG).show();
     }
 
     private class ObtenerMisProductosEnCarrito extends AsyncTask<Void, Void, Void> {
@@ -178,12 +185,12 @@ public class CarritoFragment extends RecieveBundlesFragment {
         @Override
         public void onClick(View v) {
             if (carrito == null) {
-                Toast.makeText(CarritoFragment.this.getContext(), AgroMensajes.ERROR_CARRITO_VACIO, Toast.LENGTH_LONG).show();
+                AgroUtils.mostrarDialogo(v.getContext(), "¡Ups!", AgroMensajes.ERROR_CARRITO_VACIO);
                 return;
             }
 
             if (carrito.isEmpty()) {
-                Toast.makeText(CarritoFragment.this.getContext(), AgroMensajes.ERROR_CARRITO_VACIO, Toast.LENGTH_LONG).show();
+                AgroUtils.mostrarDialogo(v.getContext(), "¡Ups!", AgroMensajes.ERROR_CARRITO_VACIO);
                 return;
             }
 

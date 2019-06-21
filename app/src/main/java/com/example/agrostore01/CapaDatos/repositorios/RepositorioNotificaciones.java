@@ -12,6 +12,7 @@ import java.util.List;
 public class RepositorioNotificaciones extends Repositorio implements IContratoNotificaciones {
 
     private String sqlProcNotificaciones;
+    private String sqlProcNotificar;
 
     public RepositorioNotificaciones(){
         this.sqlAlta = "insert into Notificaciones values (?)";
@@ -24,6 +25,7 @@ public class RepositorioNotificaciones extends Repositorio implements IContratoN
         this.sqlSeleccionarTodo = "select * from Notificaciones";
 
         this.sqlProcNotificaciones = "{ call PROC_ESP_NOTIFICACIONES(?) }";
+        this.sqlProcNotificar = "{ call PROC_ESP_NOTIFICAR(?, ?) }";
     }
 
     @Override
@@ -98,6 +100,22 @@ public class RepositorioNotificaciones extends Repositorio implements IContratoN
             try { if (bd.getConexion() != null) bd.getConexion().close(); } catch (SQLException e) { e.printStackTrace(); }
         }
         return notificaciones;
+    }
+
+    @Override
+    public boolean agregarNotificaion(long idNumProducto, String detalle) {
+        parametros = new ArrayList<>();
+
+        parametros.add(idNumProducto);
+        parametros.add(detalle);
+
+        try {
+            return ejecutarProcedimiento(sqlProcNotificar);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IContratoNotificaciones extends IContrato<Notificaciones> {
 
+    boolean agregarNotificaion(long idNumProducto, String detalle);
     List<String> getNotificaciones(String idUsuario);
 
 }

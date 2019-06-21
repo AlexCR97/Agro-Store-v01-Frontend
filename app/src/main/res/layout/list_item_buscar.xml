@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageViewItemBuscar"
-        android:layout_width="170dp"
-        android:layout_height="200dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:src="@drawable/ic_insert_photo_black_24dp" />

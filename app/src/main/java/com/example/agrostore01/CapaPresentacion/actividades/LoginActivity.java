@@ -23,13 +23,12 @@ import com.example.agrostore01.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private ImageButton ibRegistrarse, ibIniciarSesion, ibRecuperarCuenta;
+    private ImageButton ibRegistrarse, ibIniciarSesion;
     private ImageView ivFaq,ivCorreo, ivContra;
     private EditText etCorreoElectronico, etContrasena;
     private ProgressBar pbIconoCarga;
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
-    private AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
 
         ibRegistrarse = findViewById(R.id.imageButton2);
         ibIniciarSesion = findViewById(R.id.imageButton);
-        ibRecuperarCuenta = findViewById(R.id.ibRecuperarCuenta);
         ivFaq = findViewById(R.id.imageViewFaqLogin);
         etCorreoElectronico = findViewById(R.id.etRegistroClienteNombreUsuario);
         etContrasena = findViewById(R.id.etContra);
@@ -48,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
 
         ibRegistrarse.setOnClickListener(ibRegistrarseListener);
         ibIniciarSesion.setOnClickListener(ibIniciarSesionListener);
-        ibRecuperarCuenta.setOnClickListener(ibRecuperarCuentaListener);
         ivFaq.setOnClickListener(ivFaqOnClickListener);
     }
 
@@ -91,7 +88,6 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
                     ibRegistrarse.setVisibility(View.INVISIBLE);
                     ibIniciarSesion.setVisibility(View.INVISIBLE);
-                    ibRecuperarCuenta.setVisibility(View.INVISIBLE);
                     etCorreoElectronico.setVisibility(View.INVISIBLE);
                     etContrasena.setVisibility(View.INVISIBLE);
                     ivContra.setVisibility(View.INVISIBLE);
@@ -136,7 +132,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 ibRegistrarse.setVisibility(View.VISIBLE);
                 ibIniciarSesion.setVisibility(View.VISIBLE);
-                ibRecuperarCuenta.setVisibility(View.VISIBLE);
                 etCorreoElectronico.setVisibility(View.VISIBLE);
                 etContrasena.setVisibility(View.VISIBLE);
                 ivContra.setVisibility(View.VISIBLE);
@@ -160,7 +155,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 ibRegistrarse.setVisibility(View.VISIBLE);
                 ibIniciarSesion.setVisibility(View.VISIBLE);
-                ibRecuperarCuenta.setVisibility(View.VISIBLE);
                 etCorreoElectronico.setVisibility(View.VISIBLE);
                 etContrasena.setVisibility(View.VISIBLE);
                 ivContra.setVisibility(View.VISIBLE);
@@ -179,7 +173,6 @@ public class LoginActivity extends AppCompatActivity {
             pbIconoCarga.setVisibility(View.INVISIBLE);
             ibRegistrarse.setVisibility(View.INVISIBLE);
             ibIniciarSesion.setVisibility(View.INVISIBLE);
-            ibRecuperarCuenta.setVisibility(View.INVISIBLE);
             etCorreoElectronico.setVisibility(View.INVISIBLE);
             etContrasena.setVisibility(View.INVISIBLE);
             ivContra.setVisibility(View.INVISIBLE);
@@ -197,18 +190,6 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
     }
-
-    private final View.OnClickListener ibRecuperarCuentaListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            BaseDeDatos bd = new BaseDeDatos();
-            boolean success = bd.getConexion() != null;
-            if (!success)
-                Toast.makeText(v.getContext(), "Connection failed :(", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(v.getContext(), "Connection successful! :D", Toast.LENGTH_SHORT).show();
-        }
-    };
 
     private final View.OnClickListener ivFaqOnClickListener = new View.OnClickListener() {
         @Override
