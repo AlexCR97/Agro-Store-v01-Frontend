@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.example.agrostore01.CapaEntidades.vistas.VistaCarrito;
 import com.example.agrostore01.R;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class CarritoAdapter extends ArrayAdapter<VistaCarrito> {
@@ -64,7 +65,7 @@ public class CarritoAdapter extends ArrayAdapter<VistaCarrito> {
 
         String producto = productoCarrito.getProducto();
         String cantidad = String.valueOf(productoCarrito.getCantidad());
-        String precio = "$" + productoCarrito.getPrecio();
+        String precio = "$" + new BigDecimal(productoCarrito.getPrecio()).setScale(2, BigDecimal.ROUND_HALF_EVEN);
 
         data.tvProducto.setText(producto);
         data.etCantidad.setText(cantidad);
