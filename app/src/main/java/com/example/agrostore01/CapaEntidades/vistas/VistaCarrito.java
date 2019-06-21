@@ -11,12 +11,12 @@ public class VistaCarrito implements Parcelable {
     private int idNumProducto;
     private String producto;
     private int cantidad;
-    private BigDecimal precio;
+    private String precio;
     private byte[] foto;
 
     public VistaCarrito() {}
 
-    public VistaCarrito(int idNumProducto, String producto, int cantidad, BigDecimal precio, byte[] foto) {
+    public VistaCarrito(int idNumProducto, String producto, int cantidad, String precio, byte[] foto) {
         this.idNumProducto = idNumProducto;
         this.producto = producto;
         this.cantidad = cantidad;
@@ -28,6 +28,7 @@ public class VistaCarrito implements Parcelable {
         idNumProducto = in.readInt();
         producto = in.readString();
         cantidad = in.readInt();
+        precio = in.readString();
         foto = in.createByteArray();
     }
 
@@ -67,11 +68,11 @@ public class VistaCarrito implements Parcelable {
         this.cantidad = cantidad;
     }
 
-    public BigDecimal getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(BigDecimal precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
 
@@ -89,7 +90,7 @@ public class VistaCarrito implements Parcelable {
                 "idNumProducto=" + idNumProducto +
                 ", producto='" + producto + '\'' +
                 ", cantidad=" + cantidad +
-                ", precio=" + precio +
+                ", precio='" + precio + '\'' +
                 ", foto=" + Arrays.toString(foto) +
                 '}';
     }
@@ -104,6 +105,7 @@ public class VistaCarrito implements Parcelable {
         dest.writeInt(idNumProducto);
         dest.writeString(producto);
         dest.writeInt(cantidad);
+        dest.writeString(precio);
         dest.writeByteArray(foto);
     }
 }

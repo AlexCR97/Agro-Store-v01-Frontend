@@ -42,7 +42,7 @@ public class CarritoFragment extends RecieveBundlesFragment {
 
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
-    private List<VistaCarrito> carrito;
+    private List<VistaCarrito> vistaCarritoList;
 
     ProgressDialog dialog;
 
@@ -99,9 +99,9 @@ public class CarritoFragment extends RecieveBundlesFragment {
         protected Void doInBackground(Void... voids) {
 
             LectorVistaCarrito lectorVistaCarrito = new LectorVistaCarrito();
-            carrito = lectorVistaCarrito.getMisProductosEnCarrito(usuario.getIdUsuario());
+            vistaCarritoList = lectorVistaCarrito.getMisProductosEnCarrito(usuario.getIdUsuario());
 
-            if (carrito == null) {
+            if (vistaCarritoList == null) {
                 mensaje = AgroMensajes.ERROR_INTERNET;
                 exito = false;
             }
@@ -120,7 +120,7 @@ public class CarritoFragment extends RecieveBundlesFragment {
                 return;
             }
 
-            CarritoAdapter adapter = new CarritoAdapter(CarritoFragment.this.getContext(), R.layout.list_item_carrito, carrito);
+            CarritoAdapter adapter = new CarritoAdapter(CarritoFragment.this.getContext(), R.layout.list_item_carrito, vistaCarritoList);
             listViewCarrito.setAdapter(adapter);
 
             System.out.println("\n\n\n\nJust ended async task " + this.getClass().getSimpleName() + "\n\n\n\n");
@@ -131,22 +131,24 @@ public class CarritoFragment extends RecieveBundlesFragment {
     }
 
     private void setPrecioTotal() {
-        if (carrito == null) {
+        if (vistaCarritoList == null) {
             tvPrecioTotal.setText("$0");
             return;
         }
 
-        if (carrito.isEmpty()) {
+        if (vistaCarritoList.isEmpty()) {
             tvPrecioTotal.setText("$0");
             return;
         }
 
         BigDecimal precioTotal = new BigDecimal(0);
 
-        for (VistaCarrito vistaCarrito : carrito)
-            precioTotal = precioTotal.add(vistaCarrito.getPrecio());
+        for (VistaCarrito vistaCarrito : vistaCarritoList)
+            precioTotal = precioTotal
+                    .add( new BigDecimal(vistaCarrito.getPrecio()))
+                    .multiply(new BigDecimal(vistaCarrito.getCantidad()));
 
-        String precio = precioTotal.setScale(2, BigDecimal.ROUND_HALF_EVEN).toString();
+        String precio = "$" + precioTotal.setScale(2, BigDecimal.ROUND_HALF_EVEN);
 
         tvPrecioTotal.setText(precio);
     }
@@ -172,7 +174,7 @@ public class CarritoFragment extends RecieveBundlesFragment {
             };
 
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-            builder.setMessage("Estas seguro de que quieres quitar este producto de tu carrito?")
+            builder.setMessage("Estas seguro de que quieres quitar este producto de tu vistaCarritoList?")
                     .setPositiveButton("Si", dialogClickListener)
                     .setNegativeButton("No", dialogClickListener)
                     .show();
@@ -184,20 +186,20 @@ public class CarritoFragment extends RecieveBundlesFragment {
     private final View.OnClickListener buttonComprarCarritoListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (carrito == null) {
+            if (vistaCarritoList == null) {
                 AgroUtils.mostrarDialogo(v.getContext(), "¡Ups!", AgroMensajes.ERROR_CARRITO_VACIO);
                 return;
             }
 
-            if (carrito.isEmpty()) {
+            if (vistaCarritoList.isEmpty()) {
                 AgroUtils.mostrarDialogo(v.getContext(), "¡Ups!", AgroMensajes.ERROR_CARRITO_VACIO);
                 return;
             }
 
-            ArrayList<VistaCompra> compras = new ArrayList<>();
+            ArrayList<VistaCompra> vistaCompraList = new ArrayList<>();
 
-            for (VistaCarrito vistaCarrito : carrito) {
-                compras.add(new VistaCompra(
+            for (VistaCarrito vistaCarrito : vistaCarritoList) {
+                vistaCompraList.add(new VistaCompra(
                         vistaCarrito.getIdNumProducto(),
                         usuario.getIdUsuario(),
                         vistaCarrito.getCantidad()
@@ -207,7 +209,8 @@ public class CarritoFragment extends RecieveBundlesFragment {
             Intent intent = new Intent(v.getContext(), CompraActivity.class);
             intent.putExtra(usuario.getClassName(), usuario);
             intent.putExtra(detallesUsuario.getClassName(), detallesUsuario);
-            intent.putParcelableArrayListExtra(compras.getClass().getSimpleName(), compras);
+            intent.putParcelableArrayListExtra(vistaCompraList.getClass().getSimpleName(), vistaCompraList);
+            intent.putParcelableArrayListExtra(vistaCarritoList.getClass().getSimpleName() + "1", (ArrayList<VistaCarrito>) vistaCarritoList);
 
             startActivity(intent);
         }

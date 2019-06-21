@@ -38,7 +38,7 @@ public class RepositorioVistaMiCarrito extends Repositorio implements IContratoV
                 int idNumProducto = resultado.getInt("IDNumProducto");
                 String producto = resultado.getString("Producto");
                 int cantidad = resultado.getInt("Cantidad");
-                BigDecimal precio = resultado.getBigDecimal("Precio");
+                String precio = resultado.getBigDecimal("Precio").toString();
                 byte[] foto = resultado.getBytes("Foto");
 
                 productos.add(new VistaCarrito(idNumProducto, producto, cantidad, precio, foto));

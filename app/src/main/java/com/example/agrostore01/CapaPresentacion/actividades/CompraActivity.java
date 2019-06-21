@@ -1,16 +1,18 @@
 package com.example.agrostore01.CapaPresentacion.actividades;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
@@ -19,15 +21,14 @@ import com.example.agrostore01.AgroMensajes;
 import com.example.agrostore01.AgroUtils;
 import com.example.agrostore01.CapaEntidades.DetallesUsuario;
 import com.example.agrostore01.CapaEntidades.Usuario;
+import com.example.agrostore01.CapaEntidades.vistas.VistaCarrito;
 import com.example.agrostore01.CapaEntidades.vistas.VistaCompra;
-import com.example.agrostore01.CapaNegocios.escritores.Escritor;
 import com.example.agrostore01.CapaNegocios.escritores.EscritorCarrito;
 import com.example.agrostore01.CapaNegocios.escritores.EscritorCompraUsuario;
 import com.example.agrostore01.CapaPresentacion.hilos.HiloNotificar;
 import com.example.agrostore01.R;
-import android.view.LayoutInflater;
-import android.view.View;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,9 +44,12 @@ public class CompraActivity extends RecieveBundlesActivity {
     private TextView tvNumeroCliente;
     private TextView tvNumeroRastreo;
 
+    private TableLayout tTicket;
+
     private Usuario usuario = new Usuario();
     private DetallesUsuario detallesUsuario = new DetallesUsuario();
-    private ArrayList<VistaCompra> compras = new ArrayList<>();
+    private ArrayList<VistaCarrito> vistaCarritoList = new ArrayList<>();
+    private ArrayList<VistaCompra> vistaComprasList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,8 @@ public class CompraActivity extends RecieveBundlesActivity {
         tvNumeroRastreo = findViewById(R.id.tvCompraNumeroRastreo);
         bDireccionExtra = findViewById(R.id.bDireccionExtra);
         bComprar = findViewById(R.id.bComprar);
+
+        tTicket = findViewById(R.id.tTicket);
 
         bDireccionExtra.setOnClickListener(bDireccionExtraOnClick);
         bComprar.setOnClickListener(bComprarOnClick);
@@ -78,17 +84,16 @@ public class CompraActivity extends RecieveBundlesActivity {
                 String.valueOf(AgroUtils.generarNumeroAleatorio(1, 1000)),
                 AgroUtils.generarIdAleatorio(8)
         );
+
+        generarTicket();
     }
 
     @Override
     public void recieveBundles(Context context) {
         usuario = getIntent().getParcelableExtra(usuario.getClassName());
         detallesUsuario = getIntent().getParcelableExtra(detallesUsuario.getClassName());
-        compras = getIntent().getParcelableArrayListExtra(compras.getClass().getSimpleName());
-
-        System.out.println("Recieved compras");
-        for (VistaCompra compra : compras)
-            System.out.println(compra);
+        vistaComprasList = getIntent().getParcelableArrayListExtra(vistaComprasList.getClass().getSimpleName());
+        vistaCarritoList = getIntent().getParcelableArrayListExtra(vistaCarritoList.getClass().getSimpleName() + "1");
     }
 
     private void llenarCampos(String cp, String calle, String colonia, String ciudad, String estado, String nombreRecibe,
@@ -110,14 +115,106 @@ public class CompraActivity extends RecieveBundlesActivity {
         tvNumeroRastreo.setText(numeroRastreo);
     }
 
+    private void generarTicket() {
+
+        tTicket.removeAllViews();
+
+        BigDecimal subTotal = new BigDecimal(0);
+
+        for (VistaCarrito vistaCarrito : vistaCarritoList) {
+            subTotal = subTotal
+                    .add(new BigDecimal(vistaCarrito.getPrecio()))
+                    .multiply(new BigDecimal(vistaCarrito.getCantidad()));
+
+            String titulo = vistaCarrito.getCantidad() + " " + vistaCarrito.getProducto();
+            String precio = new BigDecimal(vistaCarrito.getPrecio()).setScale(2, BigDecimal.ROUND_HALF_EVEN).toString();
+
+            agregarFilaPrecio(titulo, precio);
+        }
+
+        agregarFilaSeparador();
+
+        subTotal = subTotal.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+        agregarFilaPrecio("SubTotal", "$" + subTotal.toString());
+
+        BigDecimal cuota = subTotal
+                .multiply(new BigDecimal(15))
+                .divide(new BigDecimal(100), BigDecimal.ROUND_HALF_EVEN)
+                .setScale(2, BigDecimal.ROUND_HALF_EVEN);
+
+        BigDecimal total = subTotal
+                .add(cuota)
+                .setScale(2, BigDecimal.ROUND_HALF_EVEN);
+
+        agregarFilaPrecio("+ Cuota 15%", cuota.toString());
+        agregarFilaSeparador();
+        agregarFilaPrecio("TOTAL", total.toString());
+    }
+
+    private void agregarFilaTitulo(String titulo) {
+        TextView tvTitulo = new TextView(this);
+        tvTitulo.setText(titulo);
+        tvTitulo.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+        tvTitulo.setTextSize(18);
+        AgroUtils.setViewMargin(tvTitulo, 5, 5, 5, 5);
+
+        TableRow row = new TableRow(this);
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(
+                TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.WRAP_CONTENT
+        );
+        row.setLayoutParams(layoutParams);
+        row.addView(tvTitulo);
+
+        tTicket.addView(row);
+    }
+
+    private void agregarFilaSeparador() {
+        View separador = new View(this);
+        separador.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                5
+        ));
+        separador.setBackgroundColor(Color.LTGRAY);
+        AgroUtils.setViewMargin(separador, 10, 10, 10, 10);
+
+        tTicket.addView(separador);
+    }
+
+    private void agregarFilaPrecio(String titulo, String precio) {
+        TextView tvTitulo = new TextView(this);
+        tvTitulo.setText(titulo);
+        tvTitulo.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+        tvTitulo.setTextSize(18);
+        AgroUtils.setViewMargin(tvTitulo, 5, 5, 5, 5);
+
+        TextView tvPrecio = new TextView(this);
+        tvPrecio.setText(precio);
+        tvPrecio.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
+        tvPrecio.setTextColor(Color.BLACK);
+        tvPrecio.setTextSize(18);
+        AgroUtils.setViewMargin(tvPrecio, 5, 5, 5, 5);
+
+        TableRow row = new TableRow(this);
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(
+                TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.WRAP_CONTENT
+        );
+        row.setLayoutParams(layoutParams);
+        row.addView(tvTitulo);
+        row.addView(tvPrecio);
+
+        tTicket.addView(row);
+    }
+
     private final View.OnClickListener bComprarOnClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
-            if (compras == null)
+            if (vistaComprasList == null)
                 return;
 
-            if (compras.isEmpty())
+            if (vistaComprasList.isEmpty())
                 return;
 
             new RealizarCompra().execute();
@@ -205,7 +302,8 @@ public class CompraActivity extends RecieveBundlesActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            for (VistaCompra compra : compras) {
+            for (int i = 0; i < vistaComprasList.size(); i++) {
+                VistaCompra compra = vistaComprasList.get(i);
                 EscritorCompraUsuario escritorCompraUsuario = new EscritorCompraUsuario(
                         EscritorCompraUsuario.OPERACION_REALIZAR_COMPRA,
                         null,
@@ -247,11 +345,11 @@ public class CompraActivity extends RecieveBundlesActivity {
                     })
                     .show();
 
-            // Notificar las compras
+            // Notificar las vistaComprasList
 
             List<Integer> idsRepetidos = new ArrayList<>();
 
-            for (VistaCompra vistaCompra : compras)
+            for (VistaCompra vistaCompra : vistaComprasList)
                 idsRepetidos.add(vistaCompra.getIdNumProducto());
 
             List<Integer> idsUnicos = AgroUtils.getDifferentIds(idsRepetidos);
@@ -268,7 +366,7 @@ public class CompraActivity extends RecieveBundlesActivity {
                 new HiloNotificar(idNumProducto, detalle).execute();
             }
 
-            // Quitar productos del carrito del usuario
+            // Quitar productos del vistaCarritoList del usuario
 
             new QuitarProductos().execute();
         }
@@ -286,7 +384,7 @@ public class CompraActivity extends RecieveBundlesActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 
-            for (VistaCompra compra : compras) {
+            for (VistaCompra compra : vistaComprasList) {
                 EscritorCarrito escritorCarrito = new EscritorCarrito(
                         EscritorCarrito.OPERACION_QUITAR_PRODUCTO,
                         null,
