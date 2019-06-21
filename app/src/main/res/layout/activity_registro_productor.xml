@@ -63,7 +63,7 @@
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="@+id/etRegistroClienteColonia"
-                    app:layout_constraintStart_toStartOf="@+id/imageView38"
+                    app:layout_constraintStart_toStartOf="@+id/imageView44"
                     app:layout_constraintTop_toTopOf="@+id/etRegistroClienteColonia"
                     app:srcCompat="@drawable/empresa" />
 
@@ -83,7 +83,7 @@
                     android:layout_height="29dp"
                     android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="@+id/etRegistroClienteCalle"
-                    app:layout_constraintStart_toStartOf="@+id/imageView26"
+                    app:layout_constraintStart_toStartOf="@+id/imageView30"
                     app:layout_constraintTop_toTopOf="@+id/etRegistroClienteCalle"
                     app:srcCompat="@drawable/empresa" />
 
@@ -104,13 +104,14 @@
                     android:id="@+id/tvFecha"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:text="TextView"
                     android:textColor="@color/colorVerdeFuerte"
                     android:textSize="18sp"
                     android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="@+id/ibFechaNacimiento"
                     app:layout_constraintStart_toStartOf="@+id/ibFechaNacimiento"
-                    app:layout_constraintTop_toBottomOf="@+id/ibFechaNacimiento" />
+                    app:layout_constraintTop_toBottomOf="@+id/sMes" />
 
                 <ImageView
                     android:id="@+id/imageView23"
@@ -218,6 +219,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
+                    android:visibility="invisible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sEstado"
@@ -227,20 +229,22 @@
                     android:id="@+id/cbRegistroClienteTerminos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:text="Acepto términos y condiciones"
                     android:textColor="@color/colorGris"
-                    app:layout_constraintEnd_toEndOf="@+id/imageButton15"
-                    app:layout_constraintStart_toStartOf="@+id/imageButton15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageButton15" />
 
                 <ImageButton
                     android:id="@+id/imageButton15"
                     android:layout_width="323dp"
                     android:layout_height="45dp"
+                    android:layout_marginTop="15dp"
                     android:background="@android:color/transparent"
                     android:scaleType="fitCenter"
-                    app:layout_constraintEnd_toEndOf="@+id/ibFechaNacimiento"
-                    app:layout_constraintStart_toStartOf="@+id/ibFechaNacimiento"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvFecha"
                     app:srcCompat="@drawable/permiso_de_exportacion" />
 
@@ -347,8 +351,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:text="Cuenta Productor"
                     android:fontFamily="@font/comfortaa_light"
+                    android:text="Cuenta Productor"
                     android:textColor="@color/colorGris"
                     android:textSize="24sp"
                     android:textStyle="bold"
@@ -485,6 +489,47 @@
                     app:layout_constraintStart_toStartOf="@+id/etRegistroClienteCiudad"
                     app:layout_constraintTop_toBottomOf="@+id/textView13"
                     tools:layout_marginStart="50dp" />
+
+                <TextView
+                    android:id="@+id/textView38"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="Ingrese la fecha de nacimiento"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="@+id/etRegistroClienteCodigoPostal"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textView13"
+                    app:layout_constraintTop_toBottomOf="@+id/sEstado" />
+
+                <Spinner
+                    android:id="@+id/sDia"
+                    android:layout_width="110dp"
+                    android:layout_height="45dp"
+                    android:layout_marginEnd="2dp"
+                    app:layout_constraintEnd_toStartOf="@+id/sMes"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/sMes" />
+
+                <Spinner
+                    android:id="@+id/sMes"
+                    android:layout_width="110dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+                <Spinner
+                    android:id="@+id/sAnio"
+                    android:layout_width="110dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/sMes"
+                    app:layout_constraintTop_toTopOf="@+id/sMes" />
 
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>

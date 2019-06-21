@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:hint="Codigo postal"
+                android:hint="Código postal"
                 android:inputType="number"
                 android:textColor="@color/colorGrisOscuro" />
 

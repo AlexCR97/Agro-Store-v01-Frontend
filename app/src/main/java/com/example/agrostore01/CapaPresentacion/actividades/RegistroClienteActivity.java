@@ -30,6 +30,7 @@ import com.example.agrostore01.CapaNegocios.validaciones.ValidacionUsuario;
 import com.example.agrostore01.R;
 
 import java.util.Calendar;
+import java.util.Vector;
 
 public class RegistroClienteActivity extends AppCompatActivity {
 
@@ -40,7 +41,7 @@ public class RegistroClienteActivity extends AppCompatActivity {
     private String sFecha;
     private TextView tvFecha;
     private int dia, mes, anno;
-    private Spinner sEstado, sPais;
+    private Spinner sEstado, sPais,sDia,sMes, sAnio;
     private ProgressDialog dialog;
 
     private Usuario usuario = new Usuario();
@@ -63,6 +64,10 @@ public class RegistroClienteActivity extends AppCompatActivity {
         sEstado = findViewById(R.id.sEstado);
         sPais = findViewById(R.id.sPais);
 
+        sDia = findViewById(R.id.sDia);
+        sMes = findViewById(R.id.sMes);
+        sAnio = findViewById(R.id.sAnio);
+
         etCalle = findViewById(R.id.etRegistroClienteCalle);
         etColonia = findViewById(R.id.etRegistroClienteColonia);
         etCiudad = findViewById(R.id.etRegistroClienteCiudad);
@@ -72,7 +77,6 @@ public class RegistroClienteActivity extends AppCompatActivity {
         ibRegistrar = findViewById(R.id.ibRegistroClienteRegistrar);
         tvFecha = findViewById(R.id.tvFecha);
         cbTerminos = findViewById(R.id.cbRegistroClienteTerminos);
-
 
         ibFecha.setOnClickListener(ibFechaListener);
         ibRegistrar.setOnClickListener(ibRegistrarListener);
@@ -87,6 +91,32 @@ public class RegistroClienteActivity extends AppCompatActivity {
                 ,"Tamaulipas","Tlaxcala","Veracruz de Ignacio de la Llave","Yucatán","Zacatecas"};
         ArrayAdapter<String> adapterEstado = new ArrayAdapter<>(this, R.layout.list_item_spinner, estados);
         sEstado.setAdapter(adapterEstado);
+
+        Vector<String> dias = new Vector<String>();
+        dias.add("Día");
+        for (int i=1;i<32;i++){
+            dias.add(""+i);
+        }
+
+        ArrayAdapter<String> adapterDias = new ArrayAdapter<>(this, R.layout.list_item_spinner, dias);
+        sDia.setAdapter(adapterDias);
+
+        String[] meses = new String[] {"Mes","Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+        ArrayAdapter<String> adapterMeses = new ArrayAdapter<>(this, R.layout.list_item_spinner, meses);
+        sMes.setAdapter(adapterMeses);
+
+
+        //String[] anios = new String[] {"Año"};
+        Vector<String> anios = new Vector<String>();
+        anios.add("Año");
+        for (int i=1920;i<2002;i++){
+            anios.add(""+i);
+        }
+
+        ArrayAdapter<String> adapterAnio = new ArrayAdapter<>(this, R.layout.list_item_spinner, anios);
+        sAnio.setAdapter(adapterAnio);
+
+
     }
 
 

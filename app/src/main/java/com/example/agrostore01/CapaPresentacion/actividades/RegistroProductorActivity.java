@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Vector;
 
 import com.example.agrostore01.AgroMensajes;
 import com.example.agrostore01.AgroTipoUsuarios;
@@ -40,7 +41,7 @@ public class RegistroProductorActivity extends AppCompatActivity {
     private String sFecha;
     private TextView tvFecha;
     private int dia, mes, anno;
-    private Spinner sEstado, sPais;
+    private Spinner sEstado, sPais,sDia,sMes, sAnio;
     private ProgressDialog dialog;
 
 
@@ -62,6 +63,10 @@ public class RegistroProductorActivity extends AppCompatActivity {
         etCorreoRespaldo = findViewById(R.id.etCorreoResp);
         sEstado = findViewById(R.id.sEstado);
         sPais = findViewById(R.id.sPais);
+
+        sDia = findViewById(R.id.sDia);
+        sMes = findViewById(R.id.sMes);
+        sAnio = findViewById(R.id.sAnio);
 
         etCalle = findViewById(R.id.etRegistroClienteCalle);
         etColonia = findViewById(R.id.etRegistroClienteColonia);
@@ -86,6 +91,30 @@ public class RegistroProductorActivity extends AppCompatActivity {
                 ,"Tamaulipas","Tlaxcala","Veracruz de Ignacio de la Llave","Yucatán","Zacatecas"};
         ArrayAdapter<String> adapterEstado = new ArrayAdapter<>(this, R.layout.list_item_spinner, estados);
         sEstado.setAdapter(adapterEstado);
+
+        Vector<String> dias = new Vector<String>();
+        dias.add("Día");
+        for (int i=1;i<32;i++){
+            dias.add(""+i);
+        }
+
+        ArrayAdapter<String> adapterDias = new ArrayAdapter<>(this, R.layout.list_item_spinner, dias);
+        sDia.setAdapter(adapterDias);
+
+        String[] meses = new String[] {"Mes","Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+        ArrayAdapter<String> adapterMeses = new ArrayAdapter<>(this, R.layout.list_item_spinner, meses);
+        sMes.setAdapter(adapterMeses);
+
+
+        //String[] anios = new String[] {"Año"};
+        Vector<String> anios = new Vector<String>();
+        anios.add("Año");
+        for (int i=1920;i<2002;i++){
+            anios.add(""+i);
+        }
+
+        ArrayAdapter<String> adapterAnio = new ArrayAdapter<>(this, R.layout.list_item_spinner, anios);
+        sAnio.setAdapter(adapterAnio);
     }
 
     private final View.OnClickListener ibFechaListener = new View.OnClickListener() {
